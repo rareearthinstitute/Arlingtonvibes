@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metropolitan Park — Arlington Vibes</title>
+<meta name="description" content="Metropolitan Park, Pentagon City: 2.5 acres of public green wrapped by the first phase of Amazon HQ2. What is there, what it replaced, and what comes next.">
+<meta property="og:title" content="Metropolitan Park — Arlington Vibes">
+<meta property="og:description" content="The ground floor was the negotiated part.">
+<meta property="og:image" content="media/metpark-green-poster.jpg">
+<link rel="preload" as="image" href="media/metpark-green-poster.jpg" fetchpriority="high">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Cpath d='M50 18 L78 78 H22 Z' fill='none' stroke='%23fff' stroke-width='7'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ---------------------------------------------------------------------------
+   Type scale, colour and spacing follow the system used on anduril.com's
+   subdomain pages: a white header slice with an oversized display headline,
+   tightly-tracked micro labels, bracketed technical codes, media slices inset
+   by the page gutter, and a fixed section pill at the bottom of the viewport.
+   --------------------------------------------------------------------------- */
+:root{
+  --ink:#010101;
+  --white:#ffffff;
+  --cream:#f1f0ea;
+  --accent:#dff140;          /* Anduril's signal yellow-green */
+  --accent-soft:#eff8a0;
+  --grey:#6c6e6b;
+  --grey-mid:#565654;
+  --dim:#b0b0a9;             /* label grey on dark */
+  --dim-dark:rgba(1,1,1,.55);
+  --rule:rgba(255,255,255,.18);
+  --rule-dark:rgba(1,1,1,.14);
+  --pad:2rem;
+  --display:"Inter",Helvetica,Arial,sans-serif;
+  --tech:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --xs:.5rem; --sm:1rem; --base:2rem; --lg:3rem; --xl:4rem; --xxl:7rem;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:#000}
+body{background:#000;color:var(--white);font-family:var(--display);font-size:16px;
+  line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+main{position:relative;z-index:2;overflow:clip}
+
+/* ---------- TYPE PRIMITIVES ---------- */
+/* micro label: uppercase, weight 500, tight tracking — not letterspaced out */
+.lbl{font-family:var(--display);font-size:.75rem;font-weight:500;letter-spacing:.03rem;
+  text-transform:uppercase;line-height:1.05}
+/* the bracketed technical code, set in the mono face */
+.code{font-family:var(--tech);font-size:.75rem;font-weight:500;letter-spacing:.03rem;
+  text-transform:uppercase;line-height:1.05;color:var(--accent)}
+.h-xxl{font-size:clamp(3.5rem,10.5vw,9rem);font-weight:700;letter-spacing:-.028em;line-height:1.10}
+.h-lg{font-size:clamp(2.2rem,5.2vw,4.4rem);font-weight:700;letter-spacing:-.026em;line-height:1.08}
+.h-md{font-size:clamp(1.5rem,2.6vw,2.2rem);font-weight:600;letter-spacing:-.02em;line-height:1.12}
+.body-lg{font-size:clamp(1.05rem,1.5vw,1.35rem);line-height:1.35;font-weight:400;letter-spacing:-.012em}
+.body{font-size:1rem;line-height:1.6}
+.pad{padding-left:var(--pad);padding-right:var(--pad)}
+
+/* link button: 60% opacity at rest, full on hover, arrow at the end */
+.lb{font-size:.875rem;font-weight:400;letter-spacing:-.009rem;line-height:1.05;
+  display:inline-flex;align-items:center;gap:.5rem;width:fit-content;opacity:.6;
+  transition:opacity .3s ease-out;cursor:pointer}
+.lb:hover{opacity:1}
+.lb svg{width:11px;height:11px;flex:none}
+.lb.on-accent{opacity:1;color:var(--accent)}
+.lb.on-accent:hover{color:var(--accent-soft)}
+
+/* ---------- HEADER ---------- */
+.site{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:1.5rem;
+  height:64px;padding:0 var(--pad);color:var(--ink);transition:color .35s ease,background-color .35s ease}
+.site.dark{color:var(--white)}
+.site.stuck{background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.site.dark.stuck{background:rgba(0,0,0,.72)}
+.logo{display:flex;align-items:center;gap:.55rem;font-weight:600;font-size:.9375rem;
+  letter-spacing:.02em;text-transform:uppercase}
+.logo svg{width:18px;height:18px;flex:none}
+.site nav{display:flex;gap:1.6rem;margin-left:auto;font-size:.875rem;font-weight:500;letter-spacing:-.009rem}
+.site nav a{opacity:.62;transition:opacity .25s ease-out}
+.site nav a:hover,.site nav a.here{opacity:1}
+@media(max-width:820px){.site nav{display:none}}
+
+/* ---------- HEADER SLICE (white, oversized) ---------- */
+.header-slice{background:var(--white);color:var(--ink);padding-top:clamp(5rem,7vw,8rem);
+  padding-bottom:var(--xl)}
+.header-slice .top-wrapper{padding:0 var(--pad);display:flex;flex-direction:column;gap:var(--base)}
+.header-slice h1{margin:0}
+.header-slice .aphorism{font-family:var(--tech);font-size:.75rem;font-weight:500;
+  letter-spacing:.03rem;text-transform:uppercase;line-height:1.05;color:var(--grey-mid)}
+.header-slice .lede{max-width:46ch;color:rgba(1,1,1,.72)}
+.header-slice .hmeta{display:flex;flex-wrap:wrap;gap:.6rem 2rem;color:var(--grey)}
+
+/* ---------- MEDIA SLICE ---------- */
+.media-slice{padding:var(--base) var(--pad)}
+.media-row{display:flex;gap:var(--sm)}
+.media-row>*{flex:1;min-width:0}
+.m-item{position:relative;overflow:hidden;background:#0a0a0a;aspect-ratio:16/9}
+.m-item.tall{aspect-ratio:4/5}   /* unused: every current source is 16:9 */
+.m-item video,.m-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* stand-in field for footage not yet shot or cleared */
+.plate{position:absolute;inset:0;background:
+  repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 1px,transparent 1px 9px),
+  radial-gradient(120% 90% at 50% 32%,#161616 0%,#080808 55%,#000 100%)}
+.plate::after{content:attr(data-note);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-family:var(--tech);font-size:.6875rem;letter-spacing:.03rem;text-transform:uppercase;
+  color:rgba(255,255,255,.22);white-space:nowrap;text-align:center;padding:0 1rem}
+.cap{display:flex;gap:.3rem;flex-direction:column;margin-top:var(--sm);color:var(--dim)}
+@media(max-width:820px){
+  .media-row{flex-direction:column}
+  .plate::after{white-space:normal;width:80%}
+}
+
+/* ---------- ENTRY BLOCK (category / code / sentence / link) ---------- */
+.entry-slice{padding:var(--xl) var(--pad) var(--base)}
+.entry{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:var(--lg)}
+.entry .left{display:flex;flex-direction:column;gap:var(--sm)}
+/* the caps descriptor stacks over several lines, so it needs more leading than
+   a single-line micro label */
+.entry .cat{color:var(--white);max-width:18ch;line-height:1.32}
+.on-white .entry .cat,.on-cream .entry .cat{color:var(--ink)}
+.entry .right{display:flex;flex-direction:column;gap:var(--base);align-items:flex-start}
+.entry .right p{color:var(--dim);max-width:56ch}
+.entry .num{color:var(--grey-mid)}
+@media(max-width:820px){.entry{grid-template-columns:1fr;gap:var(--base)}}
+
+/* ---------- STAT ROW ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sm);
+  padding:var(--base) var(--pad) var(--xl)}
+.stat{border-top:1px solid var(--rule);padding-top:var(--sm)}
+.stat .n{display:block;font-size:clamp(1.8rem,3.4vw,3rem);font-weight:700;letter-spacing:-.028em;
+  line-height:1;margin-bottom:.6rem}
+.stat .l{color:var(--dim)}
+@media(max-width:820px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--base) var(--sm)}}
+
+/* ---------- PROSE SLICE ---------- */
+.prose-slice{padding:var(--lg) var(--pad) var(--xl)}
+.prose{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:var(--lg)}
+.prose .lead{max-width:22ch}
+.prose .copy p{color:var(--dim);max-width:62ch}
+.prose .copy p+p{margin-top:var(--sm)}
+.on-white{background:var(--white);color:var(--ink)}
+.on-white .prose .copy p,.on-white .entry .right p{color:rgba(1,1,1,.72)}
+.on-white .stat{border-top-color:var(--rule-dark)}
+.on-white .stat .l,.on-white .cap,.on-white .num{color:var(--grey)}
+.on-cream{background:var(--cream);color:var(--ink)}
+.on-cream .prose .copy p,.on-cream .entry .right p{color:rgba(1,1,1,.72)}
+.on-cream .stat{border-top-color:var(--rule-dark)}
+.on-cream .stat .l,.on-cream .cap,.on-cream .num{color:var(--grey)}
+@media(max-width:820px){.prose{grid-template-columns:1fr;gap:var(--base)}}
+
+/* ---------- FEATURE (one business, full treatment) ---------- */
+.feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--sm);
+  padding:var(--base) var(--pad) var(--xl)}
+.feature .fmedia{position:relative;overflow:hidden;background:#0a0a0a;min-height:24rem}
+.feature .fmedia video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.feature .fbody{display:flex;flex-direction:column;gap:var(--sm);justify-content:center;
+  padding:var(--base) 0 var(--base) var(--base)}
+.feature .fbody p.desc{color:var(--dim);max-width:52ch}
+.on-cream .feature .fbody p.desc{color:rgba(1,1,1,.72)}
+.fspec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sm) var(--base);
+  margin-top:var(--xs);padding-top:var(--sm);border-top:1px solid var(--rule)}
+.on-cream .fspec{border-top-color:var(--rule-dark)}
+.fspec dt{color:var(--grey);margin-bottom:.35rem}
+.fspec dd{font-size:.9375rem;line-height:1.4}
+@media(max-width:820px){
+  .feature{grid-template-columns:1fr}
+  .feature .fmedia{min-height:15rem}
+  .feature .fbody{padding:var(--base) 0 0}
+}
+
+/* ---------- VISIT ---------- */
+.visit-slice{padding:var(--xl) var(--pad) var(--xxl)}
+.visit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--lg);
+  border-top:1px solid var(--rule);padding-top:var(--base)}
+.on-cream .visit{border-top-color:var(--rule-dark)}
+.visit h3{color:var(--grey);margin-bottom:.9rem}
+.visit ul{list-style:none}
+.visit li{padding:.3rem 0;font-size:.9375rem;line-height:1.5}
+.visit p{font-size:.9375rem;line-height:1.5}
+@media(max-width:820px){.visit{grid-template-columns:1fr;gap:var(--base)}}
+
+/* ---------- FIXED SECTION PILL ---------- */
+/* Anduril's SecondaryNavigationSlice: fixed bottom-centre, blurred, fades in
+   once you are past the header, collapses to the current section on mobile. */
+.pill{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:50;
+  opacity:0;visibility:hidden;transition:opacity .3s ease-out,visibility .3s;
+  color:var(--dim);text-align:center}
+.pill.show{opacity:1;visibility:visible}
+.pill nav{display:flex;gap:var(--base);padding:.8rem var(--base);
+  background:rgba(0,0,0,.7);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
+  border-radius:2px 2px 0 0}
+.pill a{font-size:.875rem;font-weight:500;letter-spacing:-.009rem;line-height:1.2;
+  color:var(--dim);transition:color .25s ease-out;position:relative;white-space:nowrap}
+.pill a:hover{color:var(--white)}
+.pill a.current{color:var(--accent)}
+.pill .current-row{display:none}
+@media(max-width:820px){
+  .pill{left:0;right:0;transform:none;width:100%}
+  .pill nav{display:none;flex-direction:column;gap:0;padding:0;border-radius:0}
+  .pill.open nav{display:flex}
+  .pill.open nav a{padding:.9rem var(--pad);text-align:left;
+    border-top:1px solid rgba(255,255,255,.10)}
+  .pill .current-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    width:100%;padding:1rem var(--pad);color:var(--white);
+    background:rgba(0,0,0,.7);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
+    border:0;font:inherit;font-size:.875rem;font-weight:500;cursor:pointer;text-align:left}
+  .pill .current-row .chev{transition:transform .25s ease-out;color:var(--accent)}
+  .pill.open .current-row .chev{transform:rotate(180deg)}
+}
+
+/* ---------- FOOTER ---------- */
+footer{padding:var(--xl) var(--pad) var(--base);border-top:1px solid var(--rule)}
+.fgrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:var(--base);margin-bottom:var(--xl)}
+.fgrid p.title{color:var(--grey);margin-bottom:var(--sm)}
+.fgrid ul{list-style:none}
+.fgrid li{padding:.25rem 0;font-size:.875rem}
+.fgrid li a{opacity:.62;transition:opacity .25s}
+.fgrid li a:hover{opacity:1}
+.fbot{display:flex;justify-content:space-between;gap:var(--sm);flex-wrap:wrap;
+  padding-top:var(--sm);border-top:1px solid var(--rule);color:var(--grey)}
+/* keep the last of the footer clear of the fixed section pill */
+.fbot{padding-bottom:var(--lg)}
+@media(max-width:820px){.fbot{padding-bottom:var(--xl)}}
+@media(max-width:820px){.fgrid{grid-template-columns:1fr 1fr;gap:var(--base)}}
+
+/* ---------- REVEAL ---------- */
+.rv{opacity:0;transform:translateY(14px);
+  transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+}
+
+/* ---------- EMBEDDED ----------
+   When this page is opened inside the map's detail panel on the index, the
+   frame is sized to the content, so anything position:fixed would pin to the
+   whole document. Drop the page chrome and let the host carry it. */
+.embedded .site,.embedded .pill{display:none}
+.embedded .header-slice{padding-top:var(--base)}
+.embedded footer{display:none}
+.embedded .visit-slice{padding-bottom:var(--xl)}
+.embedded .rv{opacity:1;transform:none;transition:none}
+@media(max-width:820px){
+  :root{--pad:1.428rem}
+  .lbl,.code,.header-slice .aphorism{font-size:.929rem;letter-spacing:.037rem}
+  .site nav a,.pill a,.lb{font-size:1.071rem;letter-spacing:-.011rem}
+  .lb{font-size:.9375rem}
+}
+</style>
+</head>
+<body>
+
+<header class="site" id="site">
+  <a class="logo" href="index.html">
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M20 5 L34 34 H6 Z"/></svg>
+    Arlington Vibes
+  </a>
+  <nav>
+    <a href="index.html#market">Market</a>
+    <a href="index.html#neighborhoods">Neighborhoods</a>
+    <a href="metropolitan-park.html" class="here">Met Park</a>
+    <a href="index.html#neighborhoods">Eat</a>
+    <a href="index.html#neighborhoods">Dispatch</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ HEADER SLICE ============ -->
+<section class="header-slice" id="top">
+  <div class="top-wrapper">
+    <p class="lbl" style="color:var(--grey)">Pentagon City</p>
+    <h1 class="h-xxl" data-scramble>Metropolitan Park</h1>
+    <p class="aphorism">The ground floor was the negotiated part</p>
+    <p class="body-lg lede">Two and a half acres of public green wrapped on three sides by the first
+      phase of Amazon HQ2 — a lawn, two dog runs, a treehouse, and a memorial to the neighborhood the
+      government cleared a mile from here in 1941.</p>
+    <div class="hmeta lbl">
+      <span>38.8592° N, 77.0554° W</span>
+      <span>Opened 2023</span>
+      <span>Sunrise – sunset + 30</span>
+    </div>
+  </div>
+</section>
+
+<!-- opening media -->
+<section class="media-slice on-white" style="padding-bottom:var(--xxl)">
+  <div class="media-row">
+    <div class="m-item">
+      <video muted loop playsinline preload="none" data-clip="metpark-green"></video>
+      <div class="plate" data-note="Footage pending — Metropolitan Park"></div>
+    </div>
+  </div>
+  <div class="cap lbl"><span>Metropolitan Park, looking north from S. Fair Street</span></div>
+</section>
+
+<!-- ============ 01 THE GROUND ============ -->
+<section class="entry-slice" id="ground">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl num">01</p>
+      <p class="lbl cat">Central Green, two dog runs, a Children's Garden</p>
+      <p class="code">[2.5 ACRES]</p>
+    </div>
+    <div class="right">
+      <p class="body">James Corner Field Operations — the practice behind New York's High Line — laid
+        out the landscape. The lawn takes markets, film nights and county programming; the edges hold
+        more than 50,000 plants and over 175 trees, most of them native. Everything sits at grade,
+        with no step between the sidewalk and the grass.</p>
+      <a class="lb on-accent" href="#visit">Plan a visit
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 9.5L9.5 2.5M4 2.5h5.5V8"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="stats rv">
+  <div class="stat"><span class="n">2.5</span><span class="l lbl">Acres of public park</span></div>
+  <div class="stat"><span class="n">6.2</span><span class="l lbl">Acres, full site</span></div>
+  <div class="stat"><span class="n">175+</span><span class="l lbl">Trees, mostly native</span></div>
+  <div class="stat"><span class="n">18</span><span class="l lbl">Art installations</span></div>
+</div>
+
+<section class="media-slice">
+  <div class="media-row">
+    <div class="m-item">
+      <video muted loop playsinline preload="none" data-clip="metpark-ground" data-lazy></video>
+      <div class="plate" data-note="Footage pending — the planted edge"></div>
+    </div>
+    <div class="m-item">
+      <video muted loop playsinline preload="none" data-clip="metpark-plaza" data-lazy></video>
+      <div class="plate" data-note="Footage pending — the plaza"></div>
+    </div>
+  </div>
+  <div class="cap lbl"><span>Left — the planted edge and its walking path. Right — the plaza between the towers.</span></div>
+</section>
+
+<!-- ============ 02 QUEEN CITY ============ -->
+<section class="entry-slice" id="queen-city">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl num">02</p>
+      <p class="lbl cat">Queen City, 2022 — Nekisha Durrett</p>
+      <p class="code">[903 VESSELS]</p>
+    </div>
+    <div class="right">
+      <p class="body">In 1941 the federal government seized Black-owned land in Arlington to build the
+        Pentagon. Queen City went with it — homes, churches, businesses gone within the year — and for
+        eight decades nothing on the ground said it had been there.</p>
+      <p class="body">Durrett's answer is a brick tower in the corner of the park. Brick, concrete,
+        ceramic pottery and steel; the plaque calls it standing tall and vigilant. Held within it are
+        903 handmade ceramic vessels, made in the shape and colour of a drop of water, one for each
+        displaced resident. She commissioned Black ceramicists from the local area and beyond, and
+        worked with historians, living descendants of Queen City residents, and local art spaces.</p>
+      <p class="body">It stands in a park paid for by the largest corporate land deal in the county's
+        history, a mile from the building that erased what it commemorates. That is the argument, not
+        an accident of siting.</p>
+    </div>
+  </div>
+</section>
+
+<section class="media-slice">
+  <div class="media-row">
+    <div class="m-item">
+      <video muted loop playsinline preload="none" data-clip="metpark-queencity" data-lazy></video>
+      <div class="plate" data-note="Footage pending — Queen City"></div>
+    </div>
+    <div class="m-item">
+      <video muted loop playsinline preload="none" data-clip="metpark-plaque" data-lazy></video>
+      <div class="plate" data-note="Footage pending — the plaque"></div>
+    </div>
+  </div>
+  <div class="cap lbl"><span>Queen City, and the plaque that names what stood here.</span></div>
+</section>
+
+<!-- ============ 03 THE TOWERS ============ -->
+<section class="entry-slice" id="towers">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl num">03</p>
+      <p class="lbl cat">Merlin &amp; Jasper — HQ2, phase one</p>
+      <p class="code">[2.1M SQ FT]</p>
+    </div>
+    <div class="right">
+      <p class="body">Two 22-storey towers, 327 feet, delivered in June 2023 and certified LEED v4
+        Platinum — ZGF, the architect, calls it the largest LEED v4 Platinum project in the world.
+        Fifty thousand square feet of the ground floor is retail rather than lobby, and the buildings
+        meet the park at grade through garage-style doors that open onto the lawn in good weather.
+        About 8,300 people work at HQ2 as of 2026, short of the 25,000 projected by 2030 and flat
+        year over year.</p>
+    </div>
+  </div>
+</section>
+
+<div class="stats rv">
+  <div class="stat"><span class="n">22</span><span class="l lbl">Storeys, each tower</span></div>
+  <div class="stat"><span class="n">327 ft</span><span class="l lbl">Height</span></div>
+  <div class="stat"><span class="n">50k</span><span class="l lbl">Sq ft of retail</span></div>
+  <div class="stat"><span class="n">8,300</span><span class="l lbl">HQ2 employees, 2026</span></div>
+</div>
+
+<section class="media-slice">
+  <div class="media-row">
+    <div class="m-item">
+      <video muted loop playsinline preload="none" data-clip="metpark-towers" data-lazy></video>
+      <div class="plate" data-note="Footage pending — Merlin &amp; Jasper"></div>
+    </div>
+  </div>
+  <div class="cap lbl"><span>Merlin and Jasper, from the park</span></div>
+</section>
+
+<!-- ============ 04 INDEPENDENT STORES ============ -->
+<section class="media-slice">
+  <div class="media-row">
+    <div class="m-item">
+      <video muted loop playsinline preload="none" data-clip="metpark-shops" data-lazy></video>
+      <div class="plate" data-note="Footage pending — the block"></div>
+    </div>
+    <div class="m-item">
+      <video muted loop playsinline preload="none" data-clip="metpark-window" data-lazy></video>
+      <div class="plate" data-note="Footage pending — Gwenie's window"></div>
+    </div>
+  </div>
+  <div class="cap lbl"><span>Left — the retail edge on S. Fair Street. Right — the window at Gwenie's, a block west.</span></div>
+</section>
+
+<section class="entry-slice" id="stores">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl num">04</p>
+      <p class="lbl cat">Independent stores</p>
+      <p class="code">[NOT A FOOD COURT]</p>
+    </div>
+    <div class="right">
+      <p class="body">Amazon reserved the retail for small operators — fourteen of the businesses in
+        phase one are minority-owned or women-owned — and that decision is the difference between a
+        plaza and a street. Good Company Doughnuts, Maman, Makers Union, Taqueria Xochi, Peruvian
+        Brothers, South Block, Toby's, MoCA Arlington's studio and Conte's Bike Shop all face the
+        lawn. But the ground floor of a headquarters is still the ground floor of a headquarters.
+        The one worth a detour is a block west.</p>
+    </div>
+  </div>
+</section>
+
+<section class="on-cream">
+  <div class="feature rv">
+    <div class="fmedia">
+      <video muted loop playsinline preload="none" data-clip="metpark-gwenies" data-lazy></video>
+      <div class="plate" data-note="Interior — footage pending"></div>
+    </div>
+    <div class="fbody">
+      <p class="lbl" style="color:var(--grey)">Pentagon City · Filipino bakery &amp; cafe</p>
+      <h2 class="h-lg" data-scramble>Gwenie's Pastries</h2>
+      <p class="code" style="color:var(--ink)">[1417 S. FERN ST]</p>
+      <p class="body desc">Gwendolyn Fernandez started Gwenie's in Rockville about twenty years ago.
+        Her children, Stella and Javier, opened this one in September 2025 — the family's first
+        Virginia storefront, and a two-business room: Gwenie's on the pastry side, Lapu Lapu on the
+        savoury side, one counter each.</p>
+      <p class="body desc">Gwenie's is ube cheesecake, cakes and pies, and filled donuts — ube, mango,
+        pandan, Nutella. Lapu Lapu is Filipino breakfast sandwiches on pandesal made in-house, ube
+        soft serve and specialty lattes. Breakfast runs all day, which is the correct policy.</p>
+      <dl class="fspec">
+        <div><dt class="lbl">Hours</dt><dd>7am – 7pm daily<br>Breakfast all day</dd></div>
+        <div><dt class="lbl">Order</dt><dd>Ube cheesecake; a bistek pandesal sandwich</dd></div>
+        <div><dt class="lbl">From the park</dt><dd>Two minutes west</dd></div>
+        <div><dt class="lbl">Opened</dt><dd>September 2025</dd></div>
+      </dl>
+      <a class="lb" href="https://www.gweniespastries.com/" target="_blank" rel="noopener">Gwenie's Pastries
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 9.5L9.5 2.5M4 2.5h5.5V8"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 PENPLACE ============ -->
+<section class="entry-slice" id="penplace">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl num">05</p>
+      <p class="lbl cat">PenPlace, and the Helix</p>
+      <p class="code">[ON HOLD]</p>
+    </div>
+    <div class="right">
+      <p class="body">The County Board approved phase two in April 2022: three more office buildings
+        on the parcel north of the park, plus the Helix, a spiralling tower with a planted exterior
+        walkway meant to be the campus's landmark. Amazon paused construction in 2023 and has not
+        restarted. In June 2025 the County extended the site plan, pushing the deadline to begin
+        construction to June 30, 2028.</p>
+      <p class="body">You can see the site from the north edge of the park. It is worth looking at,
+        because the park you are standing in is what the finished version is supposed to feel like.</p>
+    </div>
+  </div>
+</section>
+
+<section class="media-slice">
+  <div class="media-row">
+    <div class="m-item">
+      <video muted loop playsinline preload="none" data-clip="metpark-street" data-lazy></video>
+      <div class="plate" data-note="Footage pending — the street grid"></div>
+    </div>
+  </div>
+  <div class="cap lbl"><span>The rebuilt street grid around the block — protected lanes, new crossings</span></div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="visit-slice on-cream" id="visit">
+  <h2 class="h-md" data-scramble style="margin-bottom:var(--base)">Visit</h2>
+  <div class="visit rv">
+    <div>
+      <h3 class="lbl">Where</h3>
+      <p>1330 S. Fair Street<br>Arlington, VA 22202</p>
+      <p style="margin-top:.7rem;color:var(--grey)">Pentagon City, between S. Eads and S. Fair.</p>
+    </div>
+    <div>
+      <h3 class="lbl">Hours</h3>
+      <p>Daily, sunrise to 30 minutes after sunset.</p>
+      <p style="margin-top:.7rem;color:var(--grey)">Restrooms, southwest quadrant, 7am–7pm.</p>
+    </div>
+    <div>
+      <h3 class="lbl">Getting there</h3>
+      <ul>
+        <li>Pentagon City Metro — about 7 minutes on foot</li>
+        <li>Crystal City Metro — about 10 minutes</li>
+        <li>Capital Bikeshare docks on the block</li>
+        <li>Garage parking under the towers</li>
+      </ul>
+    </div>
+  </div>
+  <div class="visit rv" style="margin-top:var(--lg)">
+    <div>
+      <h3 class="lbl">Regular events</h3>
+      <ul>
+        <li>Farmers market — Tuesdays and Saturdays, EatLoco</li>
+        <li>Outdoor film series — Friday evenings, warm months</li>
+        <li>MoCA on the Move — family art sessions</li>
+        <li>Wellness Wednesdays</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="lbl">Bring</h3>
+      <ul>
+        <li>A dog. Two off-leash runs, split by size.</li>
+        <li>Kids. Treehouse and slide in the Children's Garden.</li>
+        <li>A blanket. The Central Green is the point.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="lbl">Nearby</h3>
+      <ul>
+        <li><a class="lb" href="index.html#neighborhoods" style="opacity:1">Find it on the map
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 9.5L9.5 2.5M4 2.5h5.5V8"/></svg></a></li>
+        <li>Fashion Centre at Pentagon City — a few minutes north</li>
+        <li>Long Bridge Park — about a mile northeast</li>
+        <li>Mount Vernon Trail — east, past Route 1</li>
+      </ul>
+    </div>
+  </div>
+  <p class="lbl" style="margin-top:var(--lg);color:var(--grey);line-height:1.7">
+    Sources — ZGF Architects; Amazon; National Landing; Arlington Convention &amp; Visitors Service;
+    ARLnow. Met Park is open to the public and, per National Landing, owned and operated by Amazon
+    rather than by Arlington County. Confirm hours before you go.</p>
+</section>
+
+</main>
+
+<!-- ============ FIXED SECTION PILL ============ -->
+<div class="pill" id="pill">
+  <button class="current-row" id="pillToggle" aria-expanded="false">
+    <span id="pillCurrent">The Ground</span>
+    <span class="chev" aria-hidden="true">▾</span>
+  </button>
+  <nav aria-label="Sections">
+    <a href="#ground">The Ground</a>
+    <a href="#queen-city">Queen City</a>
+    <a href="#towers">The Towers</a>
+    <a href="#stores">Stores</a>
+    <a href="#penplace">PenPlace</a>
+    <a href="#visit">Visit</a>
+  </nav>
+</div>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <a class="logo" href="index.html" style="margin-bottom:var(--sm)">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3.4"><path d="M20 5 L34 34 H6 Z"/></svg>
+        Arlington Vibes
+      </a>
+      <p style="font-size:.875rem;color:var(--grey);max-width:34ch;line-height:1.5">An independent
+        guide to Arlington, Virginia. Not affiliated with Arlington County or Amazon.</p>
+    </div>
+    <div>
+      <p class="title lbl">This page</p>
+      <ul>
+        <li><a href="#ground">The Ground</a></li>
+        <li><a href="#queen-city">Queen City</a></li>
+        <li><a href="#towers">The Towers</a></li>
+        <li><a href="#stores">Independent stores</a></li>
+        <li><a href="#penplace">PenPlace</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="title lbl">Sections</p>
+      <ul>
+        <li><a href="index.html#market">Market</a></li>
+        <li><a href="index.html#neighborhoods">Neighborhoods</a></li>
+        <li><a href="index.html#neighborhoods">Eat</a></li>
+        <li><a href="index.html#neighborhoods">Dispatch</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="title lbl">Sources</p>
+      <ul>
+        <li><a href="https://www.nationallanding.org/met-park" target="_blank" rel="noopener">National Landing</a></li>
+        <li><a href="https://www.zgf.com/work/1847-amazon-jbg-smith-hq2-at-met-park" target="_blank" rel="noopener">ZGF Architects</a></li>
+        <li><a href="https://www.stayarlington.com/directory/queen-city-by-nekisha-durrett/" target="_blank" rel="noopener">Queen City</a></li>
+        <li><a href="https://www.gweniespastries.com/" target="_blank" rel="noopener">Gwenie's Pastries</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot lbl">
+    <span>Copyright © 2026 Arlington Vibes · Made in Arlington, VA 22201</span>
+    <span>Metropolitan Park — 38.8592° N, 77.0554° W</span>
+  </div>
+</footer>
+
+<script>
+/* ---------- VIDEO ----------
+   A clip name only goes in CLIPS once the scrubbed, encoded file is actually in
+   media/ — until then the plate carries the frame and nothing 404s. */
+const CLIPS = new Set(['metpark-green','metpark-towers','metpark-shops','metpark-ground',
+  'metpark-plaza','metpark-queencity','metpark-plaque','metpark-gwenies','metpark-window',
+  'metpark-street']);
+
+/* running inside the index's map detail panel? */
+const EMBED = (function(){ try{ return window.self !== window.top; }catch(e){ return true; } })();
+if(EMBED) document.documentElement.classList.add('embedded');
+
+const reduce  = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const small   = matchMedia('(max-width: 900px)').matches;
+const conn    = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
+const thrifty = conn.saveData === true || /(^|-)(2g|slow-2g|3g)$/.test(conn.effectiveType || '');
+const useVideo = !reduce && !thrifty;
+const variant  = small ? '-720' : '-1080';
+
+function arm(v){
+  const clip = v.dataset.clip;
+  if(!CLIPS.has(clip)) return;
+  if(!v.querySelector('source')){
+    const s = document.createElement('source');
+    s.src = 'media/' + clip + variant + '.mp4';
+    s.type = 'video/mp4';
+    v.appendChild(s);
+    v.poster = 'media/' + clip + '-poster.jpg';
+    const plate = v.parentElement.querySelector('.plate');
+    if(plate) plate.remove();
+    v.load();
+  }
+  v.play().catch(()=>{});
+}
+if(useVideo && !EMBED){
+  const first = document.querySelector('[data-clip="metpark-green"]');
+  if(first) arm(first);
+  const vio = new IntersectionObserver(es=>es.forEach(en=>{
+    const v = en.target;
+    if(en.isIntersecting) arm(v); else v.pause();
+  }),{rootMargin: small ? '120px 0px' : '250px 0px', threshold:.01});
+  document.querySelectorAll('video[data-lazy]').forEach(v=>vio.observe(v));
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden) document.querySelectorAll('video').forEach(v=>v.pause());
+  });
+}
+if(EMBED){
+  // The frame is as tall as the content, so every element intersects at once and
+  // an IntersectionObserver here would arm all ten clips. The host reports which
+  // band is actually on screen instead.
+  window.__armBand = function(top,bottom){
+    if(!useVideo) return;
+    const pad = 400;
+    document.querySelectorAll('video[data-clip]').forEach(v=>{
+      const r = v.getBoundingClientRect(), y = r.top + scrollY;
+      if(y + r.height > top - pad && y < bottom + pad) arm(v); else v.pause();
+    });
+  };
+  /* The host sizes its frame to this page. When the two documents are not
+     same-origin it cannot measure us — opening the site straight off disk makes
+     every file:// document its own origin — so report our own height, and take
+     the visible band back over the same channel. */
+  let sentAnchor = false;
+  function report(){
+    try{
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      const id = decodeURIComponent(location.hash.slice(1));
+      const t  = (!sentAnchor && id) ? document.getElementById(id) : null;
+      if(t) sentAnchor = true;
+      parent.postMessage({av:'size',height:h,anchor:t?Math.round(t.offsetTop):null},'*');
+    }catch(e){}
+  }
+  addEventListener('load', report);
+  addEventListener('resize', report);
+  if(window.ResizeObserver) new ResizeObserver(report).observe(document.documentElement);
+  [50,300,900,2000].forEach(t=>setTimeout(report,t));
+  addEventListener('message', e=>{
+    const d = e.data;
+    if(d && d.av === 'band' && window.__armBand) window.__armBand(d.top, d.bottom);
+  });
+}
+
+/* ---------- HEADER: invert over dark sections ---------- */
+const site = document.getElementById('site');
+const lightBands = () => [...document.querySelectorAll('.header-slice,.on-white,.on-cream')];
+let tick = false;
+function syncHeader(){
+  const y = 26;
+  const overLight = lightBands().some(s=>{const r=s.getBoundingClientRect();return r.top<=y && r.bottom>=y;});
+  site.classList.toggle('dark', !overLight);
+  site.classList.toggle('stuck', scrollY > 48);
+  tick = false;
+}
+
+/* ---------- SECTION PILL ---------- */
+const pill = document.getElementById('pill');
+const pillLinks = [...pill.querySelectorAll('nav a')];
+const pillCurrent = document.getElementById('pillCurrent');
+const targets = pillLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const header = document.getElementById('top');
+
+function syncPill(){
+  // the pill only exists once you are past the opening slice
+  const past = header.getBoundingClientRect().bottom < 80;
+  pill.classList.toggle('show', past);
+  if(!past){ pill.classList.remove('open'); return; }
+  // whichever section owns the upper third of the viewport is current
+  const line = innerHeight * 0.34;
+  let active = targets[0];
+  targets.forEach(t=>{ if(t.getBoundingClientRect().top <= line) active = t; });
+  pillLinks.forEach((a,i)=>{
+    const on = targets[i] === active;
+    a.classList.toggle('current', on);
+    if(on && pillCurrent.textContent !== a.textContent) pillCurrent.textContent = a.textContent;
+  });
+}
+document.getElementById('pillToggle').addEventListener('click',()=>{
+  const open = pill.classList.toggle('open');
+  document.getElementById('pillToggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+pill.querySelector('nav').addEventListener('click',e=>{
+  if(e.target.tagName === 'A') pill.classList.remove('open');
+});
+
+addEventListener('scroll',()=>{ if(!tick){ tick = true; requestAnimationFrame(()=>{syncHeader();syncPill();}); } },{passive:true});
+addEventListener('resize',()=>{syncHeader();syncPill();});
+syncHeader(); syncPill();
+
+/* ---------- REVEAL ---------- */
+if(EMBED){
+  document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
+}else{
+  const io = new IntersectionObserver(es=>es.forEach(x=>{
+    if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); }
+  }),{threshold:.08});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+}
+
+/* ---------- SCRAMBLE REVEAL ----------
+   Headings resolve out of cycling glyphs, the way the source site's type
+   settles. Skipped entirely when reduced motion is requested. */
+if(!reduce && !EMBED){
+  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/\\[]{}<>=+*#';
+  const sio = new IntersectionObserver(es=>es.forEach(x=>{
+    if(!x.isIntersecting) return;
+    sio.unobserve(x.target);
+    const el = x.target, text = el.textContent, chars = [...text];
+    let frame = 0;
+    const settleAt = chars.map((c,i)=> c === ' ' ? 0 : 6 + i * 1.6 + Math.random() * 6);
+    const total = Math.max(...settleAt) + 2;
+    const step = () => {
+      el.textContent = chars.map((c,i)=>
+        c === ' ' ? ' ' :
+        frame >= settleAt[i] ? c : GLYPHS[(Math.random() * GLYPHS.length) | 0]
+      ).join('');
+      if(frame++ < total) requestAnimationFrame(step);
+      else el.textContent = text;
+    };
+    step();
+  }),{threshold:.4});
+  document.querySelectorAll('[data-scramble]').forEach(el=>sio.observe(el));
+}
+</script>
+</body>
+</html>
