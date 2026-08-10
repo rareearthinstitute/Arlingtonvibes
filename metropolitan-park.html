@@ -8,7 +8,7 @@
 <meta property="og:title" content="Metropolitan Park — Arlington Vibes">
 <meta property="og:description" content="The ground floor was the negotiated part.">
 <meta property="og:image" content="media/metpark-green-poster.jpg">
-<link rel="preload" as="image" href="media/metpark-green-poster.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="media/metpark-street-poster.jpg" fetchpriority="high">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Cpath d='M50 18 L78 78 H22 Z' fill='none' stroke='%23fff' stroke-width='7'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -291,11 +291,11 @@ footer{padding:var(--xl) var(--pad) var(--base);border-top:1px solid var(--rule)
 <section class="media-slice on-white" style="padding-bottom:var(--xxl)">
   <div class="media-row">
     <div class="m-item">
-      <video muted loop playsinline preload="none" data-clip="metpark-green"></video>
-      <div class="plate" data-note="Footage pending — Metropolitan Park"></div>
+      <video muted loop playsinline preload="none" data-clip="metpark-street" data-first></video>
+      <div class="plate" data-note="Footage pending — the street grid"></div>
     </div>
   </div>
-  <div class="cap lbl"><span>Metropolitan Park, looking north from S. Fair Street</span></div>
+  <div class="cap lbl"><span>The rebuilt street grid around the block — protected lanes, new crossings</span></div>
 </section>
 
 <!-- ============ 01 THE GROUND ============ -->
@@ -499,11 +499,11 @@ footer{padding:var(--xl) var(--pad) var(--base);border-top:1px solid var(--rule)
 <section class="media-slice">
   <div class="media-row">
     <div class="m-item">
-      <video muted loop playsinline preload="none" data-clip="metpark-street" data-lazy></video>
-      <div class="plate" data-note="Footage pending — the street grid"></div>
+      <video muted loop playsinline preload="none" data-clip="metpark-green" data-lazy></video>
+      <div class="plate" data-note="Footage pending — Metropolitan Park"></div>
     </div>
   </div>
-  <div class="cap lbl"><span>The rebuilt street grid around the block — protected lanes, new crossings</span></div>
+  <div class="cap lbl"><span>Metropolitan Park, looking north from S. Fair Street</span></div>
 </section>
 
 <!-- ============ VISIT ============ -->
@@ -663,7 +663,7 @@ function arm(v){
   v.play().catch(()=>{});
 }
 if(useVideo && !EMBED){
-  const first = document.querySelector('[data-clip="metpark-green"]');
+  const first = document.querySelector('video[data-first]');   // the opening slot, whichever clip sits in it
   if(first) arm(first);
   const vio = new IntersectionObserver(es=>es.forEach(en=>{
     const v = en.target;
