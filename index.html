@@ -491,9 +491,9 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
     Arlington Vibes
   </a>
   <div class="navlinks" id="navlinks">
-    <a href="#market">Market</a>
-    <a href="#neighborhoods">Neighborhoods</a>
-    <a href="metropolitan-park.html">Met Park</a>
+    <a href="#top">Home</a>
+    <a href="#neighborhoods">Map</a>
+    <a href="technology.html">Tech</a>
   </div>
   <button class="burger" id="burger">Menu</button>
 </nav>
@@ -615,7 +615,7 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
     </div>
     <div class="mdbody" id="mdBody"></div>
   </section>
-  <p class="disclose reveal" id="mdHint" style="color:var(--dim);margin-top:26px;max-width:62ch">Tap or click any shape on the map to open its guide here. Metropolitan Park and the two Amazon HQ2 parcels have full pages; the rest show their entry until theirs is written. Buildings and monuments are extruded to height: the Washington Monument, Pentagon, Netherlands Carillon and the HQ2 towers use published figures, the rest are indicative massing. PenPlace is drawn flat because it is approved but unbuilt.</p>
+  <p class="disclose reveal" id="mdHint" style="color:var(--dim);margin-top:26px;max-width:62ch">Metropolitan Park is open below to start with. Tap or click any other shape on the map to swap the guide for its own. Metropolitan Park and the two Amazon HQ2 parcels have full pages; the rest show their entry until theirs is written. Buildings and monuments are extruded to height: the Washington Monument, Pentagon, Netherlands Carillon and the HQ2 towers use published figures, the rest are indicative massing. PenPlace is drawn flat because it is approved but unbuilt.</p>
 </section>
 
 <!-- The sections that used to sit here (The Pike, Farmers markets, Dispatch,
@@ -636,7 +636,7 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
     </div>
     <div>
       <p class="mono dim" style="margin-bottom:16px">Sections</p>
-      <ul><li><a href="#market">Market</a></li><li><a href="#neighborhoods">Neighborhoods</a></li><li><a href="metropolitan-park.html">Met Park</a></li></ul>
+      <ul><li><a href="#market">Market</a></li><li><a href="#neighborhoods">Neighborhoods</a></li></ul>
     </div>
     <div>
       <p class="mono dim" style="margin-bottom:16px">Neighborhoods</p>
@@ -1846,7 +1846,8 @@ if(useVideo){
   document.getElementById('mdClose').addEventListener('click',closeDetail);
   addEventListener('keydown',e=>{ if(e.key==='Escape'&&!det.hidden) closeDetail(); });
 
-  function openDetail(el){
+  function openDetail(el,opts){
+    const o=opts||{};
     const html=htmlFor(el); if(!html) return;
     // pull the title and kicker straight out of the card so both stay in step
     const tmp=document.createElement('div'); tmp.innerHTML=html;
@@ -1868,7 +1869,7 @@ if(useVideo){
       dOpen.href=url; dOpen.hidden=false;
       dBody.innerHTML='<p class="mdloading">Loading…</p>';
       const f=document.createElement('iframe');
-      f.setAttribute('loading','eager');
+      f.setAttribute('loading',o.lazy?'lazy':'eager');
       f.setAttribute('title',dTtl.textContent||'Guide');
       f.style.height='60vh';
       f.src=src;
@@ -1883,11 +1884,26 @@ if(useVideo){
       dBody.innerHTML='<div class="mdstub">'+html+'</div>';
     }
     det.hidden=false;
-    if(dHint) dHint.hidden=true;
-    inline.show(el);
-    det.scrollIntoView({behavior:'smooth',block:'start'});
+    if(dHint && !o.keepHint) dHint.hidden=true;
+    if(!o.quiet) inline.show(el);
+    if(o.scroll!==false) det.scrollIntoView({behavior:'smooth',block:'start'});
   }
   inline.open=openDetail;
+
+  /* ---------- DEFAULT GUIDE ----------
+     Metropolitan Park has no entry in the site nav and no header of its own: the
+     map is the only way in. So it opens here on load rather than leaving the
+     panel empty. Deliberately quiet about it — no scroll, no map highlight, and
+     the hint below stays put — so the page still opens on the hero. The frame is
+     lazy, so a reader who never reaches the map never pays for it. Clicking any
+     shape replaces it; Close empties the panel as usual. */
+  (function openDefaultDetail(){
+    const i = GEO.sites.findIndex(r => r[5] === 'metropolitan-park.html');
+    if(i < 0) return;
+    const el = svg.querySelector('[data-site="'+i+'"]');
+    if(!el) return;
+    openDetail(el,{scroll:false,keepHint:true,quiet:true,lazy:true});
+  })();
 
   /* ---------- ZOOM / PAN, on the map itself ---------- */
   const stage=document.getElementById('mapStage'), vp=svg.querySelector('.vp'),

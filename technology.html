@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technology &mdash; Arlington Vibes</title>
+<meta name="description" content="What Arlington County is good at in technology, sector by sector: drone software, research funding, a degree pipeline running ahead of target, and the companies growing here — mapped to the Defense Industrial Base Consortium's eight focus areas.">
+<meta property="og:title" content="Technology &mdash; Arlington Vibes">
+<meta property="og:description" content="Eight sectors of the defense industrial base, and where Arlington is strongest.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000'/%3E%3Cpath d='M50 18 L78 78 H22 Z' fill='none' stroke='%23fff' stroke-width='7'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ---------------------------------------------------------------------------
+   Type scale, colour and spacing follow the system used on anduril.com's
+   subdomain pages: a white header slice with an oversized display headline,
+   tightly-tracked micro labels, bracketed technical codes, media slices inset
+   by the page gutter, and a fixed section pill at the bottom of the viewport.
+   --------------------------------------------------------------------------- */
+:root{
+  --ink:#010101;
+  --white:#ffffff;
+  --cream:#f1f0ea;
+  --accent:#dff140;          /* Anduril's signal yellow-green */
+  --accent-soft:#eff8a0;
+  --grey:#6c6e6b;
+  --grey-mid:#565654;
+  --dim:#b0b0a9;             /* label grey on dark */
+  --dim-dark:rgba(1,1,1,.55);
+  --rule:rgba(255,255,255,.18);
+  --rule-dark:rgba(1,1,1,.14);
+  --pad:2rem;
+  --display:"Inter",Helvetica,Arial,sans-serif;
+  --tech:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --xs:.5rem; --sm:1rem; --base:2rem; --lg:3rem; --xl:4rem; --xxl:7rem;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:#000}
+body{background:#000;color:var(--white);font-family:var(--display);font-size:16px;
+  line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+main{position:relative;z-index:2;overflow:clip}
+
+/* ---------- TYPE PRIMITIVES ---------- */
+/* micro label: uppercase, weight 500, tight tracking — not letterspaced out */
+.lbl{font-family:var(--display);font-size:.75rem;font-weight:500;letter-spacing:.03rem;
+  text-transform:uppercase;line-height:1.05}
+/* the bracketed technical code, set in the mono face */
+.code{font-family:var(--tech);font-size:.75rem;font-weight:500;letter-spacing:.03rem;
+  text-transform:uppercase;line-height:1.05;color:var(--accent)}
+.h-xxl{font-size:clamp(3.5rem,10.5vw,9rem);font-weight:700;letter-spacing:-.028em;line-height:1.10}
+.h-lg{font-size:clamp(2.2rem,5.2vw,4.4rem);font-weight:700;letter-spacing:-.026em;line-height:1.08}
+.h-md{font-size:clamp(1.5rem,2.6vw,2.2rem);font-weight:600;letter-spacing:-.02em;line-height:1.12}
+.body-lg{font-size:clamp(1.05rem,1.5vw,1.35rem);line-height:1.35;font-weight:400;letter-spacing:-.012em}
+.body{font-size:1rem;line-height:1.6}
+.pad{padding-left:var(--pad);padding-right:var(--pad)}
+
+/* link button: 60% opacity at rest, full on hover, arrow at the end */
+.lb{font-size:.875rem;font-weight:400;letter-spacing:-.009rem;line-height:1.05;
+  display:inline-flex;align-items:center;gap:.5rem;width:fit-content;opacity:.6;
+  transition:opacity .3s ease-out;cursor:pointer}
+.lb:hover{opacity:1}
+.lb svg{width:11px;height:11px;flex:none}
+.lb.on-accent{opacity:1;color:var(--accent)}
+.lb.on-accent:hover{color:var(--accent-soft)}
+
+/* ---------- HEADER ---------- */
+.site{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:1.5rem;
+  height:64px;padding:0 var(--pad);color:var(--ink);transition:color .35s ease,background-color .35s ease}
+.site.dark{color:var(--white)}
+.site.stuck{background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.site.dark.stuck{background:rgba(0,0,0,.72)}
+.logo{display:flex;align-items:center;gap:.55rem;font-weight:600;font-size:.9375rem;
+  letter-spacing:.02em;text-transform:uppercase}
+.logo svg{width:18px;height:18px;flex:none}
+.site nav{display:flex;gap:1.6rem;margin-left:auto;font-size:.875rem;font-weight:500;letter-spacing:-.009rem}
+.site nav a{opacity:.62;transition:opacity .25s ease-out}
+.site nav a:hover,.site nav a.here{opacity:1}
+@media(max-width:820px){.site nav{display:none}}
+/* nav-only bar: three links, no wordmark, so they sit left and stay on mobile */
+.site.navonly nav{margin-left:0;gap:1.75rem}
+@media(max-width:820px){.site.navonly nav{display:flex;gap:1.5rem}}
+
+/* ---------- HEADER SLICE (white, oversized) ---------- */
+.header-slice{background:var(--white);color:var(--ink);padding-top:clamp(4.75rem,5.5vw,6.5rem);
+  padding-bottom:var(--xl)}
+.header-slice .top-wrapper{padding:0 var(--pad);display:flex;flex-direction:column;gap:var(--base)}
+.header-slice h1{margin:0}
+.header-slice .aphorism{font-family:var(--tech);font-size:.75rem;font-weight:500;
+  letter-spacing:.03rem;text-transform:uppercase;line-height:1.05;color:var(--grey-mid)}
+.header-slice .lede{max-width:46ch;color:rgba(1,1,1,.72)}
+.header-slice .hmeta{display:flex;flex-wrap:wrap;gap:.6rem 2rem;color:var(--grey)}
+
+/* ---------- MEDIA SLICE ---------- */
+.media-slice{padding:var(--base) var(--pad)}
+.media-row{display:flex;gap:var(--sm)}
+.media-row>*{flex:1;min-width:0}
+.m-item{position:relative;overflow:hidden;background:#0a0a0a;aspect-ratio:16/9}
+.m-item.tall{aspect-ratio:4/5}   /* unused: every current source is 16:9 */
+.m-item video,.m-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* stand-in field for footage not yet shot or cleared */
+.plate{position:absolute;inset:0;background:
+  repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 1px,transparent 1px 9px),
+  radial-gradient(120% 90% at 50% 32%,#161616 0%,#080808 55%,#000 100%)}
+.plate::after{content:attr(data-note);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-family:var(--tech);font-size:.6875rem;letter-spacing:.03rem;text-transform:uppercase;
+  color:rgba(255,255,255,.22);white-space:nowrap;text-align:center;padding:0 1rem}
+.cap{display:flex;gap:.3rem;flex-direction:column;margin-top:var(--sm);color:var(--dim)}
+@media(max-width:820px){
+  .media-row{flex-direction:column}
+  .plate::after{white-space:normal;width:80%}
+}
+
+/* ---------- ENTRY BLOCK (category / code / sentence / link) ---------- */
+.entry-slice{padding:var(--xl) var(--pad) var(--base)}
+.entry{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:var(--lg)}
+.entry .left{display:flex;flex-direction:column;gap:var(--sm)}
+/* the caps descriptor stacks over several lines, so it needs more leading than
+   a single-line micro label */
+.entry .cat{color:var(--white);max-width:18ch;line-height:1.32}
+.on-white .entry .cat,.on-cream .entry .cat{color:var(--ink)}
+.entry .right{display:flex;flex-direction:column;gap:var(--base);align-items:flex-start}
+.entry .right p{color:var(--dim);max-width:56ch}
+.entry .num{color:var(--grey-mid)}
+@media(max-width:820px){.entry{grid-template-columns:1fr;gap:var(--base)}}
+
+/* ---------- STAT ROW ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sm);
+  padding:var(--base) var(--pad) var(--xl)}
+.stat{border-top:1px solid var(--rule);padding-top:var(--sm)}
+.stat .n{display:block;font-size:clamp(1.8rem,3.4vw,3rem);font-weight:700;letter-spacing:-.028em;
+  line-height:1;margin-bottom:.6rem}
+.stat .l{color:var(--dim)}
+@media(max-width:820px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--base) var(--sm)}}
+
+/* ---------- PROSE SLICE ---------- */
+.prose-slice{padding:var(--lg) var(--pad) var(--xl)}
+.prose{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:var(--lg)}
+.prose .lead{max-width:22ch}
+.prose .copy p{color:var(--dim);max-width:62ch}
+.prose .copy p+p{margin-top:var(--sm)}
+.on-white{background:var(--white);color:var(--ink)}
+.on-white .prose .copy p,.on-white .entry .right p{color:rgba(1,1,1,.72)}
+.on-white .stat{border-top-color:var(--rule-dark)}
+.on-white .stat .l,.on-white .cap,.on-white .num{color:var(--grey)}
+.on-cream{background:var(--cream);color:var(--ink)}
+.on-cream .prose .copy p,.on-cream .entry .right p{color:rgba(1,1,1,.72)}
+.on-cream .stat{border-top-color:var(--rule-dark)}
+.on-cream .stat .l,.on-cream .cap,.on-cream .num{color:var(--grey)}
+@media(max-width:820px){.prose{grid-template-columns:1fr;gap:var(--base)}}
+
+/* ---------- FEATURE (one business, full treatment) ---------- */
+.feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--sm);
+  padding:var(--base) var(--pad) var(--xl)}
+.feature .fmedia{position:relative;overflow:hidden;background:#0a0a0a;min-height:24rem}
+.feature .fmedia video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.feature .fbody{display:flex;flex-direction:column;gap:var(--sm);justify-content:center;
+  padding:var(--base) 0 var(--base) var(--base)}
+.feature .fbody p.desc{color:var(--dim);max-width:52ch}
+.on-cream .feature .fbody p.desc{color:rgba(1,1,1,.72)}
+.fspec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sm) var(--base);
+  margin-top:var(--xs);padding-top:var(--sm);border-top:1px solid var(--rule)}
+.on-cream .fspec{border-top-color:var(--rule-dark)}
+.fspec dt{color:var(--grey);margin-bottom:.35rem}
+.fspec dd{font-size:.9375rem;line-height:1.4}
+@media(max-width:820px){
+  .feature{grid-template-columns:1fr}
+  .feature .fmedia{min-height:15rem}
+  .feature .fbody{padding:var(--base) 0 0}
+}
+
+/* ---------- VISIT ---------- */
+.visit-slice{padding:var(--xl) var(--pad) var(--xxl)}
+.visit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--lg);
+  border-top:1px solid var(--rule);padding-top:var(--base)}
+.on-cream .visit{border-top-color:var(--rule-dark)}
+.visit h3{color:var(--grey);margin-bottom:.9rem}
+.visit ul{list-style:none}
+.visit li{padding:.3rem 0;font-size:.9375rem;line-height:1.5}
+.visit p{font-size:.9375rem;line-height:1.5}
+@media(max-width:820px){.visit{grid-template-columns:1fr;gap:var(--base)}}
+
+/* ---------- FIXED SECTION PILL ---------- */
+/* Anduril's SecondaryNavigationSlice: fixed bottom-centre, blurred, fades in
+   once you are past the header, collapses to the current section on mobile. */
+.pill{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:50;
+  opacity:0;visibility:hidden;transition:opacity .3s ease-out,visibility .3s;
+  color:var(--dim);text-align:center}
+.pill.show{opacity:1;visibility:visible}
+.pill nav{display:flex;gap:var(--base);padding:.8rem var(--base);
+  background:rgba(0,0,0,.7);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
+  border-radius:2px 2px 0 0}
+.pill a{font-size:.875rem;font-weight:500;letter-spacing:-.009rem;line-height:1.2;
+  color:var(--dim);transition:color .25s ease-out;position:relative;white-space:nowrap}
+.pill a:hover{color:var(--white)}
+.pill a.current{color:var(--accent)}
+.pill .current-row{display:none}
+@media(max-width:820px){
+  .pill{left:0;right:0;transform:none;width:100%}
+  .pill nav{display:none;flex-direction:column;gap:0;padding:0;border-radius:0}
+  .pill.open nav{display:flex}
+  .pill.open nav a{padding:.9rem var(--pad);text-align:left;
+    border-top:1px solid rgba(255,255,255,.10)}
+  .pill .current-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    width:100%;padding:1rem var(--pad);color:var(--white);
+    background:rgba(0,0,0,.7);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);
+    border:0;font:inherit;font-size:.875rem;font-weight:500;cursor:pointer;text-align:left}
+  .pill .current-row .chev{transition:transform .25s ease-out;color:var(--accent)}
+  .pill.open .current-row .chev{transform:rotate(180deg)}
+}
+
+/* ---------- FOOTER ---------- */
+footer{padding:var(--xl) var(--pad) var(--base);border-top:1px solid var(--rule)}
+.fgrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:var(--base);margin-bottom:var(--xl)}
+.fgrid p.title{color:var(--grey);margin-bottom:var(--sm)}
+.fgrid ul{list-style:none}
+.fgrid li{padding:.25rem 0;font-size:.875rem}
+.fgrid li a{opacity:.62;transition:opacity .25s}
+.fgrid li a:hover{opacity:1}
+.fbot{display:flex;justify-content:space-between;gap:var(--sm);flex-wrap:wrap;
+  padding-top:var(--sm);border-top:1px solid var(--rule);color:var(--grey)}
+/* keep the last of the footer clear of the fixed section pill */
+.fbot{padding-bottom:var(--lg)}
+@media(max-width:820px){.fbot{padding-bottom:var(--xl)}}
+@media(max-width:820px){.fgrid{grid-template-columns:1fr 1fr;gap:var(--base)}}
+
+/* ---------- REVEAL ---------- */
+.rv{opacity:0;transform:translateY(14px);
+  transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+}
+
+/* ---------- EMBEDDED ----------
+   When this page is opened inside the map's detail panel on the index, the
+   frame is sized to the content, so anything position:fixed would pin to the
+   whole document. Drop the page chrome and let the host carry it. */
+.embedded .site,.embedded .pill{display:none}
+.embedded .header-slice{padding-top:var(--base)}
+.embedded footer{display:none}
+.embedded .visit-slice{padding-bottom:var(--xl)}
+.embedded .rv{opacity:1;transform:none;transition:none}
+@media(max-width:820px){
+  :root{--pad:1.428rem}
+  .lbl,.code,.header-slice .aphorism{font-size:.929rem;letter-spacing:.037rem}
+  .site nav a,.pill a,.lb{font-size:1.071rem;letter-spacing:-.011rem}
+  .lb{font-size:.9375rem}
+}
+
+/* ---------- DATA FIGURES (replaces video media on this page) ----------
+   Built in HTML rather than SVG so the type comes from the page's own scale
+   instead of being scaled by a viewBox. Same slot geometry as .m-item, so the
+   slice rhythm is unchanged. */
+.fig{position:relative;background:#0a0a0a;padding:var(--lg) var(--base)}
+.on-white .fig,.on-cream .fig{background:rgba(1,1,1,.04)}
+.fig .ftitle{color:var(--dim);margin-bottom:var(--base)}
+.on-white .fig .ftitle,.on-cream .fig .ftitle{color:var(--grey)}
+
+/* -- plan: two addresses on one street -- */
+.plan{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:var(--sm)}
+.plan .box{border:1px solid var(--white);padding:var(--sm);min-height:6.5rem;
+  display:flex;flex-direction:column;justify-content:space-between}
+.on-white .plan .box,.on-cream .plan .box{border-color:var(--ink)}
+.plan .box.a{border-color:var(--accent);border-width:2px}
+.plan .box .no{font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;letter-spacing:-.028em;line-height:1}
+.plan .box.a .no{color:var(--accent)}
+.plan .box .who{font-size:.875rem;line-height:1.35;margin-top:.5rem}
+.plan .gap{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding-bottom:1.6rem}
+.plan .gap .dashes{width:100%;min-width:3rem;border-top:1px dashed var(--rule)}
+.on-white .plan .gap .dashes,.on-cream .plan .gap .dashes{border-top-color:var(--rule-dark)}
+.plan .street{grid-column:1/-1;margin-top:var(--sm);padding-top:.6rem;border-top:1px solid var(--rule);
+  color:var(--dim)}
+.on-white .plan .street,.on-cream .plan .street{border-top-color:var(--rule-dark);color:var(--grey)}
+@media(max-width:820px){
+  .plan{grid-template-columns:1fr}
+  .plan .gap{flex-direction:row;padding:0}
+  .plan .gap .dashes{border-top:1px dashed var(--rule);flex:1}
+}
+
+/* -- timeline: rows positioned along a year axis -- */
+.tl{display:flex;flex-direction:column-reverse;gap:.55rem}
+.tl .trow{position:relative;height:2.5rem}
+.tl .tbar{position:absolute;top:1.15rem;height:9px;background:var(--white);
+  left:var(--x);width:var(--w)}
+.on-white .tl .tbar,.on-cream .tl .tbar{background:var(--ink)}
+.tl .trow.soon .tbar{background:var(--accent)}
+.tl .tlab{position:absolute;top:0;left:var(--x);font-size:.8125rem;font-weight:600;
+  line-height:1.2;white-space:nowrap}
+.tl .trow.soon .tlab{color:var(--accent)}
+/* the last rows sit at the right edge, so their labels hang leftward */
+.tl .trow.rt .tlab{left:auto;right:0;text-align:right}
+.taxis{display:flex;justify-content:space-between;margin-top:.6rem;padding-top:.5rem;
+  border-top:1px solid var(--rule);color:var(--dim)}
+.on-white .taxis,.on-cream .taxis{border-top-color:var(--rule-dark);color:var(--grey)}
+.tkey{display:flex;gap:var(--base);flex-wrap:wrap;margin-top:var(--base);color:var(--dim)}
+.tkey span{display:flex;align-items:center;gap:.45rem}
+.tkey i{width:14px;height:9px;background:var(--white);display:block}
+.on-white .tkey i,.on-cream .tkey i{background:var(--ink)}
+.tkey i.a{background:var(--accent)}
+@media(max-width:820px){
+  .tl .tlab{font-size:.75rem}
+  .tl .trow{height:2.9rem}
+}
+
+/* -- proportional bars -- */
+.bars{display:flex;flex-direction:column;gap:var(--base)}
+.bars .brow .bhead{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.45rem}
+.bars .brow .bn{font-size:clamp(1.1rem,2.2vw,1.6rem);font-weight:700;letter-spacing:-.026em;line-height:1}
+.bars .brow .bl{font-size:.875rem;color:var(--dim)}
+.on-white .bars .brow .bl,.on-cream .bars .brow .bl{color:var(--grey)}
+.bars .btrack{height:11px;background:rgba(255,255,255,.09)}
+.on-white .bars .btrack,.on-cream .bars .btrack{background:rgba(1,1,1,.08)}
+.bars .bfill{height:100%;background:var(--white);width:var(--w);min-width:2px}
+.on-white .bars .bfill,.on-cream .bars .bfill{background:var(--ink)}
+.bars .brow.a .bfill{background:var(--accent)}
+.bars .brow.a .bn{color:var(--accent)}
+.on-white .bars .brow.a .bn,.on-cream .bars .brow.a .bn{color:#8a9a00}
+
+/* ---------- LEDGER (source + jurisdiction table) ---------- */
+.ledger{border-top:1px solid var(--rule);margin-top:var(--base)}
+.on-cream .ledger{border-top-color:var(--rule-dark)}
+.ledger .row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr) minmax(0,.9fr);
+  gap:var(--sm);padding:.85rem 0;border-bottom:1px solid var(--rule)}
+.on-cream .ledger .row{border-bottom-color:var(--rule-dark)}
+.ledger .row>*{font-size:.875rem;line-height:1.45}
+.ledger .who{font-weight:600}
+.ledger .what{color:var(--dim)}
+.on-cream .ledger .what{color:rgba(1,1,1,.72)}
+.ledger .where{font-family:var(--tech);font-size:.75rem;letter-spacing:.03rem;
+  text-transform:uppercase;color:var(--grey)}
+.ledger .where.out{color:#c2553f}
+@media(max-width:820px){
+  .ledger .row{grid-template-columns:1fr;gap:.25rem;padding:1rem 0}
+}
+
+/* ---------- SOURCE LIST ---------- */
+.srcs{columns:2;column-gap:var(--lg);list-style:none}
+.srcs li{break-inside:avoid;padding:.3rem 0;font-size:.8125rem;line-height:1.45;color:var(--grey)}
+.srcs li a{border-bottom:1px solid var(--rule-dark);opacity:.85}
+.srcs li a:hover{opacity:1}
+@media(max-width:820px){.srcs{columns:1}}
+
+/* ---------- SECTOR STRENGTH CHIP ---------- */
+.vd{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--tech);font-size:.6875rem;
+  font-weight:500;letter-spacing:.03rem;text-transform:uppercase;line-height:1.25;
+  padding:.4rem .55rem;border:1px solid currentColor;width:fit-content;color:var(--accent)}
+.on-white .vd,.on-cream .vd{color:#6f7d00}
+.vd.quiet{color:var(--dim)}
+.on-white .vd.quiet,.on-cream .vd.quiet{color:var(--grey)}
+
+/* ---------- SECTOR CONTRIBUTION TABLE ---------- */
+.mx{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:0 var(--base)}
+.mx .hd{color:var(--dim);padding-bottom:.6rem;border-bottom:1px solid var(--rule)}
+.on-white .mx .hd,.on-cream .mx .hd{color:var(--grey);border-bottom-color:var(--rule-dark)}
+.mx .cell{padding:.85rem 0;border-bottom:1px solid var(--rule);align-self:center}
+.on-white .mx .cell,.on-cream .mx .cell{border-bottom-color:var(--rule-dark)}
+.mx .nm{font-size:.9375rem;font-weight:600;line-height:1.3}
+.mx .br{font-size:.9375rem;line-height:1.3;color:var(--accent)}
+.on-white .mx .br,.on-cream .mx .br{color:#6f7d00}
+@media(max-width:820px){
+  .mx{grid-template-columns:1fr}
+  .mx .hd+.hd{display:none}
+  .mx .nm{border-bottom:0;padding:.85rem 0 .1rem}
+  .mx .br{padding-top:0}
+}
+
+/* ---------- GROWTH ROWS ---------- */
+.grow{display:flex;flex-direction:column;gap:var(--base)}
+.grow .g{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--base);align-items:baseline;
+  padding-bottom:var(--base);border-bottom:1px solid var(--rule)}
+.on-white .grow .g,.on-cream .grow .g{border-bottom-color:var(--rule-dark)}
+.grow .g:last-child{border-bottom:0;padding-bottom:0}
+.grow .gn{font-size:clamp(1.6rem,3.4vw,2.6rem);font-weight:700;letter-spacing:-.028em;line-height:1;
+  white-space:nowrap}
+.grow .gt{font-size:.9375rem;line-height:1.45;color:var(--dim)}
+.on-white .grow .gt,.on-cream .grow .gt{color:rgba(1,1,1,.72)}
+@media(max-width:820px){.grow .g{grid-template-columns:1fr;gap:.4rem}}
+
+/* ---------- INVESTOR MATRIX ---------- */
+.imx{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.15fr) minmax(0,.5fr);
+  gap:0 var(--base)}
+.imx .hd{color:var(--dim);padding-bottom:.6rem;border-bottom:1px solid var(--rule)}
+.on-white .imx .hd,.on-cream .imx .hd{color:var(--grey);border-bottom-color:var(--rule-dark)}
+.imx>.cell{padding:1rem 0;border-bottom:1px solid var(--rule)}
+.on-white .imx>.cell,.on-cream .imx>.cell{border-bottom-color:var(--rule-dark)}
+.imx .fnm{font-size:.9375rem;font-weight:600;line-height:1.3}
+.imx .fnm em{display:block;font-style:normal;font-weight:400;font-family:var(--tech);
+  font-size:.6875rem;letter-spacing:.04rem;text-transform:uppercase;color:var(--grey);
+  margin-top:.35rem;line-height:1.4}
+.imx .fev{font-size:.875rem;line-height:1.5;color:var(--dim)}
+.on-white .imx .fev,.on-cream .imx .fev{color:rgba(1,1,1,.72)}
+.imx .fev q{quotes:"\201C" "\201D";font-style:italic}
+.imx .fsec{font-family:var(--tech);font-size:.75rem;letter-spacing:.04rem;color:var(--accent);
+  line-height:1.5}
+.on-white .imx .fsec,.on-cream .imx .fsec{color:#6f7d00}
+@media(max-width:820px){
+  .imx{grid-template-columns:1fr}
+  .imx .hd{display:none}
+  .imx>.cell{border-bottom:0;padding:0}
+  .imx .fnm{padding:1.15rem 0 .35rem}
+  .imx .fsec{padding-bottom:1.05rem;border-bottom:1px solid var(--rule)}
+  .on-white .imx .fsec,.on-cream .imx .fsec{border-bottom-color:var(--rule-dark)}
+}
+
+/* ---------- NOTE LIST ---------- */
+.notes{list-style:none;margin-top:var(--base);border-top:1px solid var(--rule);
+  padding-top:var(--base);columns:2;column-gap:var(--lg)}
+@media(max-width:820px){.notes{columns:1}}
+.on-white .notes,.on-cream .notes{border-top-color:var(--rule-dark)}
+.notes li{font-size:.875rem;line-height:1.5;color:var(--dim);padding:.45rem 0;break-inside:avoid}
+.on-white .notes li,.on-cream .notes li{color:rgba(1,1,1,.72)}
+.notes li b{font-weight:600;color:var(--white)}
+.on-white .notes li b,.on-cream .notes li b{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header class="site navonly" id="site">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#neighborhoods">Map</a>
+    <a href="technology.html" class="here">Tech</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ HEADER SLICE ============ -->
+<section class="header-slice" id="top">
+  <div class="top-wrapper">
+    <p class="lbl" style="color:var(--grey)">Arlington County, Virginia</p>
+    <h1 class="h-xxl" data-scramble>Technology</h1>
+    <p class="aphorism">Eight sectors of the defense industrial base &mdash; and where Arlington is strongest</p>
+    <p class="body-lg lede">Drone software, research funding, sensing, a degree pipeline running well
+      ahead of the target the state set for it &mdash; and, in the last twelve months, some of the
+      largest venture rounds in the region. Arlington's technology sector is a compact one, and it has
+      been growing quickly and in a particular direction.</p>
+    <div class="hmeta lbl">
+      <span>Reviewed August 2026</span>
+      <span>Sourced below</span>
+      <span>Eight sectors &middot; the capital behind them</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HEADLINE FIGURES ============ -->
+<section class="stats on-white" style="padding-top:var(--xl)">
+  <div class="stat rv">
+    <span class="n">$632M</span>
+    <span class="l lbl">Venture and growth capital raised by the Arlington companies on this page, September 2025 to July 2026</span>
+  </div>
+  <div class="stat rv">
+    <span class="n">660</span>
+    <span class="l lbl">New jobs announced in the county across two months of 2026</span>
+  </div>
+  <div class="stat rv">
+    <span class="n">2,520</span>
+    <span class="l lbl">Bachelor's degrees under Virginia's tech-talent programme, against a 1,155 target</span>
+  </div>
+  <div class="stat rv">
+    <span class="n">$5.039B</span>
+    <span class="l lbl">DARPA's FY2027 budget request, up from $4.322B enacted, directed from Ballston</span>
+  </div>
+</section>
+
+<!-- ============ HOW THIS IS ORGANISED ============ -->
+<section class="prose-slice on-white">
+  <div class="prose rv">
+    <div>
+      <p class="lbl" style="color:var(--grey);margin-bottom:var(--sm)">The frame</p>
+      <p class="h-md lead">Eight sectors, borrowed from the people who fund them.</p>
+    </div>
+    <div class="copy">
+      <p>The Defense Industrial Base Consortium runs an Other Transaction agreement for the Department of
+        Defense, sponsored by its Warfighting Investments, Resourcing and Execution office and managed by
+        Advanced Technology International. Its purpose is to reach technologies &ldquo;typically reserved
+        for commercial development&rdquo; &mdash; across supply chains, industrial workforce, sustained
+        production and scaling &mdash; and it sorts that work into eight sectors.</p>
+      <p>They are a good set of headings for a place like this, because they cover the whole span from raw
+        material to trained engineer. Arlington contributes to every one of them, and in four it has
+        genuine depth: uncrewed systems, microelectronics and sensing, the research funding that sets
+        national direction, and the workforce being built to staff all of it.</p>
+      <p>ATI, which manages the consortium, keeps its Washington office at 901 North Stuart Street in
+        Ballston &mdash; four blocks from DARPA, and a fair illustration of how tightly this county is
+        packed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contribution table -->
+<section class="media-slice on-white" style="padding-bottom:var(--xxl)">
+  <div class="media-row">
+    <div class="fig rv">
+      <p class="ftitle lbl">What Arlington brings to each sector</p>
+      <div class="mx">
+        <span class="hd lbl">Sector</span>
+        <span class="hd lbl">Arlington's contribution</span>
+
+        <span class="cell nm">01 &nbsp;Strategic and Critical Materials</span>
+        <span class="cell br">Federal loan capital and price discovery</span>
+
+        <span class="cell nm">02 &nbsp;Kinetic Capabilities</span>
+        <span class="cell br">Two corporate headquarters, and early capital</span>
+
+        <span class="cell nm">03 &nbsp;Energy Storage and Batteries</span>
+        <span class="cell br">Loan capital and grid-scale development</span>
+
+        <span class="cell nm">04 &nbsp;Manufacturing &mdash; Castings and Forgings</span>
+        <span class="cell br">The grant programme &mdash; and a foundry's investor</span>
+
+        <span class="cell nm">05 &nbsp;Sea, Land, Air, Space and Unmanned Systems</span>
+        <span class="cell br">Headquarters, autonomy software and the buyer</span>
+
+        <span class="cell nm">06 &nbsp;Microelectronics, Comms and Sensors</span>
+        <span class="cell br">Research direction, sensing and cyber</span>
+
+        <span class="cell nm">07 &nbsp;Workforce</span>
+        <span class="cell br">Degrees, at scale and ahead of target</span>
+
+        <span class="cell nm">08 &nbsp;Critical Chemicals</span>
+        <span class="cell br">The sector's national representation</span>
+      </div>
+    </div>
+  </div>
+  <div class="cap lbl">
+    <span>Arlington's strength runs to direction, capital, software and people rather than heavy
+      production &mdash; which is what twenty-six square miles inside a Metro system is well suited to.</span>
+  </div>
+</section>
+
+<!-- ============ 05 — UNMANNED SYSTEMS (lead sector) ============ -->
+<section class="entry-slice" id="s05">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl cat">Sea, Land, Air, Space and Unmanned Systems</p>
+      <p class="code">[ 05 ]</p>
+      <p class="vd">Strongest sector &middot; growing fastest</p>
+    </div>
+    <div class="right">
+      <p class="h-md">Arlington's best sector is uncrewed systems, and it is where the recent growth has
+        concentrated.</p>
+      <p>AeroVironment runs its corporate headquarters from 241 18th Street South in Crystal City, moved
+        from California in 2021 because, as its chief executive put it, the Washington area is
+        &ldquo;where many of our key customers are located.&rdquo; The line directed from that office runs
+        from the Puma and Raven aircraft through JUMP 20 to the tEODor and telemax ground robots and the
+        Switchblade loitering munitions.</p>
+      <p>Auterion followed in May 2024, moving its corporate headquarters to 4250 Fairfax Drive in
+        Ballston, and raised a $130&nbsp;million Series B the following year for the autonomy software
+        that flies other manufacturers' drones. Innovative Defense Technologies, also in Ballston,
+        announced a $19&nbsp;million expansion and 210 new jobs in May 2026. Boeing and Leonardo DRS both
+        run from the county.</p>
+      <p>Quartermaster, also in Arlington, raised a reported $43&nbsp;million Series A in May 2026 for
+        software that coordinates uncrewed vessels as a single system &mdash; the same problem one layer
+        down, on water.</p>
+      <p>The buyer is close by. The Defense Innovation Unit launched its Drone Dominance Program in
+        February 2026 and its director told the House Armed Services Committee in May that it carries
+        $1.1&nbsp;billion over eighteen months, structured as four iterative &ldquo;Gauntlets.&rdquo;</p>
+    </div>
+  </div>
+</section>
+
+<!-- Growth figures -->
+<section class="media-slice" style="padding-bottom:var(--xl)">
+  <div class="media-row">
+    <div class="fig rv">
+      <p class="ftitle lbl">Recent growth, Arlington-headquartered</p>
+      <div class="grow">
+        <div class="g">
+          <span class="gn">$150M</span>
+          <span class="gt">raised by Air &mdash; the company that was Govini until June 2026 &mdash; in a
+            round led by Bain Capital in October 2025, taking it past a $1.25&nbsp;billion valuation with
+            around 300 employees in Rosslyn.</span>
+        </div>
+        <div class="g">
+          <span class="gn">$130M</span>
+          <span class="gt">Series B for Auterion in September 2025, led by Bessemer Venture Partners,
+            of which $25&nbsp;million is non-dilutive capital backed by the Office of Strategic Capital
+            of the Department of War.</span>
+        </div>
+        <div class="g">
+          <span class="gn">$75M</span>
+          <span class="gt">Series C for Shift5 in 2025, for the platform that reads operational data off
+            military vehicles, aircraft and trains from its Rosslyn office.</span>
+        </div>
+        <div class="g">
+          <span class="gn">450</span>
+          <span class="gt">jobs in Spatial Front's Crystal City headquarters, announced in June 2026 with
+            a $6&nbsp;million company investment and state incentives.</span>
+        </div>
+        <div class="g">
+          <span class="gn">210</span>
+          <span class="gt">jobs in Innovative Defense Technologies' Ballston expansion, announced May 2026
+            alongside a $19&nbsp;million investment.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cap lbl">
+    <span>Across the wider region, venture investors put $5.3&nbsp;billion into 341 deals in 2025, and
+      $950&nbsp;million into 61 deals in the first quarter of 2026.</span>
+  </div>
+</section>
+
+<!-- ============ 06 — MICROELECTRONICS ============ -->
+<section class="entry-slice on-white" id="s06">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl cat">Microelectronics, Comms and Sensors</p>
+      <p class="code">[ 06 ]</p>
+      <p class="vd">Research direction &middot; sensing</p>
+    </div>
+    <div class="right">
+      <p class="h-md">The national semiconductor research agenda is set from a building in Ballston.</p>
+      <p>DARPA's Microsystems Technology Office runs the Electronics Resurgence Initiative, committed at
+        upwards of $1.5&nbsp;billion over five years, whose second phase added domestic manufacturing,
+        hardware security and supply-chain traceability to the original work on materials and design. The
+        Office of Naval Research funds sensors, communications and power from the next block north.</p>
+      <p>Commercially, Leonardo DRS runs advanced sensing and network computing from 2345 Crystal Drive.
+        Teledyne FLIR Defense opened a demonstration centre at 1550 Crystal Drive in September 2025 for
+        imaging systems and chemical, biological and explosive detection. Shift5, in Rosslyn, closed a
+        $75&nbsp;million round in 2025 for onboard operational-technology data.</p>
+      <p>The fastest-growing company in this part of the county is two years old. Twenty, founded in
+        Arlington in 2024, raised a $100&nbsp;million Series B led by Accel in June 2026 at a
+        $1&nbsp;billion valuation and another $30&nbsp;million from Khosla Ventures a month later at
+        $1.2&nbsp;billion &mdash; $168&nbsp;million in total, for cyber-warfare software.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Randolph Street plan -->
+<section class="media-slice on-white" style="padding-bottom:var(--xl)">
+  <div class="media-row">
+    <div class="fig rv">
+      <p class="ftitle lbl">Three of the government's principal research funders, one street</p>
+      <div class="plan">
+        <div class="box a">
+          <span class="no">675</span>
+          <span class="who">DARPA<br>Six technical offices</span>
+        </div>
+        <div class="gap">
+          <span class="lbl" style="color:var(--grey)">One block</span>
+          <span class="dashes"></span>
+        </div>
+        <div class="box">
+          <span class="no">875</span>
+          <span class="who">Office of Naval Research<br>Air Force Office of Scientific Research</span>
+        </div>
+        <p class="street lbl">North Randolph Street &mdash; Ballston, Arlington County</p>
+      </div>
+    </div>
+  </div>
+  <div class="cap lbl">
+    <span>DARPA has worked from 675 N. Randolph since 2012, and the GSA search for its next lease &mdash;
+      354,020 rentable square feet, from December 2026 &mdash; is restricted to Arlington. ATI, which
+      manages the consortium these sectors come from, is four blocks away on N. Stuart Street.</span>
+  </div>
+</section>
+
+<!-- ============ 07 — WORKFORCE ============ -->
+<section class="entry-slice on-cream" id="s07">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl cat">Workforce</p>
+      <p class="code">[ 07 ]</p>
+      <p class="vd">Ahead of the target set for it</p>
+    </div>
+    <div class="right">
+      <p class="h-md">The degree programme built for Amazon is outrunning its own bachelor's target.</p>
+      <p>Virginia's Tech Talent Investment Program came out of the 2018 HQ2 bid and was written into state
+        law the following year, committing participating universities to at least 25,000 additional
+        degrees by 2039 against a state investment usually quoted at $1.1&nbsp;billion. More than
+        $550&nbsp;million had been disbursed by the end of FY2025 &mdash; and on the bachelor's side the
+        universities have produced 2,520 degrees against an interim target of 1,155, more than double.</p>
+      <p>The Arlington building for that is Fuse at Mason Square: 345,000 square feet at roughly
+        $254&nbsp;million, of which the state programme funded $90&nbsp;million. It opened commercially in
+        December 2024, took its first academic occupants in autumn 2025, and now holds George Mason's
+        School of Computing alongside paying commercial tenants, with 44 engineering and computing faculty
+        and 120 doctoral students in place at the October 2025 opening.</p>
+      <p>Marymount, on Glebe Road, launched a bachelor's degree in artificial intelligence in 2023 &mdash;
+        with a required internship or research project and a course on trust, bias and social impact
+        &mdash; and enrolled a record 2,839 undergraduates in 2025&ndash;26, up 13 per cent on the year.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Arrivals timeline -->
+<section class="media-slice on-cream" style="padding-bottom:var(--xl)">
+  <div class="media-row">
+    <div class="fig rv">
+      <p class="ftitle lbl">Arrivals and expansions, by year</p>
+      <div class="tl">
+        <div class="trow" style="--x:0%;--w:16%">
+          <span class="tlab">AeroVironment &mdash; corporate HQ</span><span class="tbar"></span>
+        </div>
+        <div class="trow" style="--x:25%;--w:16%">
+          <span class="tlab">Boeing &middot; RTX &mdash; global HQ</span><span class="tbar"></span>
+        </div>
+        <div class="trow" style="--x:50%;--w:16%">
+          <span class="tlab">Auterion &mdash; HQ to Ballston</span><span class="tbar"></span>
+        </div>
+        <div class="trow rt" style="--x:75%;--w:16%">
+          <span class="tlab">Scale AI &mdash; Crystal City office</span><span class="tbar"></span>
+        </div>
+        <div class="trow rt soon" style="--x:84%;--w:16%">
+          <span class="tlab">IDT &middot; Spatial Front &mdash; announced</span><span class="tbar"></span>
+        </div>
+      </div>
+      <div class="taxis lbl">
+        <span>2021</span><span>2022</span><span>2024</span><span>2025</span><span>2026</span>
+      </div>
+      <div class="tkey lbl">
+        <span><i></i> Completed</span>
+        <span><i class="a"></i> Announced in 2026</span>
+      </div>
+    </div>
+  </div>
+  <div class="cap lbl">
+    <span>Scale AI left Washington for 22,000 square feet on Crystal Drive in December 2025, roughly four
+      times the space it held on K Street, to work closer to its federal and defense customers.</span>
+  </div>
+</section>
+
+<!-- ============ 01 — MATERIALS ============ -->
+<section class="entry-slice" id="s01">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl cat">Strategic and Critical Materials</p>
+      <p class="code">[ 01 ]</p>
+      <p class="vd">Capital and price discovery</p>
+    </div>
+    <div class="right">
+      <p class="h-md">Arlington's contribution to critical minerals is money and a market.</p>
+      <p>The Office of Strategic Capital, which works from the Pentagon and so from Arlington County, made
+        its first direct loan to MP Materials to build out critical-minerals supply. DARPA seeded the
+        Critical Minerals Forum and runs the Open Price Exploration for National Security programme, an
+        effort to establish honest pricing for minerals whose markets are thin and easily distorted.</p>
+      <p>The mining and stockpiling sit elsewhere in the region &mdash; the Defense Logistics Agency's
+        Strategic Materials office is at Fort Belvoir, and the US Geological Survey's minerals centre is
+        in Reston, both in Fairfax County.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 — KINETIC ============ -->
+<section class="entry-slice on-white" id="s02">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl cat">Kinetic Capabilities</p>
+      <p class="code">[ 02 ]</p>
+      <p class="vd">Two headquarters</p>
+    </div>
+    <div class="right">
+      <p class="h-md">Two Fortune 500 primes chose Arlington for their global headquarters within a year of
+        each other.</p>
+      <p>Boeing announced its move from Chicago in May 2022 and files from 929 Long Bridge Drive in
+        National Landing. RTX runs from 1000 Wilson Boulevard in Rosslyn. AeroVironment's loitering
+        munitions business &mdash; Switchblade 300 and 600, and Blackwing &mdash; is directed from Crystal
+        City.</p>
+      <p>These are headquarters decisions rather than production ones: the assembly lines stay in Arizona,
+        Alabama and elsewhere. What moved to Arlington is where the company is run from, and how close
+        that is to the customer.</p>
+      <p>The county also has early capital pointed at this sector. Lavrock Ventures, in Ballston, holds
+        both Castelion, which builds long-range strike systems, and Aventra, whose guidance kits convert
+        unguided munitions into precision ones. RTX Ventures, in Rosslyn, is an investor in Ursa Major,
+        which makes solid rocket motors and hypersonic propulsion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — BATTERIES ============ -->
+<section class="entry-slice" id="s03">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl cat">Energy Storage and Batteries</p>
+      <p class="code">[ 03 ]</p>
+      <p class="vd">Loan capital &middot; grid-scale projects</p>
+    </div>
+    <div class="right">
+      <p class="h-md">A $1.4&nbsp;billion battery commitment was signed here this month.</p>
+      <p>In August 2026 the Office of Strategic Capital committed a conditional loan of $1.4&nbsp;billion
+        to Sila Nanotechnologies for silicon-carbon anodes and lithium-ion cell production, citing
+        satellites, uncrewed aircraft and munitions among the end uses. Lightshift Energy, a utility-scale
+        storage developer and operator, is headquartered in the county and has been putting battery
+        portfolios into rural power agencies. Leonardo DRS carries electric power and propulsion among its
+        product lines.</p>
+      <p>Lightshift is well capitalised for its size. Greenbacker Capital Management put $100&nbsp;million
+        behind it in March 2024 &mdash; $20&nbsp;million of growth equity and $80&nbsp;million against
+        infrastructure assets &mdash; having first invested $20&nbsp;million when the company was called
+        Delorean Power. Aiga Capital Partners added a credit facility of up to $40&nbsp;million in July
+        2025, and KeyBanc $75&nbsp;million of project finance in October.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — MANUFACTURING ============ -->
+<section class="entry-slice on-cream" id="s04">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl cat">Manufacturing &mdash; Castings and Forgings</p>
+      <p class="code">[ 04 ]</p>
+      <p class="vd quiet">The funding office, not the foundry</p>
+    </div>
+    <div class="right">
+      <p class="h-md">Arlington is where manufacturing communities elsewhere get their funding.</p>
+      <p>The Office of Local Defense Community Cooperation works from 2231 Crystal Drive and administers
+        the Defense Manufacturing Community Support Program, which put $110&nbsp;million into twenty-three
+        designated communities between 2020 and 2023 to build up their industrial capacity and workforce.</p>
+      <p>Heavy manufacturing has never been an Arlington industry; the county's part in this sector is the
+        grant-making end of it, and that is a substantial one. The designations have gone to communities
+        around the country building up exactly the casting, forging and machining capacity the sector
+        depends on.</p>
+      <p>There is a venture line into it too. Fabri, an investment-casting foundry that describes itself
+        as &ldquo;software-defined and technology-enabled by default,&rdquo; is a Lavrock Ventures
+        portfolio company &mdash; which puts a Ballston fund inside the one sector the county has no
+        plants for. Steel Atlas, which co-led the seed round of the Arlington-founded GenLogs, invests
+        under the heading &ldquo;Investing in Resilience&rdquo; in &ldquo;the software and hardware
+        technologies re-shaping the industrial economy.&rdquo;</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — CHEMICALS ============ -->
+<section class="entry-slice" id="s08">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl cat">Critical Chemicals</p>
+      <p class="code">[ 08 ]</p>
+      <p class="vd quiet">National representation</p>
+    </div>
+    <div class="right">
+      <p class="h-md">The specialty chemical industry is represented from Crystal Drive.</p>
+      <p>The Society of Chemical Manufacturers and Affiliates &mdash; the trade association for specialty
+        and fine chemical producers, the constituency this sector is built around &mdash; works from
+        1400 Crystal Drive. Its members' plants are elsewhere; the advocacy, standards work and policy
+        engagement happen here, which is the pattern across several of these sectors.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO FUNDS IT ============ -->
+<section class="prose-slice on-white" id="capital">
+  <div class="prose rv">
+    <div>
+      <p class="lbl" style="color:var(--grey);margin-bottom:var(--sm)">Capital</p>
+      <p class="h-md lead">Who funds it.</p>
+    </div>
+    <div class="copy">
+      <p>Two kinds of money show up in Arlington technology. The first is capital headquartered here,
+        and almost all of it sits on one street: Lavrock at 4300 Wilson Boulevard, Marlinspike at 4201,
+        FedTech at 4401, EJF at 2107, StoneMill at 1201, Sands Capital and RTX at 1000. Two of those
+        funds invest almost entirely in national-security technology. The second kind is capital that
+        arrives from somewhere else &mdash; the growth and venture funds that led the county's largest
+        rounds of the last twelve months, none of them based nearby.</p>
+      <p>Both are worth reading against the eight sectors, because a fund's portfolio is a statement about
+        where it thinks the industrial base is going. What follows quotes each firm's own description of
+        what it backs, and names the companies it has actually backed. The sector tags are ours: we have
+        placed each portfolio company against the sector its product serves, and where a company does not
+        fit neatly we say so.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Arlington-headquartered capital -->
+<section class="media-slice on-white" style="padding-bottom:var(--xxl)">
+  <div class="media-row">
+    <div class="fig rv">
+      <p class="ftitle lbl">Capital headquartered in Arlington, with a defense or industrial thesis</p>
+      <div class="imx">
+        <span class="hd lbl">Firm</span>
+        <span class="hd lbl">What it says it backs, and what it has backed</span>
+        <span class="hd lbl">Sectors</span>
+
+        <span class="cell fnm">Lavrock Ventures<em>Ballston &middot; 4300 Wilson Blvd</em></span>
+        <span class="cell fev"><q>Early-stage investors at the intersection of national security and
+          frontier technologies,</q> with investments spanning <q>advanced manufacturing, space, quantum
+          technologies, and kinetic systems.</q> Portfolio: Castelion and Aventra in strike and guided
+          munitions, PteroDynamics in VTOL uncrewed aircraft, CesiumAstro in space communications,
+          Maybell Quantum in dilution refrigerators, and Fabri, which runs an investment-casting
+          foundry.</span>
+        <span class="cell fsec">02 &middot; 04<br>05 &middot; 06</span>
+
+        <span class="cell fnm">Marlinspike Partners<em>Ballston &middot; 4201 Wilson Blvd</em></span>
+        <span class="cell fev"><q>We invest in companies with pioneering technologies addressing national
+          security needs and possessing massive commercial markets</q> &mdash; across aerospace, AI and
+          machine learning, autonomy and robotics, and cybersecurity. It closed an oversubscribed
+          $127&nbsp;million Fund&nbsp;II in July 2026, to back <q>the companies rebuilding the industrial
+          base and rearming the United States.</q></span>
+        <span class="cell fsec">04 &middot; 05<br>06</span>
+
+        <span class="cell fnm">RTX Ventures<em>RTX corporate HQ &middot; 1000 Wilson Blvd</em></span>
+        <span class="cell fev">The corporate venture arm of RTX, which names five areas: compute, advanced
+          manufacturing, space, <q>data, analytics and code,</q> and propulsion. It is an investor in Ursa
+          Major, which builds solid rocket motors and hypersonic propulsion, and in Forterra, which builds
+          autonomous ground vehicles.</span>
+        <span class="cell fsec">02 &middot; 04<br>05</span>
+
+        <span class="cell fnm">StoneMill Ventures<em>Rosslyn &middot; 1201 Wilson Blvd</em></span>
+        <span class="cell fev"><q>Seed Stage Cyber Security Capital</q> &mdash; the firm backs
+          <q>disruptive cyber security companies, primarily at the seed stage.</q> Its portfolio includes
+          Huntress and GreyNoise.</span>
+        <span class="cell fsec">06</span>
+      </div>
+      <ul class="notes">
+        <li><b>FedTech</b>, 4401 Wilson Blvd &mdash; <q>a fully integrated, equity-free deep tech
+          commercialization platform.</q> It builds companies around vetted federal-lab intellectual
+          property and takes no equity in them.</li>
+        <li><b>Starburst National Landing Launchpad</b> &mdash; an aerospace and defense accelerator
+          announced by Arlington Economic Development on 31 March 2025, supported by a $200,000 grant from
+          the Virginia Innovation Partnership Corporation's Regional Innovation Fund, for up to ten
+          early-stage companies in its first year.</li>
+        <li><b>Virtus Innovation Center</b> &mdash; a 40,000-square-foot dual-use hub in National Landing,
+          launched in December 2024 by Alvarez &amp; Marsal, Energy Innovation Capital, JBG SMITH and
+          Virginia Tech. It plans an early-stage fund once that fund is raised.</li>
+        <li><b>Arlington Innovation Fund</b> &mdash; the county's own Catalyst Grants, <q>non-dilutive
+          co-investment grants of $25,000 to $50,000.</q> The first cohort, announced in February 2024,
+          put $225,000 into five companies, GenLogs among them.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cap lbl">
+    <span>The county's two largest asset managers are bigger than everything above combined and invest
+      elsewhere. Sands Capital, on Wilson Boulevard, held $50&nbsp;billion in client assets at 30 June
+      2026, and its Global Ventures strategy names artificial intelligence, cybersecurity, healthcare
+      technology and digital life. EJF Capital, further up the same street, reported about
+      $6.0&nbsp;billion in regulatory assets at the end of 2025 against a mandate in financials and real
+      estate.</span>
+  </div>
+</section>
+
+<!-- ============ LAVROCK SPOTLIGHT ============ -->
+<section class="entry-slice on-cream" id="lavrock">
+  <div class="entry rv">
+    <div class="left">
+      <p class="lbl cat">The fund next door</p>
+      <p class="code">[ VC ]</p>
+      <p class="vd">Four of the eight sectors</p>
+    </div>
+    <div class="right">
+      <p class="h-md">One Ballston fund covers half the sector list on its own.</p>
+      <p>Lavrock Ventures works from 4300 Wilson Boulevard and describes itself as
+        &ldquo;early-stage investors at the intersection of national security and frontier
+        technologies,&rdquo; approaching venture &ldquo;from the perspective of the national security
+        ecosystem, with deep roots in the intelligence community.&rdquo; It is a small fund by the
+        standards of the names further down this page. Its portfolio is not.</p>
+      <p>Castelion builds long-range strike systems and Aventra makes guidance kits that turn unguided
+        munitions into precision ones &mdash; sector 02. PteroDynamics builds autonomous VTOL aircraft
+        that reach places without runways, and CesiumAstro supplies full-stack space communications
+        &mdash; sectors 05 and 06. Maybell Quantum builds the dilution refrigerators that quantum
+        processors have to run inside &mdash; sector 06 again.</p>
+      <p>The one that matters most for this page is Fabri. It is not a software company selling into
+        foundries; it is a foundry, making investment castings and describing itself as
+        &ldquo;a foundry that is software-defined and technology-enabled by default.&rdquo; Sector 04,
+        castings and forgings, is the sector Arlington has no plants for. It has the investor.</p>
+    </div>
+  </div>
+</section>
+
+<!-- The rounds -->
+<section class="media-slice on-cream" style="padding-bottom:var(--xxl)">
+  <div class="media-row">
+    <div class="fig rv">
+      <p class="ftitle lbl">The rounds, and who led them</p>
+      <div class="imx">
+        <span class="hd lbl">Company</span>
+        <span class="hd lbl">The round, and the syndicate</span>
+        <span class="hd lbl">Sectors</span>
+
+        <span class="cell fnm">Twenty<em>Arlington &middot; founded 2024</em></span>
+        <span class="cell fev">A $38&nbsp;million Series A in November 2025 led by Caffeinated Capital
+          with General Catalyst and In-Q-Tel, then a $100&nbsp;million Series B in June 2026 at a
+          $1&nbsp;billion valuation led by Accel, then a further $30&nbsp;million from Khosla Ventures in
+          July 2026 at $1.2&nbsp;billion. $168&nbsp;million in two years. The product is cyber-warfare
+          software.</span>
+        <span class="cell fsec">06</span>
+
+        <span class="cell fnm">Air<em>Rosslyn &middot; 1735 N. Lynn Street</em></span>
+        <span class="cell fev">A $150&nbsp;million growth investment from Bain Capital announced 13
+          October 2025, alongside more than $100&nbsp;million in annual recurring revenue and a
+          $919&nbsp;million government-wide supply-chain risk contract. Accel, Salesforce Ventures and
+          Symphony Technology Group came in at the $20&nbsp;million Series C in 2015. The company changed
+          its name from Govini to Air in June 2026.</span>
+        <span class="cell fsec">01 &middot; 04</span>
+
+        <span class="cell fnm">Auterion<em>Ballston &middot; 4250 Fairfax Drive</em></span>
+        <span class="cell fev">A $130&nbsp;million Series B on 23 September 2025 led by Bessemer Venture
+          Partners. $25&nbsp;million of that total is non-dilutive, <q>backed by the Office of Strategic
+          Capital of the Department of War and provided by Rochefort.</q> The $10&nbsp;million seed in
+          2018 came from Lakestar, Mosaic, Costanoa and Tectonic.</span>
+        <span class="cell fsec">05</span>
+
+        <span class="cell fnm">Shift5<em>Rosslyn &middot; 1100 Wilson Blvd</em></span>
+        <span class="cell fev">A $75&nbsp;million Series C on 3 September 2025 led by Hedosophia, with
+          Insight Partners, 645 Ventures, Booz Allen Ventures, Squadra, AE Industrial, Moore Strategic,
+          Center 15, Disruptive, CSP Equity and Savano. Insight had led the $50&nbsp;million Series B in
+          2022; Moore Strategic led a $33&nbsp;million extension in 2023 that took total venture funding
+          to $108&nbsp;million.</span>
+        <span class="cell fsec">05 &middot; 06</span>
+
+        <span class="cell fnm">GenLogs<em>Founded in Arlington, 2023</em></span>
+        <span class="cell fev">A $60&nbsp;million Series B on 3 February 2026 led by Battery Ventures,
+          with IVP, Cathay Innovation, 9Yards, Venrock, Steel Atlas, HOF Capital, TitletownTech and
+          Autotech Ventures, taking the total to $81&nbsp;million. It was one of five companies in
+          Arlington's first Catalyst Grant cohort in February 2024.</span>
+        <span class="cell fsec">06</span>
+
+        <span class="cell fnm">Quartermaster<em>Arlington</em></span>
+        <span class="cell fev">A $43&nbsp;million Series A reported in May 2026, co-led by First Round
+          Capital and Quiet Capital, for software that coordinates uncrewed vessels as a single
+          system.</span>
+        <span class="cell fsec">05</span>
+
+        <span class="cell fnm">Lightshift Energy<em>Arlington</em></span>
+        <span class="cell fev">$100&nbsp;million from Greenbacker Capital Management in March 2024 &mdash;
+          $20&nbsp;million of growth equity and $80&nbsp;million against infrastructure assets &mdash;
+          following Greenbacker's $20&nbsp;million investment in the company when it was Delorean Power.
+          A credit facility of up to $40&nbsp;million from Aiga Capital Partners followed in July 2025,
+          and $75&nbsp;million of project finance from KeyBanc in October 2025.</span>
+        <span class="cell fsec">03</span>
+      </div>
+    </div>
+  </div>
+  <div class="cap lbl">
+    <span>Sector tags are ours, not the investors'. Twenty's cyber-warfare software and GenLogs' roadside
+      sensor network sit closest to sector 06 without being microelectronics in the literal sense.
+      Quartermaster's round is reported rather than company-announced. And not every Arlington round is a
+      defense one: Carecubes raised a $6.5&nbsp;million Series A in March 2026 from Schooner Capital,
+      Lifeforce Capital and CQuence Health for infectious-disease response.</span>
+  </div>
+</section>
+
+<!-- ============ WHERE THE MONEY COMES FROM ============ -->
+<section class="prose-slice" id="inflow">
+  <div class="prose rv">
+    <div>
+      <p class="lbl" style="color:var(--grey);margin-bottom:var(--sm)">The pattern</p>
+      <p class="h-md lead">Arlington companies raise at the front of the national market.</p>
+    </div>
+    <div class="copy">
+      <p>Count the leads on the rounds above. Accel, Khosla, Bain Capital, Bessemer, Insight, Battery
+        Ventures, First Round, Hedosophia, Greenbacker &mdash; the firms writing the largest cheques into
+        Arlington are the firms writing the largest cheques anywhere, and none of them is based in the
+        Washington region. Two of the syndicate names are close: Booz Allen Ventures in McLean, and
+        Squadra Ventures, which works from Baltimore and from G Street in Washington. First In, which came
+        into Shift5's Series A, publishes no office address at all.</p>
+      <p>That is a strong position rather than a weak one. A cluster funded only by its neighbours has a
+        ceiling; these companies are competing for capital nationally and winning it, twice in the case of
+        Twenty, which raised again a month after closing a round. The funds that are here &mdash; Lavrock
+        and Marlinspike in Ballston, RTX Ventures and StoneMill in Rosslyn &mdash; are the early money,
+        which is the money that decides which companies exist at all.</p>
+      <p>And one instrument sits here in a way it sits nowhere else. The Office of Strategic Capital works
+        from the Pentagon, and the $25&nbsp;million inside Auterion's Series B came through it. It is the
+        same office behind the first loan to MP Materials in sector 01 and the $1.4&nbsp;billion battery
+        commitment in sector 03. Federal capital placed alongside private venture money in a single round
+        is a recent invention, and Arlington is where it is administered from.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Stated theses -->
+<section class="media-slice" style="padding-bottom:var(--xxl)">
+  <div class="media-row">
+    <div class="fig rv">
+      <p class="ftitle lbl">Outside investors who state an industrial or defense thesis</p>
+      <div class="imx">
+        <span class="hd lbl">Investor</span>
+        <span class="hd lbl">Its own words</span>
+        <span class="hd lbl">Sectors</span>
+
+        <span class="cell fnm">Bessemer Venture Partners<em>Led Auterion's Series B</em></span>
+        <span class="cell fev">Publishes a research roadmap titled <q>Deep tech &amp; Defense,</q> arguing
+          that commercialised scientific breakthroughs <q>improve lives, build more sustainable
+          businesses, and strengthen security and democratic resilience.</q></span>
+        <span class="cell fsec">05</span>
+
+        <span class="cell fnm">Lakestar<em>Zurich &middot; Auterion seed investor</em></span>
+        <span class="cell fev">Closed Lakestar Resilience I at $300&nbsp;million on 17 July 2026 for
+          European defence and dual-use companies. Auterion is named in the fund's portfolio alongside
+          Helsing, Isar Aerospace, ARX Robotics and Tekever.</span>
+        <span class="cell fsec">05</span>
+
+        <span class="cell fnm">Steel Atlas<em>Co-led GenLogs' seed</em></span>
+        <span class="cell fev"><q>Investing in Resilience.</q> The firm <q>invests in the software and
+          hardware technologies re-shaping the industrial economy.</q></span>
+        <span class="cell fsec">04 &middot; 06</span>
+
+        <span class="cell fnm">First In<em>Shift5 Series A investor</em></span>
+        <span class="cell fev">Describes itself as <q>a security technology investor</q> and names seven
+          areas: advanced manufacturing, AI and data, communications and networking, cybersecurity, space
+          systems, strategic systems and unmanned systems.</span>
+        <span class="cell fsec">04 &middot; 05<br>06</span>
+
+        <span class="cell fnm">AE Industrial Partners<em>Shift5 investor via AEI HorizonX</em></span>
+        <span class="cell fev">AEI HorizonX is AE Industrial's venture group, formed in partnership with
+          Boeing. It joined Shift5's Series B in July 2022, five months after the round was
+          announced.</span>
+        <span class="cell fsec">05 &middot; 06</span>
+
+        <span class="cell fnm">Booz Allen Ventures<em>McLean &middot; Shift5 investor</em></span>
+        <span class="cell fev">Tripled its venture commitment to $300&nbsp;million in July 2025, the
+          largest corporate venture programme in the regional consulting sector.</span>
+        <span class="cell fsec">06</span>
+
+        <span class="cell fnm">Office of Strategic Capital &middot; Rochefort<em>The federal
+          instrument</em></span>
+        <span class="cell fev">Rochefort Asset Management is <q>a joint venture between Hayman Capital
+          Management and Serengeti Asset Management, created to participate in the new Critical
+          Technologies Initiative,</q> the Office of Strategic Capital's programme with the Small Business
+          Administration. It led a $290&nbsp;million round into Divergent Technologies on 15 September
+          2025, contributing $120&nbsp;million of it, for US defense manufacturing.</span>
+        <span class="cell fsec">03 &middot; 04<br>05</span>
+      </div>
+    </div>
+  </div>
+  <div class="cap lbl">
+    <span>Quoted language is each firm's own; the sector tags are ours. Several of the largest investors
+      in Arlington companies publish no defense thesis at all and invested anyway &mdash; Bain Capital
+      Tech Opportunities, which put $150&nbsp;million into Air, names application software, infrastructure
+      and security, fintech and payments, and healthcare IT as its verticals.</span>
+  </div>
+</section>
+
+<!-- The capital within half an hour -->
+<section class="media-slice" style="padding-bottom:var(--xxl)">
+  <div class="media-row">
+    <div class="fig rv">
+      <p class="ftitle lbl">The capital within half an hour, which is not in Arlington</p>
+      <div class="imx">
+        <span class="hd lbl">Firm</span>
+        <span class="hd lbl">Its own words, and any confirmed Arlington investment</span>
+        <span class="hd lbl">Sectors</span>
+
+        <span class="cell fnm">In-Q-Tel<em>Tysons &middot; 1800 Tysons Blvd</em></span>
+        <span class="cell fev">The non-profit strategic investor the intelligence and national-security
+          community has used since 1999, describing its work as <q>investing in global innovation to
+          secure the nation</q> across more than 800 investments. Its published practice areas run from
+          space and microelectronics to energy, biotechnology, cyber and quantum. It came into
+          <b>Twenty's</b> $38&nbsp;million Series A in November 2025. Until at least 2010 its own
+          registered address was 1000 Wilson Boulevard in Rosslyn &mdash; the building RTX now runs
+          from.</span>
+        <span class="cell fsec">03 &middot; 05<br>06</span>
+
+        <span class="cell fnm">Squadra Ventures<em>Baltimore &middot; Washington</em></span>
+        <span class="cell fev"><q>We invest in early-stage national security companies advancing the
+          critical edge,</q> with <q>a growth-stage mindset at the seed stage.</q> It was in
+          <b>Shift5's</b> $20&nbsp;million Series A in October 2021.</span>
+        <span class="cell fsec">05 &middot; 06</span>
+
+        <span class="cell fnm">Booz Allen Ventures<em>McLean</em></span>
+        <span class="cell fev">Backs startups building <q>advanced technology and reindustrializing
+          America,</q> across <q>AI, defense tech, deep tech, cybersecurity, and reindustrialization.</q>
+          It tripled its commitment to $300&nbsp;million in July 2025 and is an investor in
+          <b>Shift5</b>.</span>
+        <span class="cell fsec">04 &middot; 06</span>
+
+        <span class="cell fnm">Razor's Edge Ventures<em>Reston &middot; 1875 Explorer Street</em></span>
+        <span class="cell fev"><q>Investing at the intersection of national security and commercial
+          enterprise</q> &mdash; seventeen current holdings across cyber, space and defence
+          hardware.</span>
+        <span class="cell fsec">05 &middot; 06</span>
+
+        <span class="cell fnm">DataTribe<em>Fulton, Maryland &middot; 8110 Maple Lawn Blvd</em></span>
+        <span class="cell fev"><q>We invest in, and co-build dominant companies focused on generational
+          leaps in cybersecurity.</q> Its portfolio leans Maryland &mdash; Dragos, Enveil,
+          Attila.</span>
+        <span class="cell fsec">06</span>
+
+        <span class="cell fnm">Columbia Capital<em>Alexandria &middot; 204 South Union Street</em></span>
+        <span class="cell fev"><q>We partner with entrepreneurs to build category-defining
+          businesses,</q> across enterprise technology, digital infrastructure and mobility. It backed
+          <b>Endgame</b>, reported at the time as Clarendon-based, before Elastic acquired it in
+          2019.</span>
+        <span class="cell fsec">06</span>
+
+        <span class="cell fnm">Blue Delta Capital Partners<em>McLean &middot; 1751 Pinnacle Drive</em></span>
+        <span class="cell fev"><q>Exclusively focused on the U.S. federal government market, particularly
+          companies providing technology-enabled solutions and services,</q> offering <q>patient,
+          flexible, long-term capital</q> as <q>partners to our management teams, not owners.</q></span>
+        <span class="cell fsec">&mdash;</span>
+      </div>
+    </div>
+  </div>
+  <div class="cap lbl">
+    <span>None of these firms publishes the locations of its portfolio companies, so this is a map of
+      stated intent and driving distance rather than a claim about where the money has landed; where an
+      Arlington investment is confirmed it is named. Blue Delta defines itself by market and stage rather
+      than by technology, so no sector tag applies to it. And the name trap worth knowing: Arlington
+      Capital Partners, which runs a large aerospace and defense practice, describes itself as
+      Washington, D.C.-based.</span>
+  </div>
+</section>
+
+<!-- ============ WHAT ARLINGTON IS GOOD AT ============ -->
+<section class="prose-slice on-white" id="reading">
+  <div class="prose rv">
+    <div>
+      <p class="lbl" style="color:var(--grey);margin-bottom:var(--sm)">The short answer</p>
+      <p class="h-md lead">What is Arlington actually good at?</p>
+    </div>
+    <div class="copy">
+      <p>Software for things that move themselves, the research funding that sets national direction,
+        sensing and onboard data, and a university pipeline that is currently beating the target the
+        state set for it. Those four are where the county has both institutions and momentum, and three
+        of the four have added capital or jobs in the last eighteen months.</p>
+      <p>The growing part is easy to name: software sold to a defense or logistics customer. Autonomy,
+        cyber, supply-chain analytics, onboard data, fleet coordination &mdash; that is where the large
+        rounds went. Two of those companies crossed a billion-dollar valuation inside the last ten
+        months, and one of them is two years old.</p>
+      <p>The shape of it follows from the geography. Twenty-six square miles wrapped around a Metro
+        system, three miles from the Pentagon, is a good place to run a company, fund a programme or
+        teach a graduate seminar, and a poor one to site a forge. Arlington has specialised accordingly,
+        and the specialisation is paying: two Fortune 500 headquarters, two companies past a billion-dollar valuation, an
+        autonomy company that crossed the Atlantic to be here, a computing building whose commercial
+        space was about three-quarters committed by the time it opened, and a Ballston fund whose
+        portfolio reaches into four of the eight sectors, including the one the county has no plants
+        for.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHERE THINGS SIT ============ -->
+<section class="prose-slice on-cream" id="line">
+  <div class="prose rv">
+    <div>
+      <p class="lbl" style="color:var(--grey);margin-bottom:var(--sm)">Getting your bearings</p>
+      <p class="h-md lead">The region shares a labour market and splits across four jurisdictions.</p>
+    </div>
+    <div class="copy">
+      <p>Northern Virginia's technology institutions sit close together and are easy to mix up, so it is
+        worth knowing which is where. Virginia Tech's Innovation Campus &mdash; the graduate school that
+        anchored the state's side of the Amazon deal, whose first academic building opened in January
+        2025 &mdash; is in the City of Alexandria at Potomac Yard. Both sides of that boundary market
+        themselves as National Landing, which is where the confusion starts.</p>
+      <p>Virginia Tech also holds Arlington ground: the Research Center at 900 North Glebe Road in
+        Ballston, 144,000 square feet, open since 2011. This guide has never stopped at the county line,
+        and the people who work in these buildings do not either.</p>
+    </div>
+  </div>
+
+  <div class="ledger rv">
+    <div class="row">
+      <span class="who">DARPA</span>
+      <span class="what">675 N. Randolph Street, Ballston &mdash; six technical offices</span>
+      <span class="where">Arlington</span>
+    </div>
+    <div class="row">
+      <span class="who">Office of Naval Research &middot; AFOSR</span>
+      <span class="what">875 N. Randolph Street, one block north</span>
+      <span class="where">Arlington</span>
+    </div>
+    <div class="row">
+      <span class="who">Office of Strategic Capital</span>
+      <span class="what">In the Pentagon, which sits in Arlington despite the Washington ZIP codes</span>
+      <span class="where">Arlington</span>
+    </div>
+    <div class="row">
+      <span class="who">ATI &mdash; consortium manager</span>
+      <span class="what">901 N. Stuart Street, Ballston</span>
+      <span class="where">Arlington</span>
+    </div>
+    <div class="row">
+      <span class="who">Fuse at Mason Square</span>
+      <span class="what">George Mason's School of Computing, Virginia Square</span>
+      <span class="where">Arlington</span>
+    </div>
+    <div class="row">
+      <span class="who">Virginia Tech Innovation Campus</span>
+      <span class="what">Potomac Yard &mdash; the graduate campus from the Amazon deal</span>
+      <span class="where out">Alexandria</span>
+    </div>
+    <div class="row">
+      <span class="who">DLA Strategic Materials &middot; USGS minerals</span>
+      <span class="what">Fort Belvoir and Reston &mdash; the stockpile and the data</span>
+      <span class="where out">Fairfax</span>
+    </div>
+    <div class="row">
+      <span class="who">Data-centre alley</span>
+      <span class="what">250+ facilities, 25 to 40 miles west</span>
+      <span class="where out">Loudoun</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section class="visit-slice on-white" id="sources">
+  <div style="border-top:1px solid var(--rule-dark);padding-top:var(--base)">
+    <p class="lbl" style="color:var(--grey);margin-bottom:var(--sm)">Provenance</p>
+    <p class="h-md" style="max-width:34ch;margin-bottom:var(--base)">Every figure on this page came from
+      one of these.</p>
+    <ul class="srcs">
+      <li>The eight sectors &mdash; <a href="https://www.dibconsortium.org/about/">Defense Industrial Base Consortium</a></li>
+      <li>WIRE, the sponsoring office &mdash; <a href="https://www.businessdefense.gov/ibr/wire.html">businessdefense.gov</a></li>
+      <li>ATI offices, including Ballston &mdash; <a href="https://www.ati.org/contact-us/">ati.org</a></li>
+      <li>DARPA budget, offices and mission &mdash; <a href="https://www.darpa.mil/about">darpa.mil/about</a></li>
+      <li>DARPA address &mdash; <a href="https://www.darpa.mil/policies/visitor-information">DARPA visitor information</a></li>
+      <li>675 N. Randolph lease &mdash; <a href="https://transportation.house.gov/uploadedfiles/37_arlington_va_-_department_of_defense_-_defense_advanced_research_projects_agency.pdf">GSA prospectus PVA-03-WA23</a></li>
+      <li>Electronics Resurgence Initiative &mdash; <a href="https://www.darpa.mil/news/2018/next-phase-electronic-resurgence-initiative">DARPA, Phase II</a></li>
+      <li>Office of Strategic Capital &mdash; <a href="https://www.cto.mil/osc/about/">cto.mil</a></li>
+      <li>First OSC loan, MP Materials &mdash; <a href="https://www.war.gov/News/Releases/Release/Article/4270722/office-of-strategic-capital-announces-first-loan-through-dod-agreement-with-mp/">Department release</a></li>
+      <li>Sila Nanotechnologies loan commitment &mdash; <a href="https://www.war.gov/News/Releases/Release/Article/4566579/the-office-of-strategic-capital-signs-14-billion-conditional-loan-commitment-wi/">Department release, August 2026</a></li>
+      <li>AeroVironment headquarters and product lines &mdash; <a href="https://www.avinc.com/images/uploads/media_assets/Corporate_Fact_Sheet.pdf">corporate fact sheet</a></li>
+      <li>AeroVironment's move to Arlington &mdash; <a href="https://www.avinc.com/resources/press-releases/view/aerovironment-relocates-corporate-headquarters-to-arlington-virginia">company release, 2021</a></li>
+      <li>RTX headquarters address &mdash; <a href="https://investors.rtx.com/static-files/215f060a-9dc5-44c2-813a-04aca054e56e">SEC Form 10-K, February 2026</a></li>
+      <li>Boeing headquarters address &mdash; <a href="https://www.sec.gov/Archives/edgar/data/12927/000119312524237177/d871346ds3.htm">SEC filing</a></li>
+      <li>Auterion move to Ballston &mdash; <a href="https://auterion.com/auterion-moves-corporate-headquarters-to-arlington-virginia/">Auterion</a></li>
+      <li>Auterion $130M Series B &mdash; <a href="https://virginiabusiness.com/arlington-drone-software-firm-raises-130m-in-series-b-funding/">Virginia Business</a></li>
+      <li>Air, formerly Govini, and its valuation &mdash; <a href="https://virginiabusiness.com/arlington-defense-tech-firm-govini-reaches-unicorn-status/">Virginia Business, November 2025</a></li>
+      <li>Shift5 Series C and regional venture totals &mdash; <a href="https://virginiabusiness.com/government-contracting-northern-virginia-startups-growth-defense-tech/">Virginia Business, June 2026</a></li>
+      <li>Shift5 offices &mdash; <a href="https://shift5.io/contact/">Shift5</a></li>
+      <li>Innovative Defense Technologies expansion &mdash; <a href="https://www.vedp.org/press-release/2026-05/innovative-defense-tech-arlington">VEDP, May 2026</a></li>
+      <li>Spatial Front headquarters announcement &mdash; <a href="https://www.arlnow.com/2026/06/02/tech-firm-relocating-corporate-hq-to-crystal-city-bringing-450-jobs/">ARLnow, June 2026</a></li>
+      <li>Scale AI's move to Crystal City &mdash; <a href="https://scale.com/blog/global-office-expansion-2025">Scale AI</a></li>
+      <li>Drone Dominance Program &mdash; <a href="https://armedservices.house.gov/uploadedfiles/2026-05-14_west_testimony.pdf">DIU director's testimony, May 2026</a></li>
+      <li>Teledyne FLIR Crystal City centre &mdash; <a href="https://defense.flir.com/about/news/teledyne-flir-defense-opens-new-office-in-arlington-virginia/">FLIR Defense</a></li>
+      <li>Leonardo DRS headquarters and lines &mdash; <a href="https://www.leonardodrs.com/locations/">Leonardo DRS</a></li>
+      <li>Lightshift Energy &mdash; <a href="https://www.lightshift.com/who-we-are">Lightshift</a></li>
+      <li>Office of Local Defense Community Cooperation &mdash; <a href="https://oldcc.gov/contact-us">oldcc.gov</a></li>
+      <li>Defense Manufacturing Community Support Program &mdash; <a href="https://oldcc.gov/our-programs/defense-manufacturing-community-support-program">OLDCC</a></li>
+      <li>Manufacturing USA institutes &mdash; <a href="https://www.manufacturingusa.com/institutes">manufacturingusa.com</a></li>
+      <li>SOCMA headquarters &mdash; <a href="https://www.socma.org/contact-us/">socma.org</a></li>
+      <li>Tech Talent Investment Program statute &mdash; <a href="https://law.lis.virginia.gov/vacode/title23.1/chapter12.1/section23.1-1240/">Va. Code &sect; 23.1-1240</a></li>
+      <li>TTIP disbursement and degree production &mdash; <a href="https://rga.lis.virginia.gov/Published/2025/RD139">SCHEV report RD139, January 2025</a></li>
+      <li>Fuse at Mason Square &mdash; <a href="https://www.arlnow.com/2024/12/06/gmus-tech-focused-fuse-building-in-va-square-celebrates-grand-opening/">ARLnow</a> &middot; <a href="https://vachamber.com/2025/10/09/gmu-celebrates-grand-opening-of-fuse-at-mason-square/">Virginia Chamber, October 2025</a></li>
+      <li>Marymount AI degree and enrolment &mdash; <a href="https://www.arlnow.com/2025/10/22/with-bachelors-degree-in-ai-marymount-seeks-to-equip-students-for-a-changing-world/">ARLnow, October 2025</a></li>
+      <li>Virginia Tech campus locations &mdash; <a href="https://dcarea.vt.edu/about/locations.html">Virginia Tech</a></li>
+      <li>Virginia Tech Innovation Campus opening &mdash; <a href="https://virginiabusiness.com/va-tech-innovation-campus-opens-first-academic-building/">Virginia Business</a></li>
+      <li>Lavrock Ventures &mdash; <a href="https://www.lavrockvc.com/">lavrockvc.com</a> &middot; <a href="https://lavrockvc.com/portfolio/">portfolio</a></li>
+      <li>Fabri, investment castings &mdash; <a href="https://www.fabriusa.com/">fabriusa.com</a></li>
+      <li>Castelion &middot; Aventra &mdash; <a href="https://www.castelion.com/">castelion.com</a> &middot; <a href="https://www.aventra.io/">aventra.io</a></li>
+      <li>PteroDynamics &middot; CesiumAstro &middot; Maybell Quantum &mdash; <a href="https://pterodynamics.com/">company</a> &middot; <a href="https://www.cesiumastro.com/">company</a> &middot; <a href="https://maybellquantum.com/">company</a></li>
+      <li>RTX Ventures focus areas &mdash; <a href="https://www.rtx.com/who-we-are/ventures">rtx.com</a></li>
+      <li>RTX Ventures in Ursa Major &mdash; <a href="https://ursamajor.com/media/press-release/ursa-majors-dollar138m-boost-new-solid-rocket-motors-and-scaled-propulsion/">Ursa Major release</a></li>
+      <li>RTX Ventures in Forterra &mdash; <a href="https://www.forterra.com/posts/powering-the-future-of-the-battlefield-with-a-238m-series-c">Forterra Series C</a></li>
+      <li>StoneMill Ventures &mdash; <a href="https://www.stonemillventures.com/">stonemillventures.com</a></li>
+      <li>FedTech, equity-free &mdash; <a href="https://www.fedtech.io/">fedtech.io</a></li>
+      <li>Starburst National Landing Launchpad &mdash; <a href="https://www.arlingtoneconomicdevelopment.com/News-Resources/Press-Releases/Arlington-Welcomes-Starburst%E2%80%99s-National-Landing-Launchpad">Arlington Economic Development, March 2025</a></li>
+      <li>Virtus Innovation Center launch &mdash; <a href="https://www.globenewswire.com/news-release/2024/12/19/3000268/0/en/AWS-A-MPLIFY-by-Alvarez-and-Marsal-Energy-Innovation-Capital-JBG-SMITH-and-Virginia-Tech-Launch-Virtus-Innovation-Center.html">joint release, December 2024</a></li>
+      <li>Arlington Innovation Fund Catalyst Grants &mdash; <a href="https://www.arlingtoneconomicdevelopment.com/Key-Industries/Startup-Ecosystem/Arlington-Innovation-Fund">programme page</a> &middot; <a href="https://content.govdelivery.com/accounts/VAARLINGTON/bulletins/388c3e3">first cohort, February 2024</a></li>
+      <li>Sands Capital client assets and Global Ventures &mdash; <a href="https://www.sandscapital.com/aum-disclosures-firm-definition/">AUM disclosure</a> &middot; <a href="https://www.sandscapital.com/global-ventures/">strategy page</a></li>
+      <li>EJF Capital assets and mandate &mdash; <a href="https://www.ejfcap.com/">ejfcap.com</a> &middot; <a href="https://www.jpmorgan.com/content/dam/jpm/securities/documents/adv/part-b/EJF_Form_ADV_Part_2_and_Privacy_Policy.pdf">Form ADV Part 2A, March 2026</a></li>
+      <li>Twenty, $100M Series B &mdash; <a href="https://www.prnewswire.com/news-releases/americas-first-vc-backed-cyber-warfare-startup-raises-100m-series-b-at-1b-valuation-302802401.html">company release, June 2026</a></li>
+      <li>Twenty, $30M follow-on &mdash; <a href="https://www.prnewswire.com/news-releases/americas-first-vc-backed-cyber-warfare-startup-raises-additional-30m-from-khosla-ventures-at-1-2b-valuation-302829778.html">company release, July 2026</a></li>
+      <li>Air, $150M from Bain Capital &mdash; <a href="https://www.baincapitaltechopportunities.com/news/defense-tech-unicorn-govini-surpasses-100-million-arr-milestone">Bain Capital Tech Opportunities, October 2025</a></li>
+      <li>Bain Capital Tech Opportunities verticals &mdash; <a href="https://www.baincapitaltechopportunities.com/">firm site</a></li>
+      <li>Govini Series C, 2015 &mdash; <a href="https://stgpartners.com/2015/05/08/govini-secures-20m-to-power-its-big-data-approach-to-government-contracting">STG</a></li>
+      <li>Govini renamed Air &mdash; <a href="https://www.prnewswire.com/news-releases/govini-declares-readiness-gap-a-national-security-crisis-at-2026-reindustrialize-summit-302801833.html">company release, June 2026</a> &middot; <a href="https://air.ai/contact">Rosslyn address</a></li>
+      <li>Auterion Series B and the OSC tranche &mdash; <a href="https://auterion.com/auterion-raises-130-million-series-b-as-their-ai-enabled-software-powering-low-cost-commercial-hardware-at-scale-transforms-warfare/">Auterion, September 2025</a></li>
+      <li>Auterion 2018 seed investors &mdash; <a href="https://auterion.com/auterion-launches-os-for-commercial-drones/">Auterion</a></li>
+      <li>Bessemer's deep tech and defense roadmap &mdash; <a href="https://www.bvp.com/deep-tech-defense">bvp.com</a></li>
+      <li>Lakestar Resilience I &mdash; <a href="https://www.lakestar.com/resiliencepress">Lakestar, July 2026</a></li>
+      <li>Shift5 Series A &mdash; <a href="https://shift5.io/insights/shift5-raises-20-million-in-series-a-blog-post-title-three-2rnm2-mnhbr/">Shift5, 2021</a></li>
+      <li>Shift5 Series B &mdash; <a href="https://www.globenewswire.com/news-release/2022/02/08/2380831/0/en/Shift5-Raises-50M-Series-B-Round-to-Secure-Operational-Technology-in-Critical-Transportation-and-Weapon-Systems.html">release, February 2022</a> &middot; <a href="https://www.aeroequity.com/aei-horizonx-ventures-joins-shift5-series-b-funding-round/">AEI HorizonX joins, July 2022</a></li>
+      <li>Shift5 $33M extension &mdash; <a href="https://www.globenewswire.com/en/news-release/2023/06/07/2683701/0/en/Shift5-Draws-Investors-Raises-33M-in-Funding-to-Unlock-Onboard-Data-in-Commercial-and-Military-Fleets-and-Weapon-Systems.html">release, June 2023</a></li>
+      <li>Shift5 Series C syndicate &mdash; <a href="https://shift5.io/insights/shift5-raises-75-million-series-c-to-scale-operational-intelligence-platform-for-critical-defense-and-commercial-transportation-assets/">Shift5, September 2025</a></li>
+      <li>Booz Allen Ventures at $300M &mdash; <a href="https://investors.boozallen.com/news-releases/news-release-details/booz-allen-triples-venture-capital-commitment-300-million">Booz Allen, July 2025</a></li>
+      <li>GenLogs Series B &mdash; <a href="https://www.prnewswire.com/news-releases/freight-intelligence-provider-genlogs-announces-60-million-in-series-b-funding-to-accelerate-commerce-fight-fraud-and-make-us-highways-safer-302676938.html">company release, February 2026</a></li>
+      <li>GenLogs Series A and seed &mdash; <a href="https://www.pillsburylaw.com/en/news-and-insights/freight-intelligence-platform-genlogs-14m-series-a.html">Pillsbury</a> &middot; <a href="https://www.citybiz.co/article/604746/genlogs-raises-over-6m-seed-funding/">citybiz</a></li>
+      <li>GenLogs founded in Arlington &mdash; <a href="https://www.arlingtoneconomicdevelopment.com/News-Resources/Blog/GenLogs-Investing-in-its-Workforce-with-the-Catalyst-Grant">Arlington Economic Development</a></li>
+      <li>Steel Atlas &mdash; <a href="https://www.steelatlas.vc/">steelatlas.vc</a> &middot; First In &mdash; <a href="https://wearefirstin.com/">wearefirstin.com</a></li>
+      <li>Lightshift and Greenbacker, $100M &mdash; <a href="https://www.greenbackercapital.com/resources/lightshift-energy-raises-100-million-from-greenbacker-capital-management-to-expand-utility-scale-battery-storage-across-north-america">Greenbacker, March 2024</a> &middot; <a href="https://www.greenbackercapital.com/resources/delorean-power-announces-investment-from-greenbacker-capital">the 2021 investment</a></li>
+      <li>Lightshift credit facility and project finance &mdash; <a href="https://www.businesswire.com/news/home/20250708483153/en/Lightshift-Energy-Secures-up-to-$40-Million-Corporate-Credit-Facility-From-Aiga-Capital-Partners-to-Accelerate-Energy-Storage-Portfolio">Aiga, July 2025</a> &middot; <a href="https://www.businesswire.com/news/home/20251015252218/en/lightshift-energy-and-keybanc-capital-markets-announce-a-75-million-project-finance-facility-to-support-expanding-fleet-of-battery-projects">KeyBanc, October 2025</a></li>
+      <li>Rochefort and the Critical Technologies Initiative &mdash; <a href="https://rochefort.us/about-us/">rochefort.us</a> &middot; <a href="https://www.prnewswire.com/news-releases/department-of-defense-and-us-small-business-administration-approve-rochefort-as-a-manager-in-the-critical-technologies-initiative-302333697.html">DoD and SBA approval, December 2024</a></li>
+      <li>Rochefort's $290M into Divergent &mdash; <a href="https://www.prnewswire.com/news-releases/divergent-technologies-secures-290m-in-capital-led-by-rochefort-asset-management-to-accelerate-us-defense-manufacturing-revolution-302555798.html">release, September 2025</a></li>
+      <li>Quartermaster Series A &mdash; <a href="https://techcrunch.com/2026/05/20/this-startup-raised-43m-to-build-a-hive-mind-for-ships/">TechCrunch, May 2026</a></li>
+      <li>Carecubes Series A &mdash; <a href="https://www.prnewswire.com/news-releases/carecubes-closes-6-5-million-series-a-to-transform-infectious-disease-response-302718286.html">company release, March 2026</a></li>
+      <li>In-Q-Tel practice areas and headquarters &mdash; <a href="https://www.iqt.org/">iqt.org</a> &middot; <a href="https://www.iqt.org/about">about</a> &middot; <a href="https://projects.propublica.org/nonprofits/organizations/522149962">Form 990, EIN 52-2149962</a></li>
+      <li>In-Q-Tel's Rosslyn address, 2010 &mdash; <a href="https://www.sec.gov/Archives/edgar/data/1157998/000115799810000005/0001157998-10-000005.txt">SEC Form APP WD</a></li>
+      <li>Twenty's $38M Series A &mdash; <a href="https://www.prnewswire.com/news-releases/twenty-raises-38m-to-transform-cyber-warfare-at-industrial-scale-302622230.html">company release, November 2025</a></li>
+      <li>Marlinspike Partners &mdash; <a href="https://marlinspike.us/">marlinspike.us</a> &middot; <a href="http://www.prnewswire.com/news-releases/marlinspike-partners-closes-oversubscribed-127-million-fund-ii-to-rearm--rebuild-america-302817361.html">$127M Fund II, July 2026</a></li>
+      <li>Squadra Ventures &mdash; <a href="https://www.squadra.vc/">squadra.vc</a> &middot; Shift5's Series A syndicate &mdash; <a href="https://www.prnewswire.com/news-releases/shift5-raises-20-million-to-defend-planes-trains-and-tanks-from-cyberattacks-301397609.html">release, October 2021</a></li>
+      <li>Booz Allen Ventures focus &mdash; <a href="https://www.boozallen.com/expertise/tech-ecosystem/ventures.html">boozallen.com</a></li>
+      <li>Razor's Edge Ventures &mdash; <a href="https://www.razorsvc.com/">razorsvc.com</a> &middot; <a href="https://www.razorsvc.com/contact">Reston address</a></li>
+      <li>DataTribe &mdash; <a href="https://datatribe.com/">datatribe.com</a> &middot; Columbia Capital &mdash; <a href="https://www.colcap.com/">colcap.com</a></li>
+      <li>Blue Delta Capital Partners &mdash; <a href="https://bluedeltacapitalpartners.com/approach/">approach</a></li>
+      <li>Arlington Capital Partners is not in Arlington &mdash; <a href="https://arlingtoncap.com/">arlingtoncap.com</a></li>
+    </ul>
+    <p class="lbl" style="color:var(--grey);margin-top:var(--base);max-width:74ch;line-height:1.5">
+      Where a source is dated, the date is given. The tech-talent degree figures come from the most recent
+      published report, which covers production through FY2024. Anything announced but not yet completed
+      is labelled as announced. The $632&nbsp;million headline figure is the sum of the rounds named on
+      this page between September 2025 and July 2026; it is not a claim to have found every round.
+      Placing an investor or a portfolio company against a sector is our judgement, not the firm's &mdash;
+      quoted language throughout is each firm's own. On In-Q-Tel's address, four sources look like they
+      disagree and do not: its own About page says Tysons, its latest IRS Form 990 says McLean, and both
+      describe 1800 Tysons Boulevard, which carries a McLean postal city. A 2024 release datelined
+      Washington is a press-release convention, not an address. The Rosslyn address is from its own 2010
+      SEC filing.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ SECTION PILL ============ -->
+<div class="pill" id="pill">
+  <button class="current-row" id="pillToggle" aria-expanded="false">
+    <span id="pillCurrent">Unmanned</span>
+    <span class="chev">&#9662;</span>
+  </button>
+  <nav>
+    <a href="#top">Top</a>
+    <a href="#s05">Unmanned</a>
+    <a href="#s06">Microelectronics</a>
+    <a href="#s07">Workforce</a>
+    <a href="#s01">Materials</a>
+    <a href="#s02">Kinetic</a>
+    <a href="#s03">Batteries</a>
+    <a href="#s04">Manufacturing</a>
+    <a href="#s08">Chemicals</a>
+    <a href="#capital">Capital</a>
+    <a href="#sources">Sources</a>
+  </nav>
+</div>
+
+<footer>
+  <div class="fgrid">
+    <div>
+      <p class="title lbl">Arlington Vibes</p>
+      <p class="body" style="color:var(--dim);max-width:34ch">A map of the world an Arlington resident
+        actually moves through &mdash; which does not stop at the county line.</p>
+    </div>
+    <div>
+      <p class="title lbl">Guide</p>
+      <ul>
+        <li><a href="index.html#market">Market</a></li>
+        <li><a href="index.html#neighborhoods">Neighborhoods</a></li>
+        <li><a href="technology.html">Technology</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="title lbl">Strongest sectors</p>
+      <ul>
+        <li><a href="#s05">Unmanned systems</a></li>
+        <li><a href="#s06">Microelectronics and sensors</a></li>
+        <li><a href="#s07">Workforce</a></li>
+        <li><a href="#s01">Materials and capital</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="title lbl">More</p>
+      <ul>
+        <li><a href="#capital">Who funds it</a></li>
+        <li><a href="#reading">What Arlington is good at</a></li>
+        <li><a href="#line">Getting your bearings</a></li>
+        <li><a href="#sources">Sources</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot lbl">
+    <span>Organised by the DIB Consortium's eight sectors</span>
+    <span>arlingtonvibes.com</span>
+  </div>
+</footer>
+
+<script>
+/* ---------- PAGE BEHAVIOUR ---------- */
+/* running inside the index's map detail panel? */
+const EMBED = (function(){ try{ return window.self !== window.top; }catch(e){ return true; } })();
+const reduce  = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- EMBED REPORTER ----------
+   The index sizes its detail frame to this page. Cross-origin it cannot measure
+   us, so report our own height and the anchor offset over postMessage. There is
+   no video here, so the band channel the Met Park page needs is absent. */
+if(EMBED){
+  document.documentElement.classList.add('embedded');
+  let sentAnchor = false;
+  function report(){
+    try{
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      const id = decodeURIComponent(location.hash.slice(1));
+      const t  = (!sentAnchor && id) ? document.getElementById(id) : null;
+      if(t) sentAnchor = true;
+      parent.postMessage({av:'size',height:h,anchor:t?Math.round(t.offsetTop):null},'*');
+    }catch(e){}
+  }
+  addEventListener('load', report);
+  addEventListener('resize', report);
+  if(window.ResizeObserver) new ResizeObserver(report).observe(document.documentElement);
+  [50,300,900,2000].forEach(t=>setTimeout(report,t));
+}
+
+/* ---------- HEADER: invert over dark sections ---------- */
+const site = document.getElementById('site');
+const lightBands = () => [...document.querySelectorAll('.header-slice,.on-white,.on-cream')];
+let tick = false;
+function syncHeader(){
+  /* the sticky site header was removed from the sub-pages; keep the hook inert
+     rather than deleting it, so the scroll/resize wiring below stays intact. */
+  if(!site){ tick = false; return; }
+  const y = 26;
+  const overLight = lightBands().some(s=>{const r=s.getBoundingClientRect();return r.top<=y && r.bottom>=y;});
+  site.classList.toggle('dark', !overLight);
+  site.classList.toggle('stuck', scrollY > 48);
+  tick = false;
+}
+
+/* ---------- SECTION PILL ---------- */
+const pill = document.getElementById('pill');
+const pillLinks = [...pill.querySelectorAll('nav a')];
+const pillCurrent = document.getElementById('pillCurrent');
+const targets = pillLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const header = document.getElementById('top');
+
+function syncPill(){
+  // the pill only exists once you are past the opening slice
+  const past = header.getBoundingClientRect().bottom < 80;
+  pill.classList.toggle('show', past);
+  if(!past){ pill.classList.remove('open'); return; }
+  // whichever section owns the upper third of the viewport is current
+  const line = innerHeight * 0.34;
+  let active = targets[0];
+  targets.forEach(t=>{ if(t.getBoundingClientRect().top <= line) active = t; });
+  pillLinks.forEach((a,i)=>{
+    const on = targets[i] === active;
+    a.classList.toggle('current', on);
+    if(on && pillCurrent.textContent !== a.textContent) pillCurrent.textContent = a.textContent;
+  });
+}
+document.getElementById('pillToggle').addEventListener('click',()=>{
+  const open = pill.classList.toggle('open');
+  document.getElementById('pillToggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+pill.querySelector('nav').addEventListener('click',e=>{
+  if(e.target.tagName === 'A') pill.classList.remove('open');
+});
+
+addEventListener('scroll',()=>{ if(!tick){ tick = true; requestAnimationFrame(()=>{syncHeader();syncPill();}); } },{passive:true});
+addEventListener('resize',()=>{syncHeader();syncPill();});
+syncHeader(); syncPill();
+
+/* ---------- REVEAL ---------- */
+if(EMBED){
+  document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
+}else{
+  const io = new IntersectionObserver(es=>es.forEach(x=>{
+    if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); }
+  }),{threshold:.08});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+}
+
+/* ---------- SCRAMBLE REVEAL ----------
+   Headings resolve out of cycling glyphs, the way the source site's type
+   settles. Skipped entirely when reduced motion is requested. */
+if(!reduce && !EMBED){
+  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/\\[]{}<>=+*#';
+  const sio = new IntersectionObserver(es=>es.forEach(x=>{
+    if(!x.isIntersecting) return;
+    sio.unobserve(x.target);
+    const el = x.target, text = el.textContent, chars = [...text];
+    let frame = 0;
+    const settleAt = chars.map((c,i)=> c === ' ' ? 0 : 6 + i * 1.6 + Math.random() * 6);
+    const total = Math.max(...settleAt) + 2;
+    const step = () => {
+      el.textContent = chars.map((c,i)=>
+        c === ' ' ? ' ' :
+        frame >= settleAt[i] ? c : GLYPHS[(Math.random() * GLYPHS.length) | 0]
+      ).join('');
+      if(frame++ < total) requestAnimationFrame(step);
+      else el.textContent = text;
+    };
+    step();
+  }),{threshold:.4});
+  document.querySelectorAll('[data-scramble]').forEach(el=>sio.observe(el));
+}
+
+</script>
+</body>
+</html>
