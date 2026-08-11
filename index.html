@@ -208,6 +208,27 @@ section{padding-top:96px;padding-bottom:96px;scroll-margin-top:64px}
 }
 
 .idx{border-top:1px solid var(--rule)}
+
+/* ---------- FIGURE ROWS + LIGHT-SECTION OVERRIDES (work / life sections) ---------- */
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:28px 34px;
+  padding-top:30px;border-top:1px solid var(--rule)}
+.figs .f b{display:block;font-size:clamp(1.85rem,3.5vw,2.9rem);font-weight:600;letter-spacing:-.03em;
+  line-height:1;margin-bottom:10px}
+.figs .f>span{display:block;font-size:13.5px;line-height:1.45;color:var(--dim);max-width:32ch}
+.figs .f b span{display:inline;font-size:.42em;letter-spacing:0;color:inherit;max-width:none}
+.sec-cream .figs{border-top-color:var(--rule-dark)}
+.sec-cream .figs .f>span,.sec-cream .col li span,.sec-cream .idxrow .desc,
+.sec-cream .idxrow .n,.sec-cream .idxrow .line,.sec-cream .disclose,
+.sec-cream .lede.dim,.sec-cream .mono.dim{color:var(--dim-dark)}
+.sec-cream .col,.sec-cream .idxrow,.sec-cream .idx{border-color:var(--rule-dark)}
+.sec-cream .col li{border-top-color:rgba(1,1,1,.14)}
+.sec-cream .data th{border-bottom-color:rgba(1,1,1,.35);color:rgba(1,1,1,.75)}
+.sec-cream .data td{border-bottom-color:var(--rule-dark)}
+.sec-cream .data .yr,.sec-cream .idxrow .line{border-color:var(--rule-dark)}
+.srcs{columns:2;column-gap:40px;list-style:none;padding-top:26px;border-top:1px solid var(--rule)}
+.srcs li{break-inside:avoid;padding:7px 0;font-size:13px;line-height:1.45;color:var(--dim)}
+.srcs li a{border-bottom:1px solid var(--rule)}
+@media(max-width:820px){.srcs{columns:1}}
 .groupmark{
   display:flex;align-items:baseline;gap:12px;color:var(--dim);
   padding:34px 0 12px;border-bottom:1px solid var(--rule);
@@ -508,12 +529,12 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
     <div class="hero-meta mono dim">
       <span>38.8783° N, 77.1007° W</span>
       <span>Arlington County, Virginia</span>
-      <span>Named 1920</span>
+      <span>Population 244,300</span>
     </div>
-    <h1 class="d1">Explore Arlington</h1>
+    <h1 class="d1">Where the work is</h1>
     <div class="hero-foot">
-      <p>Twenty-six square miles across the river from the capital, and neighborhoods that behave like unique districts. This is where they are and what is happening in them.</p>
-      <a class="alink" href="#neighborhoods">Explore the map
+      <p>The fittest city in America, nine years running. Rosslyn sits across Key Bridge from Georgetown and across the water from Foggy Bottom &mdash; State, the Federal Reserve, the Kennedy Center. The Pentagon, Arlington National Cemetery and Fort Myer are inside the county line, and DARPA and the Office of Naval Research share a street in Ballston. This is what the work is here, and what people do when they put it down.</p>
+      <a class="alink" href="#work">Start with the work
         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 9.5L9.5 2.5M4 2.5h5.5V8"/></svg>
       </a>
     </div>
@@ -523,8 +544,133 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
 
 <!-- ============ STATEMENT ============ -->
 <section class="statement pad">
-  <p class="reveal">Saturday mornings since 1979, a parking lot in Courthouse becomes a farmers market and a cultural hub.</p>
-  <p class="after reveal">FRESHFARM Arlington runs year-round — 40 to 60 producers, 8am to noon and 9am from January to March, at N. Courthouse Road and N. 14th Street. It is one of the oldest farmers markets in Virginia, and the reason most of the footage on this site exists.</p>
+  <p class="reveal">Two clocks run here. One stops at six. The other starts on Saturday.</p>
+  <p class="after reveal">The median Arlington household earns $142,114. What that buys is the highest per-student school spending in Northern Virginia, the seventh-ranked park system in the United States, 49 miles of paved trail, and a walk to the office for anyone who wants one. This page is both clocks.</p>
+</section>
+
+<!-- ============ 01 THE WORK ============ -->
+<section class="pad" id="work">
+  <div class="sechead reveal">
+    <div>
+      <p class="mono dim" style="margin-bottom:12px">01 — The Work</p>
+      <h2 class="d2">What people do</h2>
+    </div>
+    <p class="lede dim" style="max-width:34ch">The largest employer is the Department of Defense. The second is the school board.</p>
+  </div>
+
+  <div class="figs reveal">
+    <div class="f"><b>177,396</b><span>Covered workers in Arlington County, third quarter 2024. Unemployment was 2.3 percent that November.</span></div>
+    <div class="f"><b>$105,090</b><span>Mean annual wage across the Alexandria–Arlington workforce area — the highest of Virginia's fourteen.</span></div>
+    <div class="f"><b>77.1%</b><span>Of residents 25 and over hold a bachelor's degree or higher. The national figure is around a third.</span></div>
+    <div class="f"><b>26.2<span> min</span></b><span>Mean travel time to work. Thirty-five percent of residents work from home.</span></div>
+  </div>
+
+  <div class="metarow reveal" style="margin-top:60px">
+    <div>
+      <p class="mono dim" style="margin-bottom:14px">What the roles pay</p>
+      <div class="scrollx">
+        <table class="data">
+          <thead><tr><th>Occupation</th><th>Annual median</th></tr></thead>
+          <tbody>
+            <tr><td class="name">Computer and information systems managers</td><td>$195,190</td></tr>
+            <tr><td class="name">Software developers</td><td>$154,930</td></tr>
+            <tr><td class="name">Information security analysts</td><td>$148,950</td></tr>
+            <tr><td class="name">Data scientists</td><td>$132,200</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="disclose dim" style="margin-top:16px;max-width:52ch">Washington–Arlington–Alexandria metropolitan area, not the county alone. Bureau of Labor Statistics Occupational Employment and Wage Statistics, May 2025. These are medians, not means — half of each group earns more.</p>
+    </div>
+    <div class="right">
+      <p class="mono dim">Who employs the county</p>
+      <h3>Defence, schools, consulting, airlines.</h3>
+      <ul class="col" style="border-top:0;padding-top:14px">
+        <li><b>U.S. Department of Defense</b><span>Largest employer in the county. The Pentagon carries a Washington mailing address and stands in Arlington, its western property line against Arlington National Cemetery.</span></li>
+        <li><b>Arlington County School Board</b><span>Second largest. Nearly 8,000 employees, about 3,000 of them teachers.</span></li>
+        <li><b>Accenture · Deloitte · Booz Allen Hamilton</b><span>Consulting and federal services, all inside the top ten.</span></li>
+        <li><b>United and American Airlines</b><span>Both rank in the top ten, a consequence of National Airport sitting on the county's edge.</span></li>
+      </ul>
+      <p class="disclose dim" style="margin-top:14px;max-width:44ch">Virginia Works publishes the ranking without headcounts, third quarter 2024. Deloitte appears four times as separate legal entities.</p>
+    </div>
+  </div>
+
+  <div class="cols reveal" style="margin-top:64px">
+    <div class="col">
+      <h3>The Department of Defense is a neighbour</h3>
+      <ul>
+        <li><b>The Pentagon</b><span>6,636,360 square feet of floor space and 17.5 miles of corridor on a 245-acre reservation in Arlington County, bounded on the west by Arlington National Cemetery. The Department publishes 25,000-plus office occupants; the planning commission counted more than 26,560 people travelling to and from the site each day.</span></li>
+        <li><b>Joint Base Myer-Henderson Hall</b><span>Two miles from the District, adjoining Arlington National Cemetery. Home to the 3rd U.S. Infantry Regiment &mdash; the Old Guard &mdash; and the U.S. Army Band. It served about 5,545 active duty and 2,703 civilians as of March 2026.</span></li>
+        <li><b>Research, three blocks of it</b><span>DARPA at 675 North Randolph Street, the Office of Naval Research at 875, the Defense Security Cooperation Agency on 12th Street South. The agencies that set and fund the national research agenda are walking distance from each other.</span></li>
+        <li><b>More than 25,000 federal employees</b><span>Work in Arlington, on the county's own count. The Department of Defense is the single largest employer here.</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>What is on the other side</h3>
+      <ul>
+        <li><b>Key Bridge lands in Georgetown</b><span>The Park Service's own description: the bridge connects Georgetown on the Washington side to Rosslyn on the Virginia side. Eleven of the Metro system's 86 stations are in Arlington, on four lines.</span></li>
+        <li><b>Foggy Bottom is the far bank</b><span>The Federal Reserve describes its own neighbourhood as the riverfront stretch east of Georgetown &mdash; the Kennedy Center, George Washington University, the Watergate, the State Department and the Federal Reserve Board. Interior sits a few blocks in, on C Street.</span></li>
+        <li><b>125,231 in, 92,784 out</b><span>Arlington imports workers: that many commute in daily, against that many residents commuting out. The largest single outbound destination is the District, at 38,582.</span></li>
+        <li><b>Reagan National is here</b><span>2401 Smith Boulevard, an Arlington address, under exclusive federal jurisdiction. It handled just under 24.9 million passengers in 2025.</span></li>
+        <li><b>The highest wages in Virginia</b><span>Arlington's average weekly wage was $2,627 in the first quarter of 2025 &mdash; the highest of any county in the Commonwealth.</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Where it actually ranks</h3>
+      <ul>
+        <li><b>First: fittest city in America</b><span>The American College of Sports Medicine has put Arlington first among the hundred largest U.S. cities every year since 2018, on 35 indicators across personal health, infrastructure and environment. It ranks Census places; Arlington's is coterminous with the county.</span></li>
+        <li><b>First: the most livable large community</b><span>AARP's Livability Index put Arlington first among communities of 100,000 to 499,999 for a second consecutive year, across 61 indicators drawn from more than 50 data sources.</span></li>
+        <li><b>Second: digital county</b><span>Arlington placed second nationally in the 2026 Digital Counties Survey for its population band, on the strength of consolidating eighteen call centres and standing up countywide AI governance.</span></li>
+        <li><b>Twelfth: economic performance</b><span>The Arlington&ndash;Alexandria&ndash;Reston metropolitan division in the Milken Institute's 2026 index &mdash; a region, not the county. Computer and mathematical work is 7.4 percent of metro employment against 3.4 nationally.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:64px;border-top:1px solid var(--rule);padding-top:30px">
+    <p class="mono dim" style="margin-bottom:14px">The thing that changed</p>
+    <p class="lede" style="max-width:60ch">Across the region, teleworking fell from 65 percent of workers in 2022 to 48 percent in 2025. Among federal employees it fell from 79 percent to 23 — the sharpest drop of any sector, and the one that put this county back on the trains.</p>
+    <p class="disclose dim" style="margin-top:16px;max-width:56ch">Metropolitan Washington Council of Governments, 2025 State of the Commute. Hybrid workers now average 2.3 teleworking days a week, down from 3.4 in 2022.</p>
+  </div>
+</section>
+
+<!-- ============ 02 THE INFRASTRUCTURE ============ -->
+<section class="pad sec-cream" id="built" style="padding-top:96px;padding-bottom:96px">
+  <div class="sechead reveal">
+    <div>
+      <p class="mono" style="margin-bottom:12px;color:var(--grey)">02 — The Infrastructure</p>
+      <h2 class="d2">What the technology actually changed</h2>
+    </div>
+    <p class="lede" style="max-width:34ch;color:var(--dim-dark)">Not the sector. The things a resident touches on a Tuesday.</p>
+  </div>
+
+  <div class="cols reveal">
+    <div class="col">
+      <h3>The trains drive themselves again</h3>
+      <ul>
+        <li><b>Full system automation, June 2025</b><span>Automatic Train Operation returned to the Blue, Orange and Silver lines on 15 June 2025, completing the rollout begun on the Red Line in December 2024. It is the first time the whole system has run in ATO since 2009.</span></li>
+        <li><b>524,600 weekday rides</b><span>Average daily Metrorail ridership in May 2026, up 4 percent on weekdays year over year. The system carried 264 million trips in FY2025.</span></li>
+        <li><b>Eleven stations in the county</b><span>On four lines. A second entrance at Crystal City, $146.1 million, broke ground in July 2024 and is expected in 2027.</span></li>
+        <li><b>New railcars are coming</b><span>WMATA has 256 8000-series cars on order with options to 800 — open gangways, 28 onboard displays, 5G and Wi-Fi throughout. The pilot car is expected in 2027.</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>The county runs on its own network</h3>
+      <ul>
+        <li><b>Second in the country</b><span>Arlington placed second in the Center for Digital Government's 2026 Digital Counties Survey for its population band, published in July 2026.</span></li>
+        <li><b>Eighteen call centres into one</b><span>Consolidated onto a single cloud platform, alongside a countywide AI governance process for evaluating tools and managing security risk.</span></li>
+        <li><b>ConnectArlington</b><span>A county-owned fibre-optic network linking County and Schools buildings along the main commercial corridors, with links to Equinix and Internet2.</span></li>
+        <li><b>Open by default</b><span>The county publishes its GIS as open data — the building heights, park polygons and station points behind the map further down this page came from it.</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>The buildings have targets</h3>
+      <ul>
+        <li><b>Carbon neutral by 2050</b><span>And 100 percent renewable electricity community-wide by 2035. County government operations hit 100 percent renewable in 2025, ahead of schedule.</span></li>
+        <li><b>LEED Gold to build tall</b><span>Since 2020 the Green Building Incentive Policy has set LEED Gold as the floor for bonus density, with higher tiers for Passive House and net-zero.</span></li>
+        <li><b>51 charging ports</b><span>Installed by the county at nine sites, Central Library the largest at twelve. $0.1746 per kilowatt-hour since January 2025.</span></li>
+        <li><b>Electric buses on the road</b><span>ART put its first battery-electric buses into service in 2025 and ran them 74,000 miles, from a new operations facility carrying 817 solar panels and charging capacity for up to 61 of them.</span></li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <!-- ============ MARKET SLAB ============ -->
@@ -536,22 +682,237 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
   <div class="inner">
     <div class="slabcap">
       <div>
-        <p class="mono dim" style="margin-bottom:9px">01 — The Market</p>
-        <h2 class="d2">FRESHFARM Arlington</h2>
-        <p class="sub">Saturdays, 8am–12pm — 9am January to March. Year-round. 1400 N. Courthouse Rd.</p>
+        <p class="mono dim" style="margin-bottom:9px">03 — Saturday</p>
+        <h2 class="d2">The other clock</h2>
+        <p class="sub">Eleven farmers markets in the county. This one runs Saturdays 8am–12pm, year-round, at N. Courthouse Road and N. 14th Street.</p>
       </div>
-      <a class="alink" href="#neighborhoods">Find it on the map
+      <a class="alink" href="#outside">What the weekend looks like
         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 9.5L9.5 2.5M4 2.5h5.5V8"/></svg>
       </a>
     </div>
   </div>
 </div>
 
+<!-- ============ 04 OUTSIDE ============ -->
+<section class="pad" id="outside" style="padding-top:96px">
+  <div class="sechead reveal">
+    <div>
+      <p class="mono dim" style="margin-bottom:12px">04 — Outside</p>
+      <h2 class="d2">Where the week opens up</h2>
+    </div>
+    <p class="lede dim" style="max-width:34ch">Ninety-nine percent of residents live within a ten-minute walk of a park. That is not a slogan; it is a measured figure.</p>
+  </div>
+
+  <div class="figs reveal">
+    <div class="f"><b>7<span>th</span></b><span>Of the hundred most populated U.S. cities on the Trust for Public Land's 2026 ParkScore. Eleventh straight year in the top ten.</span></div>
+    <div class="f"><b>98.9%</b><span>Of the population within a ten-minute walk of a park. The access score is 99 out of 100.</span></div>
+    <div class="f"><b>$303</b><span>Park investment per resident per year — a score of 97, against an acreage score of 37. Arlington buys quality, not size.</span></div>
+    <div class="f"><b>49<span> mi</span></b><span>Of paved multi-use trail inside the county, plus unpaved hiking trails.</span></div>
+  </div>
+
+  <div class="metarow reveal" style="margin-top:60px">
+    <div>
+      <p class="mono dim" style="margin-bottom:14px">The trails, actual mileage</p>
+      <div class="scrollx">
+        <table class="data">
+          <thead><tr><th>Trail</th><th>Length</th><th>Runs</th></tr></thead>
+          <tbody>
+            <tr><td class="name">W&amp;OD</td><td>45 mi</td><td>Shirlington to Purcellville. NOVA Parks.</td></tr>
+            <tr><td class="name">Mount Vernon</td><td>18 mi</td><td>Roosevelt Island to Mount Vernon. National Park Service.</td></tr>
+            <tr><td class="name">Arlington Loop</td><td>16.5 mi</td><td>Custis, W&amp;OD, Four Mile Run and Mount Vernon, joined into a circuit.</td></tr>
+            <tr><td class="name">Four Mile Run</td><td>9.72 mi</td><td>Continues into Alexandria.</td></tr>
+            <tr><td class="name">Custis</td><td>5.12 mi</td><td>Rosslyn to the W&amp;OD, mostly alongside I-66.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="disclose dim" style="margin-top:16px;max-width:52ch">County figures for Custis and Four Mile Run; NPS and NOVA Parks for the others. Four county sources give four different totals for paved trail mileage, from 49 to 80 — the higher ones count trail outside the county line.</p>
+    </div>
+    <div class="right">
+      <p class="mono dim">Indoors, and what it costs</p>
+      <h3>Long Bridge Aquatics &amp; Fitness Center</h3>
+      <ul class="col" style="border-top:0;padding-top:14px">
+        <li><b>92,000 square feet, opened 2021</b><span>A 50-metre competition pool with one, three and five-metre towers, a leisure pool, lazy river and an 8,000 square foot fitness centre. It cost $60 million.</span></li>
+        <li><b>$745 a year, resident adult</b><span>Family membership $2,060; youth $415; a day pass is $11. Non-residents pay about thirty percent more. FY2026 rates.</span></li>
+        <li><b>Ten community centres</b><span>Plus two fitness centres and two nature centres. The indoor pools are run by the school system, not the county.</span></li>
+        <li><b>A boathouse, eventually</b><span>The county is master-planning a Potomac rowing and paddling facility near Roosevelt Island at $20–30 million, expected by the end of the decade.</span></li>
+      </ul>
+      <p class="disclose dim" style="margin-top:14px;max-width:44ch">A $34.9 million parks bond goes to voters on 3 November 2026, part of a $184.3 million package inside the county's ten-year capital plan.</p>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:64px;border-top:1px solid var(--rule);padding-top:30px">
+    <p class="mono dim" style="margin-bottom:14px">The river</p>
+    <div class="cols" style="margin-top:8px">
+      <div class="col">
+        <h3>A federal shoreline</h3>
+        <ul>
+          <li><b>The National Park Service holds the bank</b><span>Almost every foot of Potomac shoreline in Arlington is federal parkland, which is what keeps the river's edge green and puts the Mount Vernon Trail along it.</span></li>
+          <li><b>Four high schools row</b><span>Washington-Liberty, Yorktown, Wakefield and Bishop O'Connell all run crew. The first programme started in 1949, and in 1958 it became the first American public high school invited to Henley Royal Regatta.</span></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Where you actually put a boat in</h3>
+        <ul>
+          <li><b>Key Bridge Boathouse</b><span>Kayaks, paddleboards and lessons at 3500 Water Street NW in Georgetown &mdash; directly across the river from Rosslyn, and the closest livery to Arlington. It is in the District.</span></li>
+          <li><b>Belle Haven Marina</b><span>Sailboats, canoes, kayaks and paddleboards on the parkway below Alexandria, with a two-hour minimum and walk-ins welcome.</span></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>What is coming</h3>
+        <ul>
+          <li><b>A county boathouse, at $20&ndash;30 million</b><span>South of Key Bridge near Roosevelt Island, joining federal parkland to county land near Rosslyn. Design firm selection is under way, community engagement is expected in late 2026, and the target is the end of the decade.</span></li>
+          <li><b>Ninety-nine out of a hundred</b><span>Arlington's ParkScore access rating, and a 97 for investment. The boathouse is the piece still to come.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 THE TABLE ============ -->
+<section class="pad sec-cream" id="table" style="padding-top:96px;padding-bottom:96px">
+  <div class="sechead reveal">
+    <div>
+      <p class="mono" style="margin-bottom:12px;color:var(--grey)">05 &mdash; The Table</p>
+      <h2 class="d2">The independents</h2>
+    </div>
+    <p class="lede" style="max-width:34ch;color:var(--dim-dark)">Columbia Pike alone represents 150 nationalities across three and a half miles. But the places people name are older and smaller than that.</p>
+  </div>
+
+  <div class="idx reveal">
+    <div class="idxrow">
+      <span class="n">01</span>
+      <h3>Ireland's Four Courts</h3>
+      <p class="desc">2051 Wilson Boulevard, and the anchor of Courthouse since 1996. In August 2022 a driver having a medical emergency drove into the pub and a fire followed; nine people went to hospital. It reopened thirteen months later with twenty feet of the salvaged mantle inscribed with a John O'Donohue poem. In March 2026 a national vote named it America's best soccer bar.</p>
+      <span class="line">Courthouse</span>
+    </div>
+    <div class="idxrow">
+      <span class="n">02</span>
+      <h3>Galaxy Hut</h3>
+      <p class="desc">Twenty-eight rotating taps and live original music most Sundays, on Wilson Boulevard since 1990. It calls itself northern Virginia's first craft beer spot, and everything on the menu can be made vegan.</p>
+      <span class="line">Clarendon</span>
+    </div>
+    <div class="idxrow">
+      <span class="n">03</span>
+      <h3>Lost Dog Cafe</h3>
+      <p class="desc">Opened in Westover in 1985 as a wine, beer and cheese shop. The owners founded the Lost Dog &amp; Cat Rescue Foundation in 2001, which now rehomes more than two thousand animals a year.</p>
+      <span class="line">Westover</span>
+    </div>
+    <div class="idxrow">
+      <span class="n">04</span>
+      <h3>Bob &amp; Edith's Diner</h3>
+      <p class="desc">On Columbia Pike since 1969, opened by Bob and Edith Bolton and now run by their grandchildren. The library has recorded its oral history.</p>
+      <span class="line">Columbia Pike</span>
+    </div>
+    <div class="idxrow">
+      <span class="n">05</span>
+      <h3>Westover Market &amp; Beer Garden</h3>
+      <p class="desc">A neighbourhood grocery that opened what it says was the region's first beer garden in 2009, behind a wall of bottles.</p>
+      <span class="line">Westover</span>
+    </div>
+    <div class="idxrow">
+      <span class="n">06</span>
+      <h3>Metro 29 Diner</h3>
+      <p class="desc">A New York-style diner on Langston Boulevard since 1995, with an in-house bakery running eighteen kinds of pastry.</p>
+      <span class="line">Cherrydale</span>
+    </div>
+    <div class="idxrow">
+      <span class="n">07</span>
+      <h3>Padaek</h3>
+      <p class="desc">Lao and Thai at the Arlington Ridge shopping centre. 42nd in Washingtonian's 100 Very Best Restaurants for 2026, up from 57th the year before.</p>
+      <span class="line">Arlington Ridge</span>
+    </div>
+    <div class="idxrow">
+      <span class="n">08</span>
+      <h3>Cafe Colline</h3>
+      <p class="desc">French, on Langston Boulevard. 80th in the same list, and on it for a fourth consecutive year.</p>
+      <span class="line">Lee Heights</span>
+    </div>
+  </div>
+
+  <div class="cols reveal" style="margin-top:60px">
+    <div class="col">
+      <h3>Coffee, independently owned</h3>
+      <ul>
+        <li><b>Northside Social</b><span>Clarendon. A caf&eacute;, wine bar, bakery and coffeehouse in one building on Wilson Boulevard, with a pastry chef who was a 2026 RAMMY finalist.</span></li>
+        <li><b>Bayou Bakery</b><span>Courthouse. David Guas's beignets and Southern foodways, fifteen years in.</span></li>
+        <li><b>SIMONA Caf&eacute;</b><span>Colonial Village. Locally owned, coffee by day and wine by evening, in the old Java Shack space on Franklin Road.</span></li>
+        <li><b>Commonwealth Joe</b><span>Pentagon City. Small-batch single origin, roasted locally, poured from a nitro tap system.</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Shopping in Clarendon</h3>
+      <ul>
+        <li><b>The Crossing Clarendon</b><span>Ten acres and 419,950 square feet on one of Arlington's best shopping streets, drawing about three million visits a year. Built in 2001 as Market Common, renamed in 2021, owned by Regency Centers.</span></li>
+        <li><b>Kinder Haus Toys</b><span>On North Fillmore Street since 1982, family-owned, and unembarrassed about calling itself old-fashioned.</span></li>
+        <li><b>Barnes &amp; Noble came back smaller</b><span>Reopened in May 2026 at 14,041 square feet, about half its former footprint. Three Notch'd Brewing and Xi'an Famous Foods took the rest.</span></li>
+        <li><b>The Clarendon Alliance</b><span>A membership organisation founded in 1985 to champion the neighbourhood, and the voice of the Clarendon community since. It still runs Clarendon Day every September.</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Newer arrivals</h3>
+      <ul>
+        <li><b>Cielo</b><span>A Latin supper club that opened in Clarendon in June 2026, with a kitchen out of Seven Reasons and DJs until two.</span></li>
+        <li><b>Taqueria Xochi</b><span>Guerrero-style tacos on South Eads Street, a 2026 RAMMY finalist for casual restaurant of the year.</span></li>
+        <li><b>Ruthie's All-Day</b><span>Wood smoke and biscuits in Arlington Heights, a 2026 RAMMY finalist for best brunch.</span></li>
+        <li><b>Nighthawk Brewery</b><span>The county's brewery, in Pentagon City since 2022. Three Notch'd is building a 350-seat taproom in Clarendon for late 2026.</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>The calendar</h3>
+      <ul>
+        <li><b>Arlington County Fair</b><span>12&ndash;16 August 2026, its fiftieth. Thomas Jefferson Community Center, free admission.</span></li>
+        <li><b>Four Courts Four Miler</b><span>The pub's own road race through Courthouse before St Patrick's Day, back on the calendar in March 2026 with about a thousand runners.</span></li>
+        <li><b>Columbia Pike Blues Festival</b><span>13 June 2026 at Penrose Square, twenty-ninth edition, free.</span></li>
+        <li><b>Rosslyn Jazz Fest</b><span>12 September 2026 at Gateway Park, thirty-fourth edition.</span></li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ 06 FAMILY ============ -->
+<section class="pad" id="family" style="padding-top:96px">
+  <div class="sechead reveal">
+    <div>
+      <p class="mono dim" style="margin-bottom:12px">06 — Family</p>
+      <h2 class="d2">Raising them here</h2>
+    </div>
+    <p class="lede dim" style="max-width:34ch">Arlington spends more per student than any division in Northern Virginia, and 84 percent of its students take college-level coursework before they leave.</p>
+  </div>
+
+  <div class="figs reveal">
+    <div class="f"><b>$26,548</b><span>Cost per pupil in the adopted FY2027 school budget of $860.3 million. The highest in Northern Virginia, up 23 percent in five years.</span></div>
+    <div class="f"><b>97.8%</b><span>Graduation rate across the three comprehensive high schools, class of 2025. 84 percent of students take AP, IB or dual-enrolment coursework.</span></div>
+    <div class="f"><b>27,589</b><span>Students across 41 schools and programmes, taught by a faculty of whom 80 percent hold a master's degree.</span></div>
+    <div class="f"><b>69%</b><span>Of the class of 2025 earned an advanced diploma, and the class collected $97.9 million in scholarships.</span></div>
+  </div>
+
+  <div class="metarow reveal" style="margin-top:60px">
+    <div>
+      <p class="mono dim" style="margin-bottom:14px">The schools this audience asks about</p>
+      <ul class="col" style="border-top:0;padding-top:14px">
+        <li><b>Yorktown · Washington-Liberty · Wakefield</b><span>The three comprehensive high schools. U.S. News ranked Yorktown 11th and Washington-Liberty 24th in Virginia for 2025–26. Washington-Liberty carries the IB Diploma Programme.</span></li>
+        <li><b>Arlington Tech</b><span>A project-based programme for grades 9–12 at the Career Center, with dual enrolment through Northern Virginia Community College and a senior capstone. 494 students now; the plan doubles it to about 1,000 by 2029–30.</span></li>
+        <li><b>The Grace Hopper Center</b><span>The new career centre opens for the 2026–27 school year with over 1,600 full-time seats and room for 900 part-time CTE students.</span></li>
+      </ul>
+    </div>
+    <div class="right">
+      <p class="mono dim">And the rest of it</p>
+      <h3>Eight libraries, 3.6 million checkouts.</h3>
+      <ul class="col" style="border-top:0;padding-top:14px">
+        <li><b>Central Library plus seven branches</b><span>Aurora Hills, Cherrydale, Columbia Pike, Courthouse, Glencarlyn, Shirlington and Westover — plus a makerspace and a local history centre.</span></li>
+        <li><b>3.6 million checkouts in 2025</b><span>The county's ten-year capital plan moves planning for the Central Library site up the priority list, though no money is allocated this cycle.</span></li>
+        <li><b>Eight branches and a makerspace</b><span>The Shop at Central Library, plus the Charlie Clark Center for Local History. Planning for the Central Library site has moved up the county's ten-year capital priorities.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ============ NEIGHBORHOODS ============ -->
 <section class="pad" id="neighborhoods">
   <div class="sechead reveal">
     <div>
-      <p class="mono dim" style="margin-bottom:12px">02 — The Ground</p>
+      <p class="mono dim" style="margin-bottom:12px">07 — The Ground</p>
       <h2 class="d2">Neighborhoods</h2>
     </div>
     <p class="lede dim" style="max-width:34ch">Clarendon at 10pm and Shirlington at 10pm are different planets.</p>
@@ -624,6 +985,75 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
      Their data (OUT, EVENTS) is still defined below and is inert until a
      container with the matching id exists again. -->
 
+<!-- ============ SOURCES ============ -->
+<section class="pad" id="sources" style="padding-top:80px;padding-bottom:40px">
+  <div class="sechead reveal">
+    <div>
+      <p class="mono dim" style="margin-bottom:12px">Provenance</p>
+      <h2 class="d3">Every figure above came from one of these.</h2>
+    </div>
+    <p class="lede dim" style="max-width:34ch">Where a source is dated, the date is given. Where two sources disagree, the page says so.</p>
+  </div>
+  <ul class="srcs reveal">
+    <li>Income, education, home value, travel time — <a href="https://www.census.gov/quickfacts/fact/table/arlingtoncountyvirginia/PST045224">Census QuickFacts, ACS 2020–2024</a></li>
+    <li>Employment, employer ranking, area wages — <a href="https://virginiaworks.gov/_docs/local-area-profiles/5104000013.pdf">Virginia Works, Arlington profile</a></li>
+    <li>Occupational wages — <a href="https://www.bls.gov/regions/mid-atlantic/news-release/occupationalemploymentandwages_washingtondc.htm">BLS OEWS, May 2025</a> · <a href="https://www.onetonline.org/link/localwages/15-1252.00?st=VA">metro detail via O*NET</a></li>
+    <li>Telework and commuting — <a href="https://www.mwcog.org/documents/2026/01/21/state-of-the-commute-survey-report--carsharing-featured-publications-state-of-the-commute-telework-travel-surveys/">MWCOG 2025 State of the Commute</a></li>
+    <li>Work-from-home share and population — <a href="https://www.arlingtonva.us/Government/Projects/Data-Research/Profile">Arlington County Profile</a></li>
+    <li>Tax rate and average assessment — <a href="https://www.arlingtonva.us/About-Arlington/Newsroom/Articles/2026/Arlington-County-Board-adopts-FY-2027-Budget">Arlington County, FY2027 budget</a></li>
+    <li>Automatic Train Operation — <a href="https://www.wmata.com/about/news/Metro-to-launch-Automatic-Train-Operation-on-the-Blue-Orange-and-Silver-lines-on-June-15.cfm">WMATA, June 2025</a></li>
+    <li>Ridership — <a href="https://www.wmata.com/initiatives/ridership-portal/">WMATA ridership portal</a> · <a href="https://wmata.com/about/news/Metro-Delivers-120-Million-in-Savings-and-Record-Ridership-in-FY2025.cfm">FY2025 release</a></li>
+    <li>8000-series railcars — <a href="https://www.wmata.com/about/news/upload/3B-8000-Series-Update.pdf">WMATA board update, July 2025</a></li>
+    <li>Crystal City second entrance — <a href="https://www.arlingtonva.us/Government/Projects/Project-Types/Transportation-Projects/Crystal-City-East-Entrance">Arlington County</a></li>
+    <li>Eleven Metro stations — <a href="https://arlingtontrac.com/ways-to-get-around/arlingtons-metrorail-service/">Arlington TRAC</a></li>
+    <li>Digital Counties Survey — <a href="https://www.govtech.com/digital-counties-2026-150-000-249-999-population-category">Center for Digital Government, July 2026</a></li>
+    <li>ConnectArlington — <a href="https://www.arlingtonva.us/Government/Departments/DTS/ConnectArlington">Arlington County DTS</a></li>
+    <li>Open GIS data — <a href="https://gisdata-arlgis.opendata.arcgis.com/">Arlington County GIS Mapping Center</a></li>
+    <li>Energy targets — <a href="https://www.arlingtonva.us/Government/Programs/Sustainability/AIRE/Resources/Community-Energy-Plan">Community Energy Plan</a></li>
+    <li>Green Building Incentive Policy — <a href="https://content.govdelivery.com/accounts/VAARLINGTON/bulletins/2b0d2b3">Arlington County, December 2020</a></li>
+    <li>EV charging ports and pricing — <a href="https://www.arlingtonva.us/Government/Programs/Sustainability/AIRE/Transportation/Public-EV-Charging">Arlington County AIRE</a></li>
+    <li>Electric bus range — <a href="https://www.arlnow.com/2026/03/17/electric-art-buses-lose-battery-much-faster-in-the-winter-new-data-shows/">ARLnow, March 2026, from a county briefing</a></li>
+    <li>ParkScore — <a href="https://parkserve.tpl.org/downloads/pdfs/Arlington_VA.pdf">Trust for Public Land, 2026</a></li>
+    <li>Trail mileage — <a href="https://www.arlingtonva.us/Government/Departments/Parks-Recreation/Locations/Off-street-trails">Arlington DPR</a> · <a href="https://www.nps.gov/thingstodo/walk-bike-the-mount-vernon-trail.htm">NPS</a> · <a href="https://www.novaparks.com/parks/washington-and-old-dominion-railroad-regional-park">NOVA Parks</a> · <a href="https://www.bikearlington.com/the-best-biking-and-hiking-trails-in-arlington/">BikeArlington</a></li>
+    <li>Long Bridge membership rates — <a href="https://www.arlingtonva.us/Government/Departments/Parks-Recreation/Locations/Indoor-Facilities/Long-Bridge-Aquatics-Fitness-Center/Get-a-Membership">Arlington County, FY2026</a></li>
+    <li>Parks bond and the Boeing gift — <a href="https://www.arlnow.com/2026/07/23/planning-for-future-of-central-library-lee-community-center-moves-up-in-county-priorities/">ARLnow, July 2026</a> · <a href="https://www.arlnow.com/2026/04/07/costs-at-long-bridge-aquatics-center-projected-to-surge-2m-as-boeing-funds-expire/">April 2026</a></li>
+    <li>Boathouse — <a href="https://www.arlnow.com/2026/04/21/arlington-boathouse-project-targets-next-planning-phase-by-end-of-year/">ARLnow, April 2026</a></li>
+    <li>Restaurant rankings — <a href="https://www.arlnow.com/2026/01/21/five-spots-in-arlington-and-falls-church-make-washingtonians-top-100-restaurants-list/">Washingtonian 100 Very Best 2026</a> · <a href="https://www.arlnow.com/2026/04/08/rammy-awards-finalists-include-taqueria-xochi-queen-mothers-kitchen-and-other-local-spots/">RAMMY 2026 finalists</a></li>
+    <li>Openings and closures — <a href="https://washingtonian.com/2026/06/03/a-latin-supper-club-joins-clarendons-nightlife-scene/">Cielo</a> · <a href="https://www.arlnow.com/2026/02/12/just-in-rhodeside-grill-to-close-after-three-decades-in-business/">Rhodeside Grill</a> · <a href="https://www.arlnow.com/2026/04/02/three-notchd-nixes-ax-throwing-in-clarendon-as-restaurant-plans-move-forward/">Three Notch'd</a></li>
+    <li>Licence data — <a href="https://www.arlnow.com/2025/06/02/state-data-suggests-possible-slowdown-in-arlington-restaurant-openings/">ARLnow, on Virginia ABC records</a></li>
+    <li>Neighbourhood characterisations — <a href="https://www.stayarlington.com/neighborhoods/">Arlington Convention &amp; Visitors Service</a></li>
+    <li>Farmers markets — <a href="https://www.arlingtonva.us/Government/Topics/Urban-Agriculture/Farmers-Markets">Arlington County</a></li>
+    <li>Events — <a href="https://arlingtoncountyfair.us/">Arlington County Fair</a> · <a href="https://www.arlingtonva.us/Government/Programs/Arts/About-Us/Newsroom/Arts-Press-Releases/Blues-Fest-2026-Announcement">Columbia Pike Blues Festival</a> · <a href="https://www.rosslynva.org/do/jazz-fest-2026">Rosslyn Jazz Fest</a></li>
+    <li>Fittest city in America — <a href="https://acsm.org/american-fitness-index-rankings-2026/">ACSM American Fitness Index, 2026</a></li>
+    <li>Most livable large community — <a href="https://livabilityindex.aarp.org/top-communities">AARP Livability Index</a></li>
+    <li>Key Bridge and the Georgetown connection — <a href="https://www.nps.gov/places/000/francis-scott-key-bridge.htm">National Park Service</a></li>
+    <li>The Foggy Bottom cluster — <a href="https://www.federalreserve.gov/events/cbw/aboutdc.htm">Federal Reserve Board</a> · <a href="https://www.doi.gov/ofas/stewart-lee-udall-building-visitors-information">Interior, Stewart Lee Udall Building</a></li>
+    <li>Arlington National Cemetery — <a href="https://www.arlingtoncemetery.mil/About/History-of-Arlington-National-Cemetery">Army National Military Cemeteries</a></li>
+    <li>Digital Counties Survey — <a href="https://www.govtech.com/dc/digital-counties/winners-announced-2026-digital-counties-survey">Center for Digital Government, 2026</a></li>
+    <li>Pentagon size and occupancy — <a href="https://media.defense.gov/2020/Jan/03/2002230480/-1/-1/1/PENTAGON_SELF_GUIDED_TOUR_BROCHURE_2020.PDF">DoD tour brochure</a> · <a href="https://www.ncpc.gov/docs/actions/2023October/MP174_Pentagon_Reservation_Master_Plan_Update_Staff_Report_Oct2023.pdf">NCPC master plan update, 2023</a></li>
+    <li>Joint Base Myer-Henderson Hall — <a href="https://installations.militaryonesource.mil/in-depth-overview/fort-myer-joint-base-myer-henderson-hall">DoD MilitaryINSTALLATIONS</a> · <a href="https://home.army.mil/jbmhh/teamJBMHH/units-tenants">tenant units</a></li>
+    <li>DARPA and ONR addresses — <a href="https://www.usgovernmentmanual.gov/">U.S. Government Manual</a> · <a href="https://www.onr.navy.mil/media-center/contact-onr">Office of Naval Research</a></li>
+    <li>Federal employees in Arlington — <a href="https://www.arlingtonva.us/Government/Topics/Federal-Employee-Assistance">Arlington County</a></li>
+    <li>Five miles to the capital, eleven Metro stations — <a href="https://www.arlingtonva.us/Government/Projects/Data-Research/Fast-Facts">Arlington Fast Facts</a></li>
+    <li>Commuting flows and county wages — <a href="https://virginiaworks.gov/_docs/local-area-profiles/5104000013.pdf">Virginia Works</a> · <a href="https://www.bls.gov/regions/mid-atlantic/news-release/2025/countyemploymentandwages_virginia_20250916.htm">BLS county wages, Q1 2025</a></li>
+    <li>Reagan National — <a href="https://www.flyreagan.com/directions-ronald-reagan-washington-national-airport-dca">MWAA</a> · <a href="https://www.arlnow.com/2026/02/25/reagan-national-confirms-its-lowest-air-traffic-numbers-in-three-years/">2025 passengers</a></li>
+    <li>Metro-area tech employment share — <a href="https://www.bls.gov/regions/mid-atlantic/news-release/occupationalemploymentandwages_washingtondc.htm">BLS OEWS, May 2025</a></li>
+    <li>Best-Performing Cities — <a href="https://milkeninstitute.org/content-hub/research-and-reports/research-and-data-tools/best-performing-cities-2026-resilience-cooling-economy">Milken Institute, 2026</a></li>
+    <li>Amazon HQ2 headcount and commitment — <a href="https://www.aboutamazon.com/news/community/amazon-investment-virginia-jobs-infrastructure-small-business">Amazon</a> · <a href="https://www.arlingtoneconomicdevelopment.com/why-arlington/amazon-hq2-then-and-now/behind-the-decision/">Arlington Economic Development</a></li>
+    <li>The Potomac shoreline and the boathouse — <a href="https://arlingtonboathouse.org/about-us/faq/">Arlington Boathouse Foundation</a> · <a href="https://arlingtonboathouse.org/river-access/rowing-paddling/">school rowing</a> · <a href="https://www.arlingtonmagazine.com/washington-lee-liberty-crew/">Arlington Magazine on the 1949 programme</a></li>
+    <li>Paddling access — <a href="https://www.nps.gov/places/000/key-bridge-boathouse.htm">NPS, Key Bridge Boathouse</a> · <a href="https://www.saildc.com/boat-rentals">Belle Haven Marina</a></li>
+    <li>Ireland's Four Courts — <a href="https://www.irelandsfourcourts.com/">the pub</a> · <a href="https://www.arlingtonmagazine.com/irelands-four-courts-arlington-reopens/">Arlington Magazine on the reopening</a> · <a href="https://www.arlnow.com/2026/03/27/irelands-four-courts-named-americas-best-soccer-bar-in-nationwide-contest/">America's best soccer bar</a> · <a href="https://www.arlnow.com/2026/03/12/four-courts-four-miler-brings-road-closures-to-courthouse-this-weekend/">the Four Miler</a></li>
+    <li>Independents — <a href="https://galaxyhut.com/">Galaxy Hut</a> · <a href="https://www.lostdogcafe.com/about-us/">Lost Dog Cafe</a> · <a href="https://library.arlingtonva.us/2021/04/01/oral-history-bob-and-ediths-diner/">Bob &amp; Edith's</a> · <a href="http://www.westovermarketbeergarden.com/our-story.html">Westover Market</a> · <a href="https://www.metro29diner.com/about.html">Metro 29</a></li>
+    <li>Coffee — <a href="https://www.northsidesocialva.com/location/arlington/">Northside Social</a> · <a href="https://www.bayoubakeryva.com/">Bayou Bakery</a> · <a href="https://simonacafe.com/">SIMONA</a> · <a href="https://commonwealthjoe.com/pages/commonwealth-joe-pentagon-city">Commonwealth Joe</a></li>
+    <li>Clarendon retail — <a href="https://www.regencycenters.com/property/detail/60789/The-Crossing-Clarendon">The Crossing Clarendon</a> · <a href="https://www.kinderhaus.com/about.html">Kinder Haus Toys</a> · <a href="https://www.arlnow.com/2026/04/23/barnes-noble-to-reopen-next-month-in-clarendon-smaller-than-before/">Barnes &amp; Noble</a> · <a href="https://www.clarendon.org/about-us/">Clarendon Alliance</a></li>
+    <li>Closures — <a href="https://www.arlnow.com/2021/06/18/whitlows-is-closing-next-week-and-throwing-itself-a-going-away-party/">Whitlow's</a> · <a href="https://washingtonian.com/2019/06/03/rays-the-steaks-is-closing-in-arlington-after-17-years/">Ray's the Steaks</a> · <a href="https://www.arlnow.com/2023/01/23/sweet-science-coffee-near-courthouse-rebrands-as-simona-cafe/">Java Shack to SIMONA</a></li>
+    <li>Schools — <a href="https://www.apsva.us/about-aps/">APS</a> · <a href="https://www.apsva.us/budget/">FY2027 budget</a> · <a href="https://www.apsva.us/page/19719/">class of 2025 outcomes</a> · <a href="https://www.arlnow.com/2026/04/03/aps-leaders-defend-highest-per-student-spending-in-n-va-as-budget-talks-heat-up/">per-student comparison</a></li>
+    <li>Arlington Tech and the Grace Hopper Center — <a href="https://www.arlnow.com/2026/01/14/aps-plans-to-double-student-enrollment-at-arlington-tech-in-stages-by-2029-30/">ARLnow, January 2026</a> · <a href="https://www.apsva.us/engage/arlington-career-center-project/">APS</a></li>
+    <li>Libraries — <a href="https://library.arlingtonva.us/locations/">Arlington Public Library</a> · <a href="https://library.arlingtonva.us/2025/12/04/arlingtons-top-reads-in-2025/">2025 circulation</a></li>
+  </ul>
+  <p class="disclose dim" style="margin-top:26px;max-width:74ch">Where a figure could not be traced to its publisher, it is not printed. Rankings are attributed to the body that produced them, with the geography each one actually measures: the fitness index and the livability index rank places coterminous with the county, while the Milken index ranks a multi-county metropolitan division.</p>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer class="pad">
   <div class="fgrid">
@@ -636,11 +1066,23 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
     </div>
     <div>
       <p class="mono dim" style="margin-bottom:16px">Sections</p>
-      <ul><li><a href="#market">Market</a></li><li><a href="#neighborhoods">Neighborhoods</a></li></ul>
+      <ul>
+        <li><a href="#work">The Work</a></li>
+        <li><a href="#built">The Infrastructure</a></li>
+        <li><a href="#outside">Outside</a></li>
+        <li><a href="#table">The Table</a></li>
+        <li><a href="#family">Family</a></li>
+        <li><a href="#neighborhoods">The Ground</a></li>
+        <li><a href="#sources">Sources</a></li>
+      </ul>
     </div>
     <div>
-      <p class="mono dim" style="margin-bottom:16px">Neighborhoods</p>
-      <ul><li><a href="#neighborhoods">North Arlington</a></li><li><a href="#neighborhoods">Rosslyn–Ballston</a></li><li><a href="#neighborhoods">Central &amp; South</a></li><li><a href="#neighborhoods">All areas</a></li></ul>
+      <p class="mono dim" style="margin-bottom:16px">Elsewhere</p>
+      <ul>
+        <li><a href="technology.html">Technology</a></li>
+        <li><a href="#neighborhoods">The map</a></li>
+        <li><a href="#market">Saturday</a></li>
+      </ul>
     </div>
     <div>
       <p class="mono dim" style="margin-bottom:16px">Sources</p>
