@@ -2415,14 +2415,19 @@ if(useVideo){
      so it drives visibility directly rather than through a CSS cascade: 68 nodes
      is cheap to walk, and hidden nodes stop taking pointer events. */
   const poiPick=document.getElementById('poiPick');
-  function applyPoiFilter(){
+  function applyPoiFilter(frame){
     const v=poiPick?poiPick.value:'all';
     svg.querySelectorAll('.poi').forEach(g=>{
       const show = v==='all' ? true : v==='none' ? false : g.classList.contains('p-'+v);
       g.toggleAttribute('hidden',!show);
     });
+    /* Choosing a category is a request to look at those places, and at the
+       opening framing roughly a third of them sit outside the visible map. So
+       a real choice reframes to fit that category; 'all' and 'none' go back to
+       the opening view rather than to a bounding box of the whole county. */
+    if(frame) fitPoi(v);
   }
-  if(poiPick){ poiPick.addEventListener('change',applyPoiFilter); applyPoiFilter(); }
+  if(poiPick){ poiPick.addEventListener('change',()=>applyPoiFilter(true)); applyPoiFilter(false); }
   if(fine) svg.addEventListener('mouseleave',inline.clear);
 
   /* ---------- DETAIL PANEL, DIRECTLY BELOW THE MAP ----------
@@ -2440,6 +2445,18 @@ if(useVideo){
     "poi:Bob & Edith's Diner":   'bob-and-ediths.html',
     'poi:Westover Market':       'westover-market.html',
     'poi:Metro 29 Diner':        'metro-29-diner.html',
+    'poi:Padaek':                'padaek.html',
+    'poi:Cafe Colline':          'cafe-colline.html',
+    "poi:Ruthie's All-Day":      'ruthies-all-day.html',
+    'poi:Taqueria Xochi':        'taqueria-xochi.html',
+    'poi:Cielo':                 'cielo.html',
+    'poi:Nighthawk Brewery':     'nighthawk-brewery.html',
+    'poi:Pizzeria Paradiso':     'pizzeria-paradiso.html',
+    "poi:Andy's Pizza":          'andys-pizza.html',
+    'poi:Call Your Mother':      'call-your-mother.html',
+    'poi:Surreal':               'surreal.html',
+    'poi:Open Road':             'open-road.html',
+    'poi:UPSIDE on Moore':       'upside-on-moore.html',
   };
   function pageFor(el){
     const d=el.dataset;
@@ -2622,6 +2639,24 @@ if(useVideo){
     target(gk*factor,p.x,p.y,fx,fy);
   }
   function reset(){gk=HOME_K;gx=HOME_X;gy=HOME_Y;ease();inline.clear();}
+  /* Frame a POI category. The vp transform maps a content point (cx,cy) to
+     (tx + k*cx, ty + k*cy) in viewBox units, so fitting a bounding box is the
+     same arithmetic HOME_X/HOME_Y use, solved for the box instead of a point.
+     Capped at 6x so a tight cluster does not slam the map into a single block. */
+  function fitPoi(cat){
+    if(cat==='all'||cat==='none'||!GEO.poi){ reset(); return; }
+    const rows=GEO.poi.filter(r=>r[0]===cat);
+    if(!rows.length){ reset(); return; }
+    let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
+    rows.forEach(r=>{ x0=Math.min(x0,r[2]); x1=Math.max(x1,r[2]);
+                      y0=Math.min(y0,r[3]); y1=Math.max(y1,r[3]); });
+    const pad=1.25, bw=Math.max(x1-x0,40), bh=Math.max(y1-y0,40);
+    const nk=clamp(Math.min(VB.w/(bw*pad), VB.h/(bh*pad)),1,6);
+    gk=nk;
+    gx=(VB.x+VB.w/2)-nk*((x0+x1)/2);
+    gy=(VB.y+VB.h/2)-nk*((y0+y1)/2);
+    ease();
+  }
   function zoomCentre(f){const b=stage.getBoundingClientRect();zoomAt(b.left+b.width/2,b.top+b.height/2,f);}
   svg.addEventListener('keydown',e=>{
     if(e.key==='+'||e.key==='='){e.preventDefault();zoomCentre(1.35);}
