@@ -409,7 +409,7 @@ footer{background:var(--black);padding:70px 0 34px;border-top:1px solid var(--ru
 .dz.s-green:hover,.dz.s-green.on,
 .dz.s-green.cem:hover,.dz.s-green.cem.on{stroke:var(--accent);stroke-dasharray:none}
 /* ---------- NAMED PLACES (POI layer) ---------- */
-.poi{cursor:pointer}
+.mPoi .poi{cursor:pointer}
 .poi .hit{fill:transparent}
 .poi .dot{fill:var(--white);stroke:#000;stroke-width:1;vector-effect:non-scaling-stroke}
 .poi text{font-family:var(--mono);font-size:7px;fill:rgba(255,255,255,.9);
@@ -2010,7 +2010,7 @@ if(useVideo){
     /* Named establishments hold a constant on-screen size instead of growing
        with the zoom, and their labels arrive once there is room to read them. */
     const poiR=u(5.5), poiHit=u(13), poiF=Math.min(u(11),20), poiLab=z>=4.2;
-    root.querySelectorAll('.poi').forEach(g=>{
+    root.querySelectorAll('.mPoi .poi').forEach(g=>{
       const dot=g.querySelector('.dot'), hit=g.querySelector('.hit'), t=g.querySelector('text');
       if(dot) dot.setAttribute('r',poiR.toFixed(2));
       if(hit) hit.setAttribute('r',poiHit.toFixed(2));
@@ -2434,6 +2434,12 @@ if(useVideo){
   const PAGES = {
     // ca:  'cherrydale': 'cherrydale.html',
     // k:   'Crystal-City': 'crystal-city.html',
+    "poi:Ireland's Four Courts": 'irelands-four-courts.html',
+    'poi:Galaxy Hut':            'galaxy-hut.html',
+    'poi:Lost Dog Cafe':         'lost-dog-cafe.html',
+    "poi:Bob & Edith's Diner":   'bob-and-ediths.html',
+    'poi:Westover Market':       'westover-market.html',
+    'poi:Metro 29 Diner':        'metro-29-diner.html',
   };
   function pageFor(el){
     const d=el.dataset;
@@ -2443,6 +2449,7 @@ if(useVideo){
     if(d.place!==undefined)return PAGES['place:'+GEO.places[+d.place][0]] || null;
     if(d.gov!==undefined)  return PAGES['gov:'+GEO.gov[+d.gov][0]] || null;
     if(d.park!==undefined) return PAGES['park:'+GEO.parks[+d.park][0]] || null;
+    if(d.poi!==undefined)  return PAGES['poi:'+GEO.poi[+d.poi][1]] || null;
     return null;
   }
 
