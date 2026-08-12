@@ -330,6 +330,7 @@ footer{background:var(--black);padding:70px 0 34px;border-top:1px solid var(--ru
 .maplegend i.brg{height:0;border:0;border-top:2px solid rgba(241,240,234,.8);width:16px}
 .maplegend i.dc{border-style:dotted;border-color:rgba(255,255,255,.34);background:rgba(255,255,255,.025)}
 /* a roof over a wall, so the swatch reads as an extrusion */
+.maplegend i.poi{border-radius:50%;background:#ff9d5c;border:0;width:9px;height:9px}
 .maplegend i.mass{border-color:#fff;background:var(--cream);
   box-shadow:0 3px 0 -1px #63625a, 0 3px 0 0 rgba(241,240,234,.34);margin-bottom:3px}
 
@@ -407,6 +408,34 @@ footer{background:var(--black);padding:70px 0 34px;border-top:1px solid var(--ru
    declared below the selection rule, so they are restated here to lose to it */
 .dz.s-green:hover,.dz.s-green.on,
 .dz.s-green.cem:hover,.dz.s-green.cem.on{stroke:var(--accent);stroke-dasharray:none}
+/* ---------- NAMED PLACES (POI layer) ---------- */
+.poi{cursor:pointer}
+.poi .hit{fill:transparent}
+.poi .dot{fill:var(--white);stroke:#000;stroke-width:1;vector-effect:non-scaling-stroke}
+.poi text{font-family:var(--mono);font-size:7px;fill:rgba(255,255,255,.9);
+  paint-order:stroke;stroke:rgba(0,0,0,.85);stroke-width:2.4px;stroke-linejoin:round;
+  opacity:0;transition:opacity .18s;pointer-events:none}
+.poi:hover text,.poi.on text,.poi:focus-visible text,.poi.lab text{opacity:1}
+.poi:hover .dot,.poi.on .dot,.poi:focus-visible .dot{fill:var(--accent);
+  stroke:var(--accent);stroke-width:3;stroke-opacity:.45}
+.poi:focus-visible{outline:none}
+.p-eat    .dot{fill:#ff9d5c}
+.p-coffee .dot{fill:#c69a6d}
+.p-shop   .dot{fill:#f4d35e}
+.p-fit    .dot{fill:#6ee7a5}
+.p-def    .dot{fill:#9fb3c8}
+.p-tech   .dot{fill:#7aa2ff}
+.p-cap    .dot{fill:#c79bff}
+.p-edu    .dot{fill:#ff8fb1}
+.poi[hidden]{display:none}
+/* toolbar select */
+.poisel{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--dim)}
+.poisel select{font-family:var(--mono);font-size:11px;letter-spacing:.06em;background:#111;
+  color:var(--white);border:1px solid var(--rule);padding:5px 8px;cursor:pointer;
+  text-transform:none;letter-spacing:0}
+.poisel select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+@media(max-width:820px){.poisel{width:100%;justify-content:space-between}}
 .m-fountain{fill:#1f3a7a;stroke:rgba(150,190,255,.45);stroke-width:.7;
   vector-effect:non-scaling-stroke;pointer-events:none;fill-rule:evenodd}
 .m-fed{fill:rgba(255,255,255,.035);stroke:rgba(255,255,255,.17);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:4 4}
@@ -984,7 +1013,21 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
         <div class="maptabs" role="tablist" aria-label="Map layer">
           <button type="button" class="on" data-mode="ca" role="tab" aria-selected="true" aria-disabled="true">Civic Associations</button>
         </div>
-        <p class="maphint mono" id="mHint">Tap a shape to open its guide · pinch or drag to explore</p>
+        <label class="poisel mono" for="poiPick">Places
+          <select id="poiPick" aria-label="Filter places by type">
+            <option value="all">All types</option>
+            <option value="eat">Eat &amp; Drink</option>
+            <option value="coffee">Coffee</option>
+            <option value="shop">Shop</option>
+            <option value="fit">Fitness &amp; Recreation</option>
+            <option value="def">Defense &amp; Federal</option>
+            <option value="tech">Technology</option>
+            <option value="cap">Capital</option>
+            <option value="edu">Education</option>
+            <option value="none">Hide places</option>
+          </select>
+        </label>
+        <p class="maphint mono" id="mHint">Tap a shape or a place to open its guide · pinch or drag to explore</p>
       </div>
       <div class="mapshell">
       <div class="mapstage" id="mapStage">
@@ -1002,6 +1045,7 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
             <g class="m3d"></g>
             <g class="mMarks"></g>
             <g class="mPins"></g>
+            <g class="mPoi"></g>
           </g>
         </svg>
       </div>
@@ -1018,6 +1062,7 @@ a,button{-webkit-tap-highlight-color:rgba(255,255,255,.14)}
         <span><i class="wtr"></i>Potomac</span>
         <span><i class="brg"></i>Bridge</span>
         <span><i class="rail"></i>Metrorail by line</span>
+        <span><i class="poi"></i>Named place</span>
       </div>
     </figure>
   </div>
@@ -1217,6 +1262,75 @@ const GEO={
 /* Potomac River: OSM water relations (upstream + main stem) plus DC GIS
    Waterbodies for the reach past the 14th Street bridges. Drawn as opaque
    overlapping fills so the joins are invisible. */
+poi:[
+ ["cap","EJF Capital",694.0,423.7,"2107 Wilson Blvd"],
+ ["cap","FedTech",470.2,552.6,"4401 Wilson Blvd, Ballston"],
+ ["cap","Lavrock Ventures",476.5,558.3,"4300 Wilson Blvd, Ballston"],
+ ["cap","Marlinspike Partners",488.6,553.4,"4201 Wilson Blvd, Ballston"],
+ ["cap","Sands Capital",825.9,413.7,"1000 Wilson Blvd, Rosslyn"],
+ ["cap","StoneMill Ventures",806.8,398.8,"1201 Wilson Blvd, Rosslyn"],
+ ["coffee","Bayou Bakery",707.8,442.2,"1515 N Courthouse Rd"],
+ ["coffee","Commonwealth Joe",937.0,734.4,"520 12th St S, Pentagon City"],
+ ["coffee","Northside Social",594.8,500.9,"3211 Wilson Blvd, Clarendon"],
+ ["coffee","SIMONA Cafe",665.2,446.2,"2507 Franklin Rd, Colonial Village"],
+ ["def","Arlington National Cemetery",823.2,577.7,"624 acres, U.S. Army"],
+ ["def","Army National Guard Readiness Center",534.2,684.1,"111 S George Mason Dr"],
+ ["def","DARPA",507.1,569.9,"675 N Randolph St, Ballston"],
+ ["def","Defense Security Cooperation Agency",974.2,726.9,"201 12th St S"],
+ ["def","Foreign Service Institute",560.1,678.2,"4000 Arlington Blvd"],
+ ["def","Marine Corps War Memorial",803.2,450.8,"1400 N Meade St, Rosslyn"],
+ ["def","Naval Support Facility Arlington",733.9,684.5,"701 S Courthouse Rd"],
+ ["def","Office of Local Defense Community Cooperation",986.5,825.4,"2231 Crystal Dr"],
+ ["def","Office of Naval Research",506.2,548.1,"875 N Randolph St, Ballston"],
+ ["def","The Pentagon",928.7,649.2,"Pentagon Reservation"],
+ ["eat","Andy's Pizza",525.6,534.3,"901 N Pollard St, Ballston"],
+ ["eat","Bob & Edith's Diner",718.7,724.7,"2310 Columbia Pike"],
+ ["eat","Cafe Colline",424.1,367.9,"4536 Cherry Hill Rd, Lee Heights"],
+ ["eat","Call Your Mother",984.4,776.8,"1671 Crystal Dr"],
+ ["eat","Cielo",618.7,481.9,"1137 N Highland St, Clarendon"],
+ ["eat","Galaxy Hut",649.0,458.0,"2711 Wilson Blvd, Clarendon"],
+ ["eat","Ireland's Four Courts",704.0,435.5,"2051 Wilson Blvd, Courthouse"],
+ ["eat","Lost Dog Cafe",243.1,501.2,"5876 Washington Blvd, Westover"],
+ ["eat","Metro 29 Diner",394.7,371.9,"4711 Langston Blvd, Cherrydale"],
+ ["eat","Nighthawk Brewery",878.1,727.9,"1201 S Joyce St, Pentagon City"],
+ ["eat","Open Road",806.8,398.8,"1201 Wilson Blvd, Rosslyn"],
+ ["eat","Padaek",834.3,909.6,"2931 S Glebe Rd, Arlington Ridge"],
+ ["eat","Pizzeria Paradiso",986.2,771.7,"1611 Crystal Dr"],
+ ["eat","Ruthie's All-Day",614.3,687.4,"3411 5th St S, Arlington Heights"],
+ ["eat","Surreal",984.0,813.8,"2117 Crystal Dr"],
+ ["eat","Taqueria Xochi",943.9,756.0,"1450 S Eads St, National Landing"],
+ ["eat","UPSIDE on Moore",802.9,398.2,"1700 N Moore St, Rosslyn"],
+ ["eat","Westover Market",249.7,499.6,"5863 Washington Blvd, Westover"],
+ ["edu","Arlington Career Center",669.6,715.5,"816 S Walter Reed Dr"],
+ ["edu","Central Library",519.1,518.3,"1015 N Quincy St"],
+ ["edu","Fuse at Mason Square",569.4,503.4,"3351 Fairfax Dr, Virginia Square"],
+ ["edu","Marymount University",346.5,291.1,"2807 N Glebe Rd"],
+ ["edu","Virginia Tech Research Center",452.6,548.2,"900 N Glebe Rd, Ballston"],
+ ["edu","Wakefield High School",483.8,891.4,"1325 S Dinwiddie St"],
+ ["edu","Washington-Liberty High School",491.6,480.0,"1301 N Stafford St"],
+ ["edu","Yorktown High School",256.1,319.1,"5200 Yorktown Blvd"],
+ ["fit","Arlington Mill Center",479.0,798.8,"909 S Dinwiddie St"],
+ ["fit","Barcroft Sports & Fitness",562.0,858.8,"4200 S Four Mile Run Dr"],
+ ["fit","Bluemont Park",326.2,671.6,"329 N Manchester St"],
+ ["fit","Life Time Clarendon",640.9,480.4,"The Crossing Clarendon"],
+ ["fit","Long Bridge Aquatics",989.6,699.6,"475 Long Bridge Dr"],
+ ["fit","Lubber Run Center",465.6,624.5,"300 N Park Dr"],
+ ["fit","Lyon Park",640.1,565.6,"414 N Fillmore St"],
+ ["fit","Pacers Running",614.7,490.9,"3100 Clarendon Blvd"],
+ ["fit","Thomas Jefferson Center",608.1,663.1,"3501 2nd St S"],
+ ["shop","Kinder Haus Toys",631.0,481.6,"1220 N Fillmore St, Clarendon"],
+ ["shop","Pentagon City Mall",891.9,723.7,"1100 S Hayes St"],
+ ["shop","The Crossing Clarendon",640.9,480.4,"2800 Clarendon Blvd"],
+ ["tech","AeroVironment",973.1,779.8,"241 18th St S, Crystal City"],
+ ["tech","Air",812.8,395.4,"1735 N Lynn St, Rosslyn"],
+ ["tech","Amazon HQ2",927.5,748.4,"1330 S Fair St, Metropolitan Park"],
+ ["tech","Auterion",479.7,537.6,"4250 Fairfax Dr, Ballston"],
+ ["tech","Boeing",975.4,714.1,"929 Long Bridge Dr"],
+ ["tech","Innovative Defense Technologies",470.2,552.6,"4401 Wilson Blvd, Ballston"],
+ ["tech","Leonardo DRS",987.5,835.1,"2345 Crystal Dr"],
+ ["tech","RTX",825.9,413.7,"1000 Wilson Blvd, Rosslyn"],
+ ["tech","Shift5",815.6,406.5,"1100 Wilson Blvd, Rosslyn"],
+ ["tech","Teledyne FLIR Defense",978.4,767.0,"1550 Crystal Dr"]],
 parks:[
  ["East Potomac Park","Washington, D.C.","M1088,566l2,-1 4,1ZM1071,569l14,-2 -11,12 -9,-7ZM1068,565l11,-2 -17,7ZM1097,564l-5,-1 8,-5 15,-25ZM1197,795l-64,-144 -19,-30 -30,-33 32,-54 7,16 46,46 17,29 12,47 3,120ZM1088,563l-5,-2 11,-2ZM1084,588l-9,-8 8,-8 12,-4Z"],
  ["National Mall","Washington, D.C.","M953,434l-16,-8 14,3ZM950,428l-5,-2 3,-1ZM955,429l-4,-6 1,-8ZM974,433l-17,-3 0,-5ZM950,421l-3,-8 3,0ZM944,425l-13,-1 12,-9 5,9ZM935,421l6,-13 2,6ZM929,413l4,8 -4,2 -3,-8ZM1059,434l90,0 1,16 3,0 1,-16 29,0 0,14 2,-14 37,0 6,-2 16,5 8,-3 73,0 2,42 -2,2 -41,0 -178,-2 0,37 6,8 -2,9 2,1 -16,25 -26,6 -10,7 -43,-34 -55,-55 -8,-14 1,-11 -11,-8 -8,-12 -3,0 -3,-9 22,8 8,10 -4,-14 18,4Z"],
@@ -1893,6 +2007,17 @@ if(useVideo){
     // the map reads clean at rest; names arrive as you go in
     const z=zoom||curZoom, T1=1.8, T2=3.0;
     const f=base/9.5;                           // offsets track the type size
+    /* Named establishments hold a constant on-screen size instead of growing
+       with the zoom, and their labels arrive once there is room to read them. */
+    const poiR=u(5.5), poiHit=u(13), poiF=Math.min(u(11),20), poiLab=z>=4.2;
+    root.querySelectorAll('.poi').forEach(g=>{
+      const dot=g.querySelector('.dot'), hit=g.querySelector('.hit'), t=g.querySelector('text');
+      if(dot) dot.setAttribute('r',poiR.toFixed(2));
+      if(hit) hit.setAttribute('r',poiHit.toFixed(2));
+      if(t){ t.style.fontSize=poiF.toFixed(2)+'px'; t.setAttribute('x',(poiR*1.9).toFixed(2));
+             t.setAttribute('y',(poiF*0.36).toFixed(2)); t.style.strokeWidth=(poiF*0.32).toFixed(2)+'px'; }
+      g.classList.toggle('lab',poiLab);
+    });
     root.querySelectorAll('.m-mark').forEach(g=>{
       const tier=g.dataset.tier==='2'?2:1;
       const show = z>=T2 || (z>=T1 && tier===1);
@@ -2164,6 +2289,12 @@ if(useVideo){
     }
     root.querySelector('.mZones').innerHTML=zones.join('');
     root.querySelector('.mPins').innerHTML=pins.join('');
+    // Named establishments, geocoded from Arlington County's address-point layer.
+    // Drawn last so they sit above the districts; filtered by the toolbar dropdown.
+    root.querySelector('.mPoi').innerHTML=GEO.poi.map(([c,n,x,y],i)=>
+      `<g class="poi p-${c}" data-poi="${i}" transform="translate(${x},${y})" tabindex="0" `
+      +`role="button" aria-label="${n}"><circle class="hit" r="9"/><circle class="dot" r="3.4"/>`
+      +`<text x="7" y="3.2">${n}</text><title>${n}</title></g>`).join('');
   }
 
   function cardHTML(key){
@@ -2233,7 +2364,16 @@ if(useVideo){
         +`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 9.5L9.5 2.5M4 2.5h5.5V8"/></svg></a>`:'')
       +`<p class="prov mono">${prov||'Boundary — OpenStreetMap'}</p>`;
   }
-  const htmlFor=el=> el.dataset.park!==undefined ? parkHTML(+el.dataset.park)
+  function poiHTML(i){
+    const [c,n,,,a]=GEO.poi[i];
+    const L={eat:'Eat & Drink',coffee:'Coffee',shop:'Shop',fit:'Fitness & Recreation',
+             def:'Defense & Federal',tech:'Technology',cap:'Capital',edu:'Education'};
+    return `<p class="mono dim">${L[c]||c}</p><h3>${n}</h3>
+      <p class="pdesc">${a}</p>
+      <p class="prov mono">Location — Arlington County address points</p>`;
+  }
+  const htmlFor=el=> el.dataset.poi!==undefined ? poiHTML(+el.dataset.poi)
+                   : el.dataset.park!==undefined ? parkHTML(+el.dataset.park)
                    : el.dataset.gov!==undefined ? govHTML(+el.dataset.gov)
                    : el.dataset.site!==undefined ? siteHTML(+el.dataset.site)
                    : el.dataset.k!==undefined ? cardHTML(el.dataset.k)
@@ -2256,9 +2396,9 @@ if(useVideo){
     const show=el=>{const h=htmlFor(el); if(!h)return; panel.innerHTML=h; mark(el);};
     const clear=()=>{panel.innerHTML=idleHTML; mark(null);};
     const api={show,clear};
-    root.addEventListener('mouseover',e=>{const t=e.target.closest('[data-k],[data-ca],[data-place],[data-site],[data-gov],[data-park]'); if(t) show(t);});
-    root.addEventListener('focusin',e=>{const t=e.target.closest('[data-k],[data-ca],[data-place],[data-site],[data-gov],[data-park]'); if(t) show(t);});
-    root.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const t=e.target.closest('[data-k],[data-ca],[data-place],[data-site],[data-gov],[data-park]'); if(t){e.preventDefault();(api.open||show)(t);}}});
+    root.addEventListener('mouseover',e=>{const t=e.target.closest('[data-k],[data-ca],[data-place],[data-site],[data-gov],[data-park],[data-poi]'); if(t) show(t);});
+    root.addEventListener('focusin',e=>{const t=e.target.closest('[data-k],[data-ca],[data-place],[data-site],[data-gov],[data-park],[data-poi]'); if(t) show(t);});
+    root.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const t=e.target.closest('[data-k],[data-ca],[data-place],[data-site],[data-gov],[data-park],[data-poi]'); if(t){e.preventDefault();(api.open||show)(t);}}});
     return api;
   }
 
@@ -2269,6 +2409,20 @@ if(useVideo){
   const panel=document.getElementById('mPanel'), idle=panel.innerHTML;
   const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
   const inline=wire(svg,panel,idle);
+
+  /* ---------- PLACE FILTER ----------
+     The dropdown is the only way to browse the named establishments by interest,
+     so it drives visibility directly rather than through a CSS cascade: 68 nodes
+     is cheap to walk, and hidden nodes stop taking pointer events. */
+  const poiPick=document.getElementById('poiPick');
+  function applyPoiFilter(){
+    const v=poiPick?poiPick.value:'all';
+    svg.querySelectorAll('.poi').forEach(g=>{
+      const show = v==='all' ? true : v==='none' ? false : g.classList.contains('p-'+v);
+      g.toggleAttribute('hidden',!show);
+    });
+  }
+  if(poiPick){ poiPick.addEventListener('change',applyPoiFilter); applyPoiFilter(); }
   if(fine) svg.addEventListener('mouseleave',inline.clear);
 
   /* ---------- DETAIL PANEL, DIRECTLY BELOW THE MAP ----------
@@ -2497,7 +2651,7 @@ if(useVideo){
   function up(e){pts.delete(e.pointerId); if(pts.size<2){pinchD=0;pinchF=null;} if(!pts.size)stage.classList.remove('grabbing');}
   stage.addEventListener('pointerup',e=>{
     if(moved<7){const t=document.elementFromPoint(e.clientX,e.clientY);
-      const z=t&&t.closest?t.closest('[data-k],[data-ca],[data-place],[data-site],[data-gov],[data-park]'):null; if(z) inline.open(z);}
+      const z=t&&t.closest?t.closest('[data-k],[data-ca],[data-place],[data-site],[data-gov],[data-park],[data-poi]'):null; if(z) inline.open(z);}
     up(e);});
   stage.addEventListener('pointercancel',up);
   draw();                                   // apply the opening zoom
